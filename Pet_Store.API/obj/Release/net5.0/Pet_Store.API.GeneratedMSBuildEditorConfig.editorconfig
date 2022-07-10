@@ -7,4 +7,4 @@ build_property.PublishSingleFile =
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = Pet_Store.API
-build_property.ProjectDir = C:\Users\svarg\Documents\Fidelitas\II CUATRI 2022\Programación Avanzada en Web\PROYECTO\ProyectoFinal\PetStore.API\Pet_Store.API\
+build_property.ProjectDir = C:\Users\svarg\Source\Repos\valek-2920\PetStore.API\Pet_Store.API\

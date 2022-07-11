@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32602.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pet_Store.API", "Pet_Store.API\Pet_Store.API.csproj", "{E69E580F-93D8-46A5-8B51-898A20319352}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pet_Store.API", "Pet_Store.API\Pet_Store.API.csproj", "{E69E580F-93D8-46A5-8B51-898A20319352}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pet_Store.Domains", "Pet_Store.Domains\Pet_Store.Domains.csproj", "{99A553F8-08AB-4AEF-AFD0-A3BC1E46DF25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pet_Store.DataAcess", "Pet_Store.DataAcess\Pet_Store.DataAcess.csproj", "{080E5491-2D03-48F9-AE43-33A10EC5FE65}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{E69E580F-93D8-46A5-8B51-898A20319352}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E69E580F-93D8-46A5-8B51-898A20319352}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E69E580F-93D8-46A5-8B51-898A20319352}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99A553F8-08AB-4AEF-AFD0-A3BC1E46DF25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99A553F8-08AB-4AEF-AFD0-A3BC1E46DF25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99A553F8-08AB-4AEF-AFD0-A3BC1E46DF25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99A553F8-08AB-4AEF-AFD0-A3BC1E46DF25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{080E5491-2D03-48F9-AE43-33A10EC5FE65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{080E5491-2D03-48F9-AE43-33A10EC5FE65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{080E5491-2D03-48F9-AE43-33A10EC5FE65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{080E5491-2D03-48F9-AE43-33A10EC5FE65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Repository\**" />
+    <Content Remove="Repository\**" />
+    <EmbeddedResource Remove="Repository\**" />
+    <None Remove="Repository\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.17">
@@ -15,7 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Repository\IRepository\" />
+    <ProjectReference Include="..\Pet_Store.DataAcess\Pet_Store.DataAcess.csproj" />
+    <ProjectReference Include="..\Pet_Store.Domains\Pet_Store.Domains.csproj" />
   </ItemGroup>
 
 </Project>

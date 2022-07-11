@@ -1,0 +1,12 @@
+C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.Domains\bin\Debug\net5.0\Pet_Store.Domains.deps.json
+C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.Domains\bin\Debug\net5.0\Pet_Store.Domains.dll
+C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.Domains\bin\Debug\net5.0\Pet_Store.Domains.pdb
+C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.Domains\obj\Debug\net5.0\Pet_Store.Domains.csproj.AssemblyReference.cache
+C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.Domains\obj\Debug\net5.0\Pet_Store.Domains.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.Domains\obj\Debug\net5.0\Pet_Store.Domains.AssemblyInfoInputs.cache
+C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.Domains\obj\Debug\net5.0\Pet_Store.Domains.AssemblyInfo.cs
+C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.Domains\obj\Debug\net5.0\Pet_Store.Domains.csproj.CoreCompileInputs.cache
+C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.Domains\obj\Debug\net5.0\Pet_Store.Domains.dll
+C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.Domains\obj\Debug\net5.0\refint\Pet_Store.Domains.dll
+C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.Domains\obj\Debug\net5.0\Pet_Store.Domains.pdb
+C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.Domains\obj\Debug\net5.0\ref\Pet_Store.Domains.dll

@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using PetStore.DataAccess.Repository.UnityOfWork;
 using Project_PetStore.API.DataAccess;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,7 @@ namespace Pet_Store.API
                (options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
 
             services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
+            services.AddScoped<IUnityOfWork, UnityOfWork>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

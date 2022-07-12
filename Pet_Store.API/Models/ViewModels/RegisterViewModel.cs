@@ -25,7 +25,7 @@ namespace Pet_Store.Shared
         [StringLength(50, MinimumLength = 5)]
         public string ConfirmPassword { get; set; }
 
-        public Users user { get; set; }
+        //public Users user { get; set; }
 
     }
 }

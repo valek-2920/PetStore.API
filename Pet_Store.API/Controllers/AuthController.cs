@@ -31,12 +31,12 @@ namespace Pet_Store.API.Controllers
 
             if (ModelState.IsValid)
             {
-                Users inputModel = model.user;
-                //Como es un cliente aqui quemo el valor del rol para que se agregue correctamente
-                model.user.RolesId = 2;
+                //Users inputModel = model.user;
+                ////Como es un cliente aqui quemo el valor del rol para que se agregue correctamente
+                //model.user.RolesId = 2;
 
-                //IMPORTANTE: de momento quemo tambien la direccion ya que solo existe una, despues hay que ver como se maneja esto ya que cada usuario digitara su propia direccion
-                model.user.DirectionId = 1;
+                ////IMPORTANTE: de momento quemo tambien la direccion ya que solo existe una, despues hay que ver como se maneja esto ya que cada usuario digitara su propia direccion
+                //model.user.DirectionId = 1;
 
                 //if (model.user.UserId == 0)
                 //{

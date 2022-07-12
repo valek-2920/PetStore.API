@@ -82,7 +82,6 @@ C:\Users\svarg\Documents\Fidelitas\II CUATRI 2022\Programación Avanzada en Web\
 C:\Users\svarg\Documents\Fidelitas\II CUATRI 2022\Programación Avanzada en Web\PROYECTO\ProyectoFinal\PetStore.API\Pet_Store.API\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\svarg\Documents\Fidelitas\II CUATRI 2022\Programación Avanzada en Web\PROYECTO\ProyectoFinal\PetStore.API\Pet_Store.API\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\svarg\Documents\Fidelitas\II CUATRI 2022\Programación Avanzada en Web\PROYECTO\ProyectoFinal\PetStore.API\Pet_Store.API\bin\Debug\net5.0\Microsoft.OpenApi.dll
-C:\Users\svarg\Documents\Fidelitas\II CUATRI 2022\Programación Avanzada en Web\PROYECTO\ProyectoFinal\PetStore.API\Pet_Store.API\bin\Debug\net5.0\Newtonsoft.Json.dll
 C:\Users\svarg\Documents\Fidelitas\II CUATRI 2022\Programación Avanzada en Web\PROYECTO\ProyectoFinal\PetStore.API\Pet_Store.API\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\svarg\Documents\Fidelitas\II CUATRI 2022\Programación Avanzada en Web\PROYECTO\ProyectoFinal\PetStore.API\Pet_Store.API\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\svarg\Documents\Fidelitas\II CUATRI 2022\Programación Avanzada en Web\PROYECTO\ProyectoFinal\PetStore.API\Pet_Store.API\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -119,3 +118,9 @@ C:\Users\svarg\Documents\Fidelitas\II CUATRI 2022\Programación Avanzada en Web\
 C:\Users\svarg\Documents\Fidelitas\II CUATRI 2022\Programación Avanzada en Web\PROYECTO\ProyectoFinal\PetStore.API\Pet_Store.API\obj\Debug\net5.0\ref\Pet_Store.API.dll
 C:\Users\svarg\Documents\Fidelitas\II CUATRI 2022\Programación Avanzada en Web\PROYECTO\ProyectoFinal\PetStore.API\Pet_Store.API\obj\Debug\net5.0\Pet_Store.API.pdb
 C:\Users\svarg\Documents\Fidelitas\II CUATRI 2022\Programación Avanzada en Web\PROYECTO\ProyectoFinal\PetStore.API\Pet_Store.API\obj\Debug\net5.0\Pet_Store.API.genruntimeconfig.cache
+C:\Users\svarg\Documents\Fidelitas\II CUATRI 2022\Programación Avanzada en Web\PROYECTO\ProyectoFinal\PetStore.API\Pet_Store.API\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\svarg\Documents\Fidelitas\II CUATRI 2022\Programación Avanzada en Web\PROYECTO\ProyectoFinal\PetStore.API\Pet_Store.API\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\svarg\Documents\Fidelitas\II CUATRI 2022\Programación Avanzada en Web\PROYECTO\ProyectoFinal\PetStore.API\Pet_Store.API\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\svarg\Documents\Fidelitas\II CUATRI 2022\Programación Avanzada en Web\PROYECTO\ProyectoFinal\PetStore.API\Pet_Store.API\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\svarg\Documents\Fidelitas\II CUATRI 2022\Programación Avanzada en Web\PROYECTO\ProyectoFinal\PetStore.API\Pet_Store.API\bin\Debug\net5.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\svarg\Documents\Fidelitas\II CUATRI 2022\Programación Avanzada en Web\PROYECTO\ProyectoFinal\PetStore.API\Pet_Store.API\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll

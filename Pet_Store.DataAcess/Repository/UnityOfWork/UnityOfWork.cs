@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
+using Pet_Store.DataAcess.Repository;
+using Pet_Store.DataAcess.Repository.IRepository;
 using PetStore.DataAccess.Repository.IRepositories;
 using Project_PetStore.API.DataAccess;
 using System;
@@ -23,7 +25,6 @@ namespace PetStore.DataAccess.Repository.UnityOfWork
             OrderDetailsRepository = new OrderDetailsRepository(_context);
             OrderHeaderRepository = new OrderHeaderRepository(_context);
             ShoppingCartRepository = new ShoppingCartRepository(_context);
-            UsersDirectionRepository = new UsersDirectionRepository(_context);
             UsersRepository = new UsersRepository(_context);
 
         }
@@ -38,9 +39,9 @@ namespace PetStore.DataAccess.Repository.UnityOfWork
 
         public IOrderDetailsRepository OrderDetailsRepository { get; private set; }
 
-        public IUsersDirectionRepository UsersDirectionRepository { get; private set; }
-
         public IUsersRepository UsersRepository { get; private set; }
+
+        public IUserRoleRepository UserRoleRepository => throw new NotImplementedException();
 
         public void Save()
         {

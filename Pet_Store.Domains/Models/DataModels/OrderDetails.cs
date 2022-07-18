@@ -21,12 +21,12 @@ namespace Project_PetStore.API.Models.DataModels
         public Products Product { get; set; }
 
         [Required]
-        public int Count { get; set; }
+        public int Quantity { get; set; }
 
         [Required]
         public double Total { get; set; }
 
         [Required]
-        public DateTime Date { get; set; }
+        public double Taxes { get; set; }
     }
 }

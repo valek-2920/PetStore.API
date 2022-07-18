@@ -1,24 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using PetStore.DataAccess.Repository.UnityOfWork;
-using Project_PetStore.API.Models.DataModels;
 
 namespace Pet_Store.API.Controllers
 {
-
-
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : Controller
+    public class UsersController : ControllerBase
     {
         private readonly IUnityOfWork _unityOfWork;
 
-        public IActionResult Index()
+        public UsersController(IUnityOfWork unityOfWork)
         {
-            return View();
+            _unityOfWork = unityOfWork;
         }
 
         [HttpGet]
-        [Route("Users")]
+        [Route("users")]
         public IActionResult GetUsers()
         {
             var allUsers = _unityOfWork.UsersRepository.GetAll();
@@ -32,7 +30,7 @@ namespace Pet_Store.API.Controllers
         }
 
         [HttpGet]
-        [Route("User")]
+        [Route("user")]
         public IActionResult GetUser(int id)
         {
             var User = _unityOfWork.UsersRepository.GetFirstOrDefault(x => x.UserId == id);
@@ -45,23 +43,24 @@ namespace Pet_Store.API.Controllers
             return BadRequest("El usuario solicitado no existe");
         }
 
-        [HttpPut]
-        [Route("UserUpdate")]
-        public IActionResult UpdateUser([FromBody] Users model)
-        {
+        //arreglar, tienes que usar el updateUsers models como parametro y luego usalo para actualizar el Users model
+        //[HttpPut]
+        //[Route("UserUpdate")]
+        //public IActionResult UpdateUser([FromBody] Users model)
+        //{
 
-            if (ModelState.IsValid)
-            {
-                _unityOfWork.UsersRepository.Update(model);
-                _unityOfWork.Save();
+        //    if (ModelState.IsValid)
+        //    {
+        //        _unityOfWork.UsersRepository.Update(model);
+        //        _unityOfWork.Save();
 
-                return Ok(model);
-            }
-            return BadRequest("Error al actualizar el usuario");
-        }
+        //        return Ok(model);
+        //    }
+        //    return BadRequest("Error al actualizar el usuario");
+        //}
 
         [HttpDelete]
-        [Route("User")]
+        [Route("user")]
         public IActionResult DeleteUser(int id)
         {
             var User = _unityOfWork.UsersRepository.GetFirstOrDefault(x => x.UserId == id);
@@ -75,6 +74,5 @@ namespace Pet_Store.API.Controllers
             }
             return BadRequest($"No existe usuario con Id: {id}");
         }
-    
-}
+    }
 }

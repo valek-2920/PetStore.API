@@ -20,7 +20,7 @@ namespace PetStore.DataAccess.Repository
 
         public void Update(Users model)
         {
-            throw new NotImplementedException();
+            _context.Users.Update(model);
         }
     }
 }

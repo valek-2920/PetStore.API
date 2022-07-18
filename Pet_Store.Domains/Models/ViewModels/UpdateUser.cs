@@ -26,9 +26,5 @@ namespace Pet_Store.Domains.Models.ViewModels
 
         public string Address { get; set; }
 
-     
-    
-        
-
     }
 }

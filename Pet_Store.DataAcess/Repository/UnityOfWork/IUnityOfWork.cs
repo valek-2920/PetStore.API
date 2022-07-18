@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Pet_Store.DataAcess.Repository.IRepository;
 using PetStore.DataAccess.Repository.IRepositories;
 using System;
 using System.Collections.Generic;
@@ -15,8 +16,9 @@ namespace PetStore.DataAccess.Repository.UnityOfWork
         IOrderDetailsRepository OrderDetailsRepository { get; }
         IOrderHeaderRepository OrderHeaderRepository { get; }
         IShoppingCartRepository ShoppingCartRepository { get; }
-        IUsersDirectionRepository UsersDirectionRepository { get; }
         IUsersRepository UsersRepository { get; }
+
+        IUserRoleRepository UserRoleRepository { get; }
 
         void Save();
 

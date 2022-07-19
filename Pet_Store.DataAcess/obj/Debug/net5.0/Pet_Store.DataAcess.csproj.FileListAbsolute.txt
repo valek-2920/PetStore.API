@@ -31,3 +31,6 @@ C:\Users\jurge\Source\Repos\valek-2920\PetStore.API\Pet_Store.DataAcess\bin\Debu
 C:\Users\jurge\Source\Repos\valek-2920\PetStore.API\Pet_Store.DataAcess\obj\Debug\net5.0\Pet_Store.DataAcess.csproj.CopyComplete
 C:\Users\jurge\Source\Repos\valek-2920\PetStore.API\Pet_Store.DataAcess\obj\Debug\net5.0\Pet_Store.DataAcess.genruntimeconfig.cache
 C:\Users\jurge\Source\Repos\valek-2920\PetStore.API\Pet_Store.DataAcess\obj\Debug\net5.0\ref\Pet_Store.DataAcess.dll
+C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.DataAcess\bin\Debug\net5.0\Pet_Store.DataAcess.runtimeconfig.json
+C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.DataAcess\bin\Debug\net5.0\Pet_Store.DataAcess.runtimeconfig.dev.json
+C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.DataAcess\obj\Debug\net5.0\Pet_Store.DataAcess.genruntimeconfig.cache

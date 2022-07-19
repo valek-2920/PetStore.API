@@ -6023,19 +6023,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jurge\\.nuget\\packages\\": {}
+    "C:\\Users\\Vale2920\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jurge\\Source\\Repos\\valek-2920\\PetStore.API\\Pet_Store.API\\Pet_Store.API.csproj",
+      "projectUniqueName": "C:\\Users\\Vale2920\\Desktop\\University\\7 quarter\\Programacion Avanzada en Web\\PrograAvanzadaWeb\\PROYECTO\\Pet_Store.API\\Pet_Store.API\\Pet_Store.API.csproj",
       "projectName": "Pet_Store.API",
-      "projectPath": "C:\\Users\\jurge\\Source\\Repos\\valek-2920\\PetStore.API\\Pet_Store.API\\Pet_Store.API.csproj",
-      "packagesPath": "C:\\Users\\jurge\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jurge\\Source\\Repos\\valek-2920\\PetStore.API\\Pet_Store.API\\obj\\",
+      "projectPath": "C:\\Users\\Vale2920\\Desktop\\University\\7 quarter\\Programacion Avanzada en Web\\PrograAvanzadaWeb\\PROYECTO\\Pet_Store.API\\Pet_Store.API\\Pet_Store.API.csproj",
+      "packagesPath": "C:\\Users\\Vale2920\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Vale2920\\Desktop\\University\\7 quarter\\Programacion Avanzada en Web\\PrograAvanzadaWeb\\PROYECTO\\Pet_Store.API\\Pet_Store.API\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\jurge\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Vale2920\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6049,11 +6054,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\jurge\\Source\\Repos\\valek-2920\\PetStore.API\\Pet_Store.DataAcess\\Pet_Store.DataAcess.csproj": {
-              "projectPath": "C:\\Users\\jurge\\Source\\Repos\\valek-2920\\PetStore.API\\Pet_Store.DataAcess\\Pet_Store.DataAcess.csproj"
+            "C:\\Users\\Vale2920\\Desktop\\University\\7 quarter\\Programacion Avanzada en Web\\PrograAvanzadaWeb\\PROYECTO\\Pet_Store.API\\Pet_Store.DataAcess\\Pet_Store.DataAcess.csproj": {
+              "projectPath": "C:\\Users\\Vale2920\\Desktop\\University\\7 quarter\\Programacion Avanzada en Web\\PrograAvanzadaWeb\\PROYECTO\\Pet_Store.API\\Pet_Store.DataAcess\\Pet_Store.DataAcess.csproj"
             },
-            "C:\\Users\\jurge\\Source\\Repos\\valek-2920\\PetStore.API\\Pet_Store.Domains\\Pet_Store.Domains.csproj": {
-              "projectPath": "C:\\Users\\jurge\\Source\\Repos\\valek-2920\\PetStore.API\\Pet_Store.Domains\\Pet_Store.Domains.csproj"
+            "C:\\Users\\Vale2920\\Desktop\\University\\7 quarter\\Programacion Avanzada en Web\\PrograAvanzadaWeb\\PROYECTO\\Pet_Store.API\\Pet_Store.Domains\\Pet_Store.Domains.csproj": {
+              "projectPath": "C:\\Users\\Vale2920\\Desktop\\University\\7 quarter\\Programacion Avanzada en Web\\PrograAvanzadaWeb\\PROYECTO\\Pet_Store.API\\Pet_Store.Domains\\Pet_Store.Domains.csproj"
             }
           }
         }

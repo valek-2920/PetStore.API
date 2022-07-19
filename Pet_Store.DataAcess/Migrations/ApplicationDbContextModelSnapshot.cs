@@ -126,19 +126,17 @@ namespace Pet_Store.DataAcess.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ListPrice")
-                        .HasColumnType("int");
+                    b.Property<double>("ListPrice")
+                        .HasColumnType("float");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
                     b.HasKey("ProductId");
-
-                    b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
                 });
@@ -269,17 +267,6 @@ namespace Pet_Store.DataAcess.Migrations
                         .HasForeignKey("OrderUserId");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Project_PetStore.API.Models.DataModels.Products", b =>
-                {
-                    b.HasOne("Project_PetStore.API.Models.DataModels.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("Project_PetStore.API.Models.DataModels.ShoppingCart", b =>

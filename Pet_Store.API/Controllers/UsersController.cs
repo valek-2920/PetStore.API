@@ -43,7 +43,6 @@ namespace Pet_Store.API.Controllers
             return BadRequest("El usuario solicitado no existe");
         }
 
-        //arreglar, tienes que usar el updateUsers models como parametro y luego usalo para actualizar el Users model
         //[HttpPut]
         //[Route("UserUpdate")]
         //public IActionResult UpdateUser([FromBody] Users model)

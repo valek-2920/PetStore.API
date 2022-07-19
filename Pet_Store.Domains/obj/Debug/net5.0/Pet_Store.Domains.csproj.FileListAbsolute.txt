@@ -10,3 +10,18 @@ C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\Prog
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.Domains\obj\Debug\net5.0\refint\Pet_Store.Domains.dll
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.Domains\obj\Debug\net5.0\Pet_Store.Domains.pdb
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.Domains\obj\Debug\net5.0\ref\Pet_Store.Domains.dll
+C:\Users\jurge\Source\Repos\valek-2920\PetStore.API\Pet_Store.Domains\bin\Debug\net5.0\Pet_Store.Domains.deps.json
+C:\Users\jurge\Source\Repos\valek-2920\PetStore.API\Pet_Store.Domains\bin\Debug\net5.0\Pet_Store.Domains.dll
+C:\Users\jurge\Source\Repos\valek-2920\PetStore.API\Pet_Store.Domains\bin\Debug\net5.0\Pet_Store.Domains.pdb
+C:\Users\jurge\Source\Repos\valek-2920\PetStore.API\Pet_Store.Domains\obj\Debug\net5.0\Pet_Store.Domains.csproj.AssemblyReference.cache
+C:\Users\jurge\Source\Repos\valek-2920\PetStore.API\Pet_Store.Domains\obj\Debug\net5.0\Pet_Store.Domains.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jurge\Source\Repos\valek-2920\PetStore.API\Pet_Store.Domains\obj\Debug\net5.0\Pet_Store.Domains.AssemblyInfoInputs.cache
+C:\Users\jurge\Source\Repos\valek-2920\PetStore.API\Pet_Store.Domains\obj\Debug\net5.0\Pet_Store.Domains.AssemblyInfo.cs
+C:\Users\jurge\Source\Repos\valek-2920\PetStore.API\Pet_Store.Domains\obj\Debug\net5.0\Pet_Store.Domains.csproj.CoreCompileInputs.cache
+C:\Users\jurge\Source\Repos\valek-2920\PetStore.API\Pet_Store.Domains\obj\Debug\net5.0\Pet_Store.Domains.dll
+C:\Users\jurge\Source\Repos\valek-2920\PetStore.API\Pet_Store.Domains\obj\Debug\net5.0\refint\Pet_Store.Domains.dll
+C:\Users\jurge\Source\Repos\valek-2920\PetStore.API\Pet_Store.Domains\obj\Debug\net5.0\Pet_Store.Domains.pdb
+C:\Users\jurge\Source\Repos\valek-2920\PetStore.API\Pet_Store.Domains\obj\Debug\net5.0\ref\Pet_Store.Domains.dll
+C:\Users\jurge\Source\Repos\valek-2920\PetStore.API\Pet_Store.Domains\bin\Debug\net5.0\Pet_Store.Domains.runtimeconfig.json
+C:\Users\jurge\Source\Repos\valek-2920\PetStore.API\Pet_Store.Domains\bin\Debug\net5.0\Pet_Store.Domains.runtimeconfig.dev.json
+C:\Users\jurge\Source\Repos\valek-2920\PetStore.API\Pet_Store.Domains\obj\Debug\net5.0\Pet_Store.Domains.genruntimeconfig.cache

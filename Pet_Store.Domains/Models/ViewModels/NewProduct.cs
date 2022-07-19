@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Project_PetStore.API.Models.DataModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace PetStore.Domain.Models.ViewModels
         public int Price { get; set; }
 
         [Required]
-        public string Category { get; set; }
+        public int Category { get; set; }
 
     }
 }

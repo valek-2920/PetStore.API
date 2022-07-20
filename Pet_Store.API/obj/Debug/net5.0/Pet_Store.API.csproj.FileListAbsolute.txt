@@ -65,3 +65,6 @@ C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\Prog
 C:\Users\jurge\Source\Repos\valek-2920\PetStore.API\Pet_Store.API\obj\Debug\net5.0\Pet_Store.API.dll
 C:\Users\jurge\Source\Repos\valek-2920\PetStore.API\Pet_Store.API\obj\Debug\net5.0\refint\Pet_Store.API.dll
 C:\Users\jurge\Source\Repos\valek-2920\PetStore.API\Pet_Store.API\obj\Debug\net5.0\Pet_Store.API.pdb
+C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\Stripe.net.dll
+C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\Pet_Store.Utility.dll
+C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\Pet_Store.Utility.pdb

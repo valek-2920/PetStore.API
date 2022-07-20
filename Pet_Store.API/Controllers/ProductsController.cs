@@ -25,7 +25,7 @@ namespace Pet_Store.API.Controllers
                 Products product = new Products
                 {
                     Name = model.Name,
-                    ListPrice = model.ListPrice,
+                    Description = model.Description,
                     Price = model.Price,
                     CategoryId = model.Category
                 };

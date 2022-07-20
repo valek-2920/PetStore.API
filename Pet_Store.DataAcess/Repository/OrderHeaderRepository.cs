@@ -23,26 +23,5 @@ namespace PetStore.DataAccess.Repository
             _context.OrderHeaders.Update(model);
 
         }
-
-        public void UpdateStatus(int id, string orderStatus, string? paymentStatus = null)
-        {
-            var order = _context.OrderHeaders.FirstOrDefault(u => u.OrderId == id);
-            if (order != null)
-            {
-                order.OrderStatus = orderStatus;
-                if (paymentStatus != null)
-                {
-                    order.PaymentStatus = paymentStatus;
-                }
-            }
-        }
-
-        public void UpdateStripePaymentID(int id, string sessionId, string paymentItentId)
-        {
-            var orderFromDb = _context.OrderHeaders.FirstOrDefault(u => u.OrderId == id);
-            orderFromDb.PaymentDate = DateTime.Now;
-            orderFromDb.SessionId = sessionId;
-            orderFromDb.PaymentIntentId = paymentItentId;
-        }
     }
 }

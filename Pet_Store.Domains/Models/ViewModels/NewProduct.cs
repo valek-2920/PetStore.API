@@ -14,7 +14,7 @@ namespace PetStore.Domain.Models.ViewModels
         public string Name { get; set; }
 
         [Required]
-        public double ListPrice { get; set; }
+        public string Description { get; set; }
 
         [Required]
         public double Price { get; set; }

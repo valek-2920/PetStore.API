@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -10,15 +11,11 @@ namespace Project_PetStore.API.Models.DataModels
         [Key]
         public int OrderDetailsId { get; set; }
 
-        public int OrderId { get; set; }
-        [ForeignKey("OrderId")]
+        [Required]
         public OrderHeader OrderHeader { get; set; }
 
         [Required]
-        public int ProductId { get; set; }
-
-        [ForeignKey("ProductId")]
-        public Products Product { get; set; }
+        public List<Products> Product { get; set; }
 
         [Required]
         public int Quantity { get; set; }
@@ -26,7 +23,5 @@ namespace Project_PetStore.API.Models.DataModels
         [Required]
         public double Total { get; set; }
 
-        [Required]
-        public double Taxes { get; set; }
     }
 }

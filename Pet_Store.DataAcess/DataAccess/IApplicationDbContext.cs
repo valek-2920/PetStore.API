@@ -26,7 +26,6 @@ namespace Project_PetStore.API.DataAccess
 
         public DbSet<Users> Users { get; set; }
         public DbSet<UserRoles> UserRoles { get; set; }
-        public DbSet<UserDirection> UserDirection { get; set; }
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Products> Products { get; set; }

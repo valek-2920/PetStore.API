@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Project_PetStore.API.DataAccess;
 
 namespace Pet_Store.DataAcess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220720233659_addModelsToDb")]
+    partial class addModelsToDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,7 +44,10 @@ namespace Pet_Store.DataAcess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("OrderHeaderOrderId")
+                    b.Property<int>("OrderHeaderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductsId")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
@@ -53,7 +58,7 @@ namespace Pet_Store.DataAcess.Migrations
 
                     b.HasKey("OrderDetailsId");
 
-                    b.HasIndex("OrderHeaderOrderId");
+                    b.HasIndex("OrderHeaderId");
 
                     b.ToTable("OrderDetails");
                 });
@@ -114,15 +119,15 @@ namespace Pet_Store.DataAcess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("OrderDetailsId")
-                        .HasColumnType("int");
-
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
+                    b.Property<int?>("ProductsId")
+                        .HasColumnType("int");
+
                     b.HasKey("ProductId");
 
-                    b.HasIndex("OrderDetailsId");
+                    b.HasIndex("ProductsId");
 
                     b.ToTable("Products");
                 });
@@ -215,7 +220,9 @@ namespace Pet_Store.DataAcess.Migrations
                 {
                     b.HasOne("Project_PetStore.API.Models.DataModels.OrderHeader", "OrderHeader")
                         .WithMany()
-                        .HasForeignKey("OrderHeaderOrderId");
+                        .HasForeignKey("OrderHeaderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("OrderHeader");
                 });
@@ -233,7 +240,7 @@ namespace Pet_Store.DataAcess.Migrations
                 {
                     b.HasOne("Project_PetStore.API.Models.DataModels.OrderDetails", null)
                         .WithMany("Product")
-                        .HasForeignKey("OrderDetailsId");
+                        .HasForeignKey("ProductsId");
                 });
 
             modelBuilder.Entity("Project_PetStore.API.Models.DataModels.ShoppingCart", b =>

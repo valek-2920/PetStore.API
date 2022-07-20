@@ -34,7 +34,7 @@ namespace PetStore.DataAccess.Repository
         }
 
 
-        public IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>>? Filter = null, string? includeProperties = null)
+        public IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>>? Filter = null, string? includeProperties = "")
         {
             IQueryable<TEntity> query = dbSet;
 
@@ -45,8 +45,7 @@ namespace PetStore.DataAccess.Repository
 
             if (includeProperties != null)
             {
-                foreach (var item in includeProperties.Split(new char[] { ',' },
-                    StringSplitOptions.RemoveEmptyEntries))
+                foreach (var item in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
                     query = query.Include(item);
                 }

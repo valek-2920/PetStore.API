@@ -1,7 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Pet_Store.Domains.Models.ViewModels;
+using Pet_Store.Utility;
 using PetStore.DataAccess.Repository.UnityOfWork;
+using Project_PetStore.API.Models.DataModels;
+using Stripe.Checkout;
+using System.Collections.Generic;
 
 namespace Pet_Store.API.Controllers
 {
@@ -16,23 +20,84 @@ namespace Pet_Store.API.Controllers
             _unityOfWork = unityOfWork;
         }
 
+        [HttpPost]
+        [Route("order")]
+        public IActionResult CreateOrder([FromBody] OrderViewModel model)
+        {
+
+            var GetUser = _unityOfWork.UsersRepository.GetFirstOrDefault(x => x.UserId == model.UserId);
+            var getShoppingCart = _unityOfWork.ShoppingCartRepository.GetAll(x => x.User.UserId == model.UserId);
+            var getProducts = _unityOfWork.ShoppingCartRepository.getProducts(model.UserId);
+            OrderDetails orderDetails = new OrderDetails();
+            var quantity = 0;
+            var total = 0.0;
+
+
+            if (GetUser != null)
+            {
+                //add new OrderHeader
+                OrderHeader orderHeader = new OrderHeader
+                {
+                    User = GetUser,
+                    PhoneNumber = model.PhoneNumber,
+                    Address = model.Address,
+                    City = model.City,
+                    Country = model.Country
+                };
+
+                //insert shopping cart to order details
+                foreach (var item in getShoppingCart)
+                {
+                    quantity = item.Count;
+                    total = item.Subtotal;
+
+                    orderDetails = new OrderDetails
+                    {
+                        OrderHeader = orderHeader,
+                        Product = getProducts,
+                        Quantity = quantity +  item.Count,
+                        Total = total + item.Subtotal
+                    };
+                }
+
+                _unityOfWork.OrderDetailsRepository.Add(orderDetails);
+                _unityOfWork.Save();
+                return Ok(orderDetails);
+            }
+
+            return BadRequest("Usuario no existe");
+        }
+
         [HttpGet]
         [Route("order")]
-        public IActionResult GetOrderDetails(int orderId)
+        public IActionResult GetOrder(int userId)
         {
-            OrderViewModel orderDetails = new OrderViewModel()
-            {
-                OrderHeader = _unityOfWork.OrderHeaderRepository.GetFirstOrDefault(u => u.OrderId == orderId, includeProperties: "User"),
-                OrderDetail = _unityOfWork.OrderDetailsRepository.GetAll(u => u.OrderId == orderId, includeProperties: "Products"),
-            };
-
+            var orderDetails = _unityOfWork.OrderDetailsRepository.GetFirstOrDefault(x => x.OrderHeader.User.UserId == userId);
             _unityOfWork.Save();
 
             if (orderDetails != null)
             {
                 return Ok(orderDetails);
             }
-            return BadRequest("No hay orden registrada");
+            return BadRequest("Usuario no posee orden");
+        }
+
+        //update
+
+        [HttpDelete]
+        [Route("order")]
+        public IActionResult DeleteOrder(int userId)
+        {
+            var orderDetails = _unityOfWork.OrderDetailsRepository.GetFirstOrDefault(x => x.OrderHeader.User.UserId == userId);
+
+            if (orderDetails != null)
+            {
+                _unityOfWork.OrderDetailsRepository.Remove(orderDetails);
+                _unityOfWork.Save();
+
+                return Ok("La orden del usuario ha sido eliminada");
+            }
+            return BadRequest("Usuario no posee orden");
         }
     }
 }

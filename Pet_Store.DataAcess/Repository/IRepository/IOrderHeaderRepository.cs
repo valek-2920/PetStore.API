@@ -10,7 +10,5 @@ namespace PetStore.DataAccess.Repository.IRepositories
     public interface IOrderHeaderRepository : IRepository<OrderHeader>
     {
         void Update(OrderHeader model);
-
-        void UpdateStatus(int id, string orderStatus, string? paymentStatus = null);
     }
 }

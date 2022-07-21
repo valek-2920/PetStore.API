@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PetStore.DataAccess.Repository.UnityOfWork;
+using Project_PetStore.API.Models.DataModels;
 
 namespace Pet_Store.API.Controllers
 {
@@ -43,20 +44,20 @@ namespace Pet_Store.API.Controllers
             return BadRequest("El usuario solicitado no existe");
         }
 
-        //[HttpPut]
-        //[Route("UserUpdate")]
-        //public IActionResult UpdateUser([FromBody] Users model)
-        //{
+        [HttpPut]
+        [Route("user")]
+        public IActionResult UpdateUser([FromBody] Users model)
+        {
 
-        //    if (ModelState.IsValid)
-        //    {
-        //        _unityOfWork.UsersRepository.Update(model);
-        //        _unityOfWork.Save();
+            if (ModelState.IsValid)
+            {
+                _unityOfWork.UsersRepository.Update(model);
+                _unityOfWork.Save();
 
-        //        return Ok(model);
-        //    }
-        //    return BadRequest("Error al actualizar el usuario");
-        //}
+                return Ok(model);
+            }
+            return BadRequest("Error al actualizar el usuario");
+        }
 
         [HttpDelete]
         [Route("user")]

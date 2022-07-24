@@ -72,7 +72,7 @@ namespace Pet_Store.API.Controllers
         [Route("order")]
         public IActionResult GetOrder(int userId)
         {
-            var orderDetails = _unityOfWork.OrderDetailsRepository.GetAll(x => x.OrderHeader.User.UserId == userId, includeProperties: "Users,Products");
+            var orderDetails = _unityOfWork.OrderDetailsRepository.GetOrderByUser(userId);
             _unityOfWork.Save();
 
             if (orderDetails != null)

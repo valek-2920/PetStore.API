@@ -28,3 +28,18 @@ C:\Users\jurge\Source\Repos\valek-2920\PetStore.API\Pet_Store.Domains\obj\Debug\
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.Domains\bin\Debug\net5.0\Pet_Store.Domains.runtimeconfig.json
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.Domains\bin\Debug\net5.0\Pet_Store.Domains.runtimeconfig.dev.json
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.Domains\obj\Debug\net5.0\Pet_Store.Domains.genruntimeconfig.cache
+C:\Users\marce\Source\Repos\PetStore.API\Pet_Store.Domains\bin\Debug\net5.0\Pet_Store.Domains.deps.json
+C:\Users\marce\Source\Repos\PetStore.API\Pet_Store.Domains\bin\Debug\net5.0\Pet_Store.Domains.runtimeconfig.json
+C:\Users\marce\Source\Repos\PetStore.API\Pet_Store.Domains\bin\Debug\net5.0\Pet_Store.Domains.runtimeconfig.dev.json
+C:\Users\marce\Source\Repos\PetStore.API\Pet_Store.Domains\bin\Debug\net5.0\Pet_Store.Domains.dll
+C:\Users\marce\Source\Repos\PetStore.API\Pet_Store.Domains\bin\Debug\net5.0\Pet_Store.Domains.pdb
+C:\Users\marce\Source\Repos\PetStore.API\Pet_Store.Domains\obj\Debug\net5.0\Pet_Store.Domains.csproj.AssemblyReference.cache
+C:\Users\marce\Source\Repos\PetStore.API\Pet_Store.Domains\obj\Debug\net5.0\Pet_Store.Domains.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\marce\Source\Repos\PetStore.API\Pet_Store.Domains\obj\Debug\net5.0\Pet_Store.Domains.AssemblyInfoInputs.cache
+C:\Users\marce\Source\Repos\PetStore.API\Pet_Store.Domains\obj\Debug\net5.0\Pet_Store.Domains.AssemblyInfo.cs
+C:\Users\marce\Source\Repos\PetStore.API\Pet_Store.Domains\obj\Debug\net5.0\Pet_Store.Domains.csproj.CoreCompileInputs.cache
+C:\Users\marce\Source\Repos\PetStore.API\Pet_Store.Domains\obj\Debug\net5.0\Pet_Store.Domains.dll
+C:\Users\marce\Source\Repos\PetStore.API\Pet_Store.Domains\obj\Debug\net5.0\refint\Pet_Store.Domains.dll
+C:\Users\marce\Source\Repos\PetStore.API\Pet_Store.Domains\obj\Debug\net5.0\Pet_Store.Domains.pdb
+C:\Users\marce\Source\Repos\PetStore.API\Pet_Store.Domains\obj\Debug\net5.0\Pet_Store.Domains.genruntimeconfig.cache
+C:\Users\marce\Source\Repos\PetStore.API\Pet_Store.Domains\obj\Debug\net5.0\ref\Pet_Store.Domains.dll

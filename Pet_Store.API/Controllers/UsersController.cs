@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Pet_Store.Domains.Models.ViewModels;
 using PetStore.DataAccess.Repository.UnityOfWork;
 using Project_PetStore.API.Models.DataModels;
 
@@ -46,12 +47,23 @@ namespace Pet_Store.API.Controllers
 
         [HttpPut]
         [Route("user")]
-        public IActionResult UpdateUser([FromBody] Users model)
+        public IActionResult UpdateUser([FromBody] UpdateUser model)
         {
+            var User = _unityOfWork.UsersRepository.GetFirstOrDefault(x => x.UserId == model.Id);
 
             if (ModelState.IsValid)
             {
-                _unityOfWork.UsersRepository.Update(model);
+                Users NewUser = new Users
+                {
+                    Name = model.Name,
+                    LastName = model.LastName,
+                    BirthDate = model.BirthDate,
+                    Phone = model.Phone,
+                    Email = model.Email,
+                    Address = model.Address
+                };
+
+                _unityOfWork.UsersRepository.Update(NewUser);
                 _unityOfWork.Save();
 
                 return Ok(model);

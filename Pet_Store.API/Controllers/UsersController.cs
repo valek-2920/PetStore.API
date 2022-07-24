@@ -49,21 +49,20 @@ namespace Pet_Store.API.Controllers
         [Route("user")]
         public IActionResult UpdateUser([FromBody] UpdateUser model)
         {
-            var User = _unityOfWork.UsersRepository.GetFirstOrDefault(x => x.UserId == model.Id);
+            var OldUser = _unityOfWork.UsersRepository.GetFirstOrDefault(x => x.UserId == model.Id);
 
             if (ModelState.IsValid)
             {
-                Users NewUser = new Users
-                {
-                    Name = model.Name,
-                    LastName = model.LastName,
-                    BirthDate = model.BirthDate,
-                    Phone = model.Phone,
-                    Email = model.Email,
-                    Address = model.Address
-                };
+                OldUser.UserId = model.Id;
+                OldUser.Name = model.Name;
+                OldUser.LastName = model.LastName;
+                OldUser.BirthDate = model.BirthDate;
+                OldUser.Phone = model.Phone;
+                OldUser.Email = model.Email;
+                OldUser.Address = model.Address;                
+                
 
-                _unityOfWork.UsersRepository.Update(NewUser);
+                _unityOfWork.UsersRepository.Update(OldUser);
                 _unityOfWork.Save();
 
                 return Ok(model);

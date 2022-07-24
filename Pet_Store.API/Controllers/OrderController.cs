@@ -86,6 +86,7 @@ namespace Pet_Store.API.Controllers
         [Route("order")]
         public IActionResult UpdateOrder(OrderViewModel model)
         {
+            var oldOrderHeader = _unityOfWork.OrderHeaderRepository.GetFirstOrDefault(x => x.User.UserId == model.UserId);
             var GetUser = _unityOfWork.UsersRepository.GetFirstOrDefault(x => x.UserId == model.UserId);
             var getShoppingCart = _unityOfWork.ShoppingCartRepository.GetAll(x => x.User.UserId == model.UserId);
             var getProducts = _unityOfWork.ShoppingCartRepository.getProducts(model.UserId);
@@ -96,17 +97,16 @@ namespace Pet_Store.API.Controllers
 
             if (GetUser != null)
             {
-                //update new OrderHeader
-                OrderHeader orderHeader = new OrderHeader
-                {
-                    User = GetUser,
-                    PhoneNumber = model.PhoneNumber,
-                    Address = model.Address,
-                    City = model.City,
-                    Country = model.Country
-                };
+                //update OrderHeader
 
-                _unityOfWork.OrderHeaderRepository.Update(orderHeader);
+                oldOrderHeader.User = GetUser;
+                oldOrderHeader.PhoneNumber = model.PhoneNumber;
+                oldOrderHeader.Address = model.Address;
+                oldOrderHeader.City = model.City;
+                oldOrderHeader.Country = model.Country;
+                
+
+                _unityOfWork.OrderHeaderRepository.Update(oldOrderHeader);
                 _unityOfWork.Save();
 
                 //insert shopping cart to order details
@@ -117,7 +117,7 @@ namespace Pet_Store.API.Controllers
 
                     orderDetails = new OrderDetails
                     {
-                        OrderHeader = orderHeader,
+                        OrderHeader = oldOrderHeader,
                         Product = getProducts,
                         Quantity = quantity + item.Count,
                         Total = total + item.Subtotal

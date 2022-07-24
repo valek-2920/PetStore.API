@@ -5782,19 +5782,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jurge\\.nuget\\packages\\": {}
+    "C:\\Users\\marce\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jurge\\Source\\Repos\\valek-2920\\PetStore.API\\Pet_Store.DataAcess\\Pet_Store.DataAcess.csproj",
+      "projectUniqueName": "C:\\Users\\marce\\Source\\Repos\\PetStore.API\\Pet_Store.DataAcess\\Pet_Store.DataAcess.csproj",
       "projectName": "Pet_Store.DataAcess",
-      "projectPath": "C:\\Users\\jurge\\Source\\Repos\\valek-2920\\PetStore.API\\Pet_Store.DataAcess\\Pet_Store.DataAcess.csproj",
-      "packagesPath": "C:\\Users\\jurge\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jurge\\Source\\Repos\\valek-2920\\PetStore.API\\Pet_Store.DataAcess\\obj\\",
+      "projectPath": "C:\\Users\\marce\\Source\\Repos\\PetStore.API\\Pet_Store.DataAcess\\Pet_Store.DataAcess.csproj",
+      "packagesPath": "C:\\Users\\marce\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\marce\\Source\\Repos\\PetStore.API\\Pet_Store.DataAcess\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\jurge\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\marce\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5808,8 +5808,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\jurge\\Source\\Repos\\valek-2920\\PetStore.API\\Pet_Store.Domains\\Pet_Store.Domains.csproj": {
-              "projectPath": "C:\\Users\\jurge\\Source\\Repos\\valek-2920\\PetStore.API\\Pet_Store.Domains\\Pet_Store.Domains.csproj"
+            "C:\\Users\\marce\\Source\\Repos\\PetStore.API\\Pet_Store.Domains\\Pet_Store.Domains.csproj": {
+              "projectPath": "C:\\Users\\marce\\Source\\Repos\\PetStore.API\\Pet_Store.Domains\\Pet_Store.Domains.csproj"
             }
           }
         }
@@ -5858,7 +5858,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }

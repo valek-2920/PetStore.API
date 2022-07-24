@@ -22,12 +22,15 @@ namespace Pet_Store.API.Controllers
         {
             if (ModelState.IsValid)
             {
+
+               var GetCategory = _unityOfWork.CategoryRepository.GetFirstOrDefault(x => x.CategoryId == model.Category);
+
                 Products product = new Products
                 {
                     Name = model.Name,
                     Description = model.Description,
                     Price = model.Price,
-                    CategoryId = model.Category
+                    Category = GetCategory
                 };
 
                 _unityOfWork.ProductsRepository.Add(product);

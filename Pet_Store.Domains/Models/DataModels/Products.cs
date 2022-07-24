@@ -17,8 +17,7 @@ namespace Project_PetStore.API.Models.DataModels
         [Required]
         public double Price { get; set; }
 
-        [ForeignKey("CategoryId")]
         [Required]
-        public int CategoryId { get; set; }
+        public Category Category { get; set; }
     }
 }

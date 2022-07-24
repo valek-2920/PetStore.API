@@ -22,5 +22,18 @@ namespace PetStore.DataAccess.Repository
         {
            _context.OrderDetails.Update(model);
         }
+
+        public OrderDetails GetOrderByUser(int userId)
+        {
+            var result = (from x in _context.OrderDetails
+                          where x.OrderHeader.User.UserId == userId
+                          select x).FirstOrDefault();
+
+            if(result != null)
+            {
+                return result;
+            }
+            return null;
+        }
     }
 }

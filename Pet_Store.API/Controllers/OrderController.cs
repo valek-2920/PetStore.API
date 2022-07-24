@@ -72,7 +72,7 @@ namespace Pet_Store.API.Controllers
         [Route("order")]
         public IActionResult GetOrder(int userId)
         {
-            var orderDetails = _unityOfWork.OrderDetailsRepository.GetFirstOrDefault(x => x.OrderHeader.User.UserId == userId);
+            var orderDetails = _unityOfWork.OrderDetailsRepository.GetAll(x => x.OrderHeader.User.UserId == userId, includeProperties: "Users,Products");
             _unityOfWork.Save();
 
             if (orderDetails != null)
@@ -82,9 +82,56 @@ namespace Pet_Store.API.Controllers
             return BadRequest("Usuario no posee orden");
         }
 
-        //update
+        [HttpPut]
+        [Route("order")]
+        public IActionResult UpdateOrder(OrderViewModel model)
+        {
+            var GetUser = _unityOfWork.UsersRepository.GetFirstOrDefault(x => x.UserId == model.UserId);
+            var getShoppingCart = _unityOfWork.ShoppingCartRepository.GetAll(x => x.User.UserId == model.UserId);
+            var getProducts = _unityOfWork.ShoppingCartRepository.getProducts(model.UserId);
+            OrderDetails orderDetails = new OrderDetails();
+            var quantity = 0;
+            var total = 0.0;
 
-        [HttpDelete]
+
+            if (GetUser != null)
+            {
+                //update new OrderHeader
+                OrderHeader orderHeader = new OrderHeader
+                {
+                    User = GetUser,
+                    PhoneNumber = model.PhoneNumber,
+                    Address = model.Address,
+                    City = model.City,
+                    Country = model.Country
+                };
+
+                _unityOfWork.OrderHeaderRepository.Update(orderHeader);
+                _unityOfWork.Save();
+
+                //insert shopping cart to order details
+                foreach (var item in getShoppingCart)
+                {
+                    quantity = item.Count;
+                    total = item.Subtotal;
+
+                    orderDetails = new OrderDetails
+                    {
+                        OrderHeader = orderHeader,
+                        Product = getProducts,
+                        Quantity = quantity + item.Count,
+                        Total = total + item.Subtotal
+                    };
+                }
+
+                return Ok(orderDetails);
+            }
+
+            return BadRequest("Usuario no existe");
+        }
+
+
+            [HttpDelete]
         [Route("order")]
         public IActionResult DeleteOrder(int userId)
         {

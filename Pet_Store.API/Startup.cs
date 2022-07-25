@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Pet_Store.Utility;
 using PetStore.DataAccess.Repository.UnityOfWork;
 using Project_PetStore.API.DataAccess;
 using System;
@@ -34,6 +35,7 @@ namespace Pet_Store.API
 
             services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
             services.AddScoped<IUnityOfWork, UnityOfWork>();
+            services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

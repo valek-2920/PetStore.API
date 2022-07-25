@@ -16,21 +16,6 @@ C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\Prog
 C:\Users\jurge\Source\Repos\valek-2920\PetStore.API\Pet_Store.DataAcess\obj\Debug\net5.0\Pet_Store.DataAcess.dll
 C:\Users\jurge\Source\Repos\valek-2920\PetStore.API\Pet_Store.DataAcess\obj\Debug\net5.0\refint\Pet_Store.DataAcess.dll
 C:\Users\jurge\Source\Repos\valek-2920\PetStore.API\Pet_Store.DataAcess\obj\Debug\net5.0\Pet_Store.DataAcess.pdb
-C:\Users\marce\Source\Repos\PetStore.API\Pet_Store.DataAcess\bin\Debug\net5.0\Pet_Store.DataAcess.deps.json
-C:\Users\marce\Source\Repos\PetStore.API\Pet_Store.DataAcess\bin\Debug\net5.0\Pet_Store.DataAcess.runtimeconfig.json
-C:\Users\marce\Source\Repos\PetStore.API\Pet_Store.DataAcess\bin\Debug\net5.0\Pet_Store.DataAcess.runtimeconfig.dev.json
-C:\Users\marce\Source\Repos\PetStore.API\Pet_Store.DataAcess\bin\Debug\net5.0\Pet_Store.DataAcess.dll
-C:\Users\marce\Source\Repos\PetStore.API\Pet_Store.DataAcess\bin\Debug\net5.0\Pet_Store.DataAcess.pdb
-C:\Users\marce\Source\Repos\PetStore.API\Pet_Store.DataAcess\bin\Debug\net5.0\Pet_Store.Domains.dll
-C:\Users\marce\Source\Repos\PetStore.API\Pet_Store.DataAcess\bin\Debug\net5.0\Pet_Store.Domains.pdb
-C:\Users\marce\Source\Repos\PetStore.API\Pet_Store.DataAcess\obj\Debug\net5.0\Pet_Store.DataAcess.csproj.AssemblyReference.cache
-C:\Users\marce\Source\Repos\PetStore.API\Pet_Store.DataAcess\obj\Debug\net5.0\Pet_Store.DataAcess.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\marce\Source\Repos\PetStore.API\Pet_Store.DataAcess\obj\Debug\net5.0\Pet_Store.DataAcess.AssemblyInfoInputs.cache
-C:\Users\marce\Source\Repos\PetStore.API\Pet_Store.DataAcess\obj\Debug\net5.0\Pet_Store.DataAcess.AssemblyInfo.cs
-C:\Users\marce\Source\Repos\PetStore.API\Pet_Store.DataAcess\obj\Debug\net5.0\Pet_Store.DataAcess.csproj.CoreCompileInputs.cache
-C:\Users\marce\Source\Repos\PetStore.API\Pet_Store.DataAcess\obj\Debug\net5.0\Pet_Store.DataAcess.csproj.CopyComplete
-C:\Users\marce\Source\Repos\PetStore.API\Pet_Store.DataAcess\obj\Debug\net5.0\Pet_Store.DataAcess.dll
-C:\Users\marce\Source\Repos\PetStore.API\Pet_Store.DataAcess\obj\Debug\net5.0\refint\Pet_Store.DataAcess.dll
-C:\Users\marce\Source\Repos\PetStore.API\Pet_Store.DataAcess\obj\Debug\net5.0\Pet_Store.DataAcess.pdb
-C:\Users\marce\Source\Repos\PetStore.API\Pet_Store.DataAcess\obj\Debug\net5.0\Pet_Store.DataAcess.genruntimeconfig.cache
-C:\Users\marce\Source\Repos\PetStore.API\Pet_Store.DataAcess\obj\Debug\net5.0\ref\Pet_Store.DataAcess.dll
+C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.DataAcess\bin\Debug\net5.0\Pet_Store.DataAcess.runtimeconfig.json
+C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.DataAcess\bin\Debug\net5.0\Pet_Store.DataAcess.runtimeconfig.dev.json
+C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.DataAcess\obj\Debug\net5.0\Pet_Store.DataAcess.genruntimeconfig.cache

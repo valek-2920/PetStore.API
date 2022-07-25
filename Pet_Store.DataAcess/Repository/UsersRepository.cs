@@ -21,8 +21,6 @@ namespace PetStore.DataAccess.Repository
         public void Update(Users model)
         {
             _context.Users.Update(model);
-
-            _context.SaveChanges();
         }
     }
 }

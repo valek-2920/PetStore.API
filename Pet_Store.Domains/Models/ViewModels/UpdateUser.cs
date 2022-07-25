@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,25 +10,20 @@ namespace Pet_Store.Domains.Models.ViewModels
 {
     public class UpdateUser
     {
-        [Required]
-        public int Id { get; set; }
+        public Users users { get; set; }
 
-        [Required]
         public string Name { get; set; }
 
-        [Required]
         public string LastName { get; set; }
 
-        [Required]
         public DateTime BirthDate { get; set; }
 
-        [Required]
         public int Phone { get; set; }
 
-        [Required]
         public string Email { get; set; }
 
-        [Required]
+        public string Password { get; set; }
+
         public string Address { get; set; }
 
     }

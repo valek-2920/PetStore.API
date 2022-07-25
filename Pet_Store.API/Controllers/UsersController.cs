@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Pet_Store.Domains.Models.ViewModels;
 using PetStore.DataAccess.Repository.UnityOfWork;
-using Project_PetStore.API.Models.DataModels;
 
 namespace Pet_Store.API.Controllers
 {
@@ -45,31 +43,20 @@ namespace Pet_Store.API.Controllers
             return BadRequest("El usuario solicitado no existe");
         }
 
-        [HttpPut]
-        [Route("user")]
-        public IActionResult UpdateUser([FromBody] UpdateUser model)
-        {
-            //traemos el usuario
-            var OldUser = _unityOfWork.UsersRepository.GetFirstOrDefault(x => x.UserId == model.Id);
+        //[HttpPut]
+        //[Route("UserUpdate")]
+        //public IActionResult UpdateUser([FromBody] Users model)
+        //{
 
-            if (ModelState.IsValid)
-            {
-                //cambiamos los datos viejos del usuario con los datos nuevos
-                OldUser.UserId = model.Id;
-                OldUser.Name = model.Name;
-                OldUser.LastName = model.LastName;
-                OldUser.BirthDate = model.BirthDate;
-                OldUser.Phone = model.Phone;
-                OldUser.Email = model.Email;
-                OldUser.Address = model.Address;                
+        //    if (ModelState.IsValid)
+        //    {
+        //        _unityOfWork.UsersRepository.Update(model);
+        //        _unityOfWork.Save();
 
-                _unityOfWork.UsersRepository.Update(OldUser);
-                _unityOfWork.Save();
-
-                return Ok(model);
-            }
-            return BadRequest("Error al actualizar el usuario");
-        }
+        //        return Ok(model);
+        //    }
+        //    return BadRequest("Error al actualizar el usuario");
+        //}
 
         [HttpDelete]
         [Route("user")]

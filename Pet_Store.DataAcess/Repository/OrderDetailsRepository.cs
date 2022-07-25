@@ -1,4 +1,5 @@
-﻿using PetStore.DataAccess.Repository.IRepositories;
+﻿using Microsoft.EntityFrameworkCore;
+using PetStore.DataAccess.Repository.IRepositories;
 using Project_PetStore.API.DataAccess;
 using Project_PetStore.API.Models.DataModels;
 using System;
@@ -20,7 +21,22 @@ namespace PetStore.DataAccess.Repository
 
         public void Update(OrderDetails model)
         {
-            throw new NotImplementedException();
+           _context.OrderDetails.Update(model);
+        }
+
+        public List<OrderDetails> GetOrderByUser(int userId)
+        {
+            var result = (from x in _context.OrderDetails
+                          .Include(x => x.OrderHeader.User)
+                          .Include(x => x.Product)
+                          where x.OrderHeader.User.UserId == userId
+                          select x).ToList();
+
+            if (result != null)
+            {
+                return result;
+            }
+            return null;
         }
     }
 }

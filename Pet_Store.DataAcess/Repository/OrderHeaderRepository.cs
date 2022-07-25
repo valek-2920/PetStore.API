@@ -20,7 +20,8 @@ namespace PetStore.DataAccess.Repository
 
         public void Update(OrderHeader model)
         {
-            throw new NotImplementedException();
+            _context.OrderHeaders.Update(model);
+
         }
     }
 }

@@ -34,7 +34,7 @@ namespace PetStore.DataAccess.Repository
         }
 
 
-        public IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>>? Filter = null, string? includeProperties = null)
+        public IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>>? Filter = null, string? includeProperties = "")
         {
             IQueryable<TEntity> query = dbSet;
 
@@ -45,10 +45,10 @@ namespace PetStore.DataAccess.Repository
 
             if (includeProperties != null)
             {
-                foreach (var item in includeProperties.Split(new char[] { ',' },
-                    StringSplitOptions.RemoveEmptyEntries))
+
+                foreach (var property in includeProperties.Split(',', StringSplitOptions.RemoveEmptyEntries))
                 {
-                    query = query.Include(item);
+                    query = query.Include(property);
                 }
             }
             return query.ToList();
@@ -60,10 +60,9 @@ namespace PetStore.DataAccess.Repository
             query = query.Where(Filter);
             if (includeProperties != null)
             {
-                foreach (var item in includeProperties.Split(new char[] { ',' },
-                    StringSplitOptions.RemoveEmptyEntries))
+                foreach (var property in includeProperties.Split(',', StringSplitOptions.RemoveEmptyEntries))
                 {
-                    query = query.Include(item);
+                    query = query.Include(property);
                 }
             }
 

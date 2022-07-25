@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -35,10 +36,9 @@ namespace Project_PetStore.API.Models.DataModels
         public UserRoles Role { get; set; }
 
         [Required]
-        public int DirectionId { get; set; }
+        public string Address { get; set; }
 
-        [ForeignKey("DirectionId")]
-        public UserDirection Directions { get; set; }
+        
 
 
     }

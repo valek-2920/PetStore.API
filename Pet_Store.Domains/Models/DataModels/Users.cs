@@ -37,7 +37,5 @@ namespace Project_PetStore.API.Models.DataModels
         [ForeignKey("RolesId")]
         public UserRoles Role { get; set; }
 
-    
-
     }
 }

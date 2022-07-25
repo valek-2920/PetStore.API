@@ -17,14 +17,12 @@ namespace Project_PetStore.API.DataAccess
         public DbSet<OrderDetails> OrderDetails { get; set; }
     }
 
-    //public class ApplicationDbContext : DbContext, IApplicationDbContext
         public class ApplicationDbContext : IdentityDbContext, IApplicationDbContext
         {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
 
         }
-
 
         public DbSet<Users> Users { get; set; }
         public DbSet<UserRoles> UserRoles { get; set; }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Pet_Store.DataAcess.Migrations
 {
-    public partial class initTables : Migration
+    public partial class addModelsToDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -57,19 +57,6 @@ namespace Pet_Store.DataAcess.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.CategoryId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "UserDirection",
-                columns: table => new
-                {
-                    DirectionId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Directions = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserDirection", x => x.DirectionId);
                 });
 
             migrationBuilder.CreateTable(
@@ -192,28 +179,6 @@ namespace Pet_Store.DataAcess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Products",
-                columns: table => new
-                {
-                    ProductId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ListPrice = table.Column<int>(type: "int", nullable: false),
-                    Price = table.Column<int>(type: "int", nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Products", x => x.ProductId);
-                    table.ForeignKey(
-                        name: "FK_Products_Categories_CategoryId",
-                        column: x => x.CategoryId,
-                        principalTable: "Categories",
-                        principalColumn: "CategoryId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -225,8 +190,8 @@ namespace Pet_Store.DataAcess.Migrations
                     Phone = table.Column<int>(type: "int", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RolesId = table.Column<int>(type: "int", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RolesId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -245,55 +210,23 @@ namespace Pet_Store.DataAcess.Migrations
                 {
                     OrderId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    OrderUserId = table.Column<int>(type: "int", nullable: true),
-                    OrderTotal = table.Column<double>(type: "float", nullable: false),
-                    OrderStatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PaymentStatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PaymenDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    PaymentDueDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    SessionId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PaymentIntentId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<int>(type: "int", nullable: true),
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ShippingDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DirectionId = table.Column<int>(type: "int", nullable: false)
+                    PhoneNumber = table.Column<int>(type: "int", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Country = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OrderHeaders", x => x.OrderId);
                     table.ForeignKey(
-                        name: "FK_OrderHeaders_Users_OrderUserId",
-                        column: x => x.OrderUserId,
-                        principalTable: "Users",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "shoppingCarts",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Count = table.Column<int>(type: "int", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_shoppingCarts", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_shoppingCarts_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
-                        principalColumn: "ProductId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_shoppingCarts_Users_UserId",
+                        name: "FK_OrderHeaders_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -302,27 +235,75 @@ namespace Pet_Store.DataAcess.Migrations
                 {
                     OrderDetailsId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    OrderId = table.Column<int>(type: "int", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: false),
-                    Count = table.Column<int>(type: "int", nullable: false),
-                    Total = table.Column<double>(type: "float", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    OrderHeaderOrderId = table.Column<int>(type: "int", nullable: true),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    Total = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OrderDetails", x => x.OrderDetailsId);
                     table.ForeignKey(
-                        name: "FK_OrderDetails_OrderHeaders_OrderId",
-                        column: x => x.OrderId,
+                        name: "FK_OrderDetails_OrderHeaders_OrderHeaderOrderId",
+                        column: x => x.OrderHeaderOrderId,
                         principalTable: "OrderHeaders",
                         principalColumn: "OrderId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Products",
+                columns: table => new
+                {
+                    ProductId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<double>(type: "float", nullable: false),
+                    CategoryId = table.Column<int>(type: "int", nullable: true),
+                    OrderDetailsId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Products", x => x.ProductId);
                     table.ForeignKey(
-                        name: "FK_OrderDetails_Products_ProductId",
+                        name: "FK_Products_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "CategoryId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Products_OrderDetails_OrderDetailsId",
+                        column: x => x.OrderDetailsId,
+                        principalTable: "OrderDetails",
+                        principalColumn: "OrderDetailsId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ShoppingCarts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Count = table.Column<int>(type: "int", nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: true),
+                    UserId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ShoppingCarts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ShoppingCarts_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "ProductId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ShoppingCarts_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -365,19 +346,14 @@ namespace Pet_Store.DataAcess.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderDetails_OrderId",
+                name: "IX_OrderDetails_OrderHeaderOrderId",
                 table: "OrderDetails",
-                column: "OrderId");
+                column: "OrderHeaderOrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderDetails_ProductId",
-                table: "OrderDetails",
-                column: "ProductId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_OrderHeaders_OrderUserId",
+                name: "IX_OrderHeaders_UserId",
                 table: "OrderHeaders",
-                column: "OrderUserId");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_CategoryId",
@@ -385,13 +361,18 @@ namespace Pet_Store.DataAcess.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_shoppingCarts_ProductId",
-                table: "shoppingCarts",
+                name: "IX_Products_OrderDetailsId",
+                table: "Products",
+                column: "OrderDetailsId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ShoppingCarts_ProductId",
+                table: "ShoppingCarts",
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_shoppingCarts_UserId",
-                table: "shoppingCarts",
+                name: "IX_ShoppingCarts_UserId",
+                table: "ShoppingCarts",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -418,13 +399,7 @@ namespace Pet_Store.DataAcess.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "OrderDetails");
-
-            migrationBuilder.DropTable(
-                name: "shoppingCarts");
-
-            migrationBuilder.DropTable(
-                name: "UserDirection");
+                name: "ShoppingCarts");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -433,16 +408,19 @@ namespace Pet_Store.DataAcess.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "OrderHeaders");
-
-            migrationBuilder.DropTable(
                 name: "Products");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Categories");
 
             migrationBuilder.DropTable(
-                name: "Categories");
+                name: "OrderDetails");
+
+            migrationBuilder.DropTable(
+                name: "OrderHeaders");
+
+            migrationBuilder.DropTable(
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "UserRoles");

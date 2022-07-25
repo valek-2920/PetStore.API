@@ -23,17 +23,14 @@ namespace Project_PetStore.API.Models.DataModels
         [Required]
         public int Count { get; set; }
 
-        [ForeignKey("ProductId")]
+        [Required]
         public Products Product { get; set; }
 
-        [ForeignKey("UserId")]
+        [Required]
         public Users User { get; set; }
 
-        //[NotMapped] 
-        //[Required]
+        
         public double Subtotal { get; set; }
-        public double Total { get; set; }
-
 
     }
 }

@@ -10,5 +10,7 @@ namespace PetStore.DataAccess.Repository.IRepositories
     public interface IOrderDetailsRepository : IRepository<OrderDetails>
     {
         void Update(OrderDetails model);
+
+        List<OrderDetails> GetOrderByUser(int userId);
     }
 }

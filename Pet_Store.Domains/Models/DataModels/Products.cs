@@ -12,13 +12,12 @@ namespace Project_PetStore.API.Models.DataModels
         public string Name { get; set; }
 
         [Required]
-        public double ListPrice { get; set; }
+        public string Description { get; set; }
 
         [Required]
         public double Price { get; set; }
 
-        [ForeignKey("CategoryId")]
         [Required]
-        public int CategoryId { get; set; }
+        public Category Category { get; set; }
     }
 }

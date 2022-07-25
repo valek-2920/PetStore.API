@@ -26,10 +26,14 @@ namespace PetStore.Domain.Models.ViewModels
         public string Product { get; set; }
 
         [Required]
+
         public int UserId { get; set; }
 
-        // public NewShoppingCart NewShopping { get; set; }
+        public string UserId { get; set; }
+
+        [Required]
         public double Subtotal { get; set; }
-        public double Total { get; set; }
+
+
     }
 }

@@ -10,5 +10,7 @@ namespace PetStore.DataAccess.Repository.IRepositories
     public interface IShoppingCartRepository : IRepository<ShoppingCart>
     {
         void Update(ShoppingCart model);
+
+        List<Products> getProducts(int userId);
     }
 }

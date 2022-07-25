@@ -23,7 +23,6 @@ namespace PetStore.DataAccess.Repository.UnityOfWork
             OrderDetailsRepository = new OrderDetailsRepository(_context);
             OrderHeaderRepository = new OrderHeaderRepository(_context);
             ShoppingCartRepository = new ShoppingCartRepository(_context);
-            UsersDirectionRepository = new UsersDirectionRepository(_context);
             UsersRepository = new UsersRepository(_context);
 
         }
@@ -38,9 +37,8 @@ namespace PetStore.DataAccess.Repository.UnityOfWork
 
         public IOrderDetailsRepository OrderDetailsRepository { get; private set; }
 
-        public IUsersDirectionRepository UsersDirectionRepository { get; private set; }
-
         public IUsersRepository UsersRepository { get; private set; }
+
 
         public void Save()
         {

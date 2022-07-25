@@ -12,18 +12,12 @@ namespace Project_PetStore.API.Models.DataModels
         public int Count { get; set; }
 
         [Required]
-        public int ProductId { get; set; }
-
-        [ForeignKey("ProductId")]
         public Products Product { get; set; }
 
         [Required]
-        public int UserId { get; set; }
-
-        [ForeignKey("UserId")]
         public Users User { get; set; }
 
         [NotMapped] 
-        public double Price { get; set; }
+        public double Subtotal { get; set; }
     }
 }

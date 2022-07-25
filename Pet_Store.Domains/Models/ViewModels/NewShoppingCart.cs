@@ -20,7 +20,7 @@ namespace PetStore.Domain.Models.ViewModels
         public string UserId { get; set; }
 
         [Required]
-        public double Price { get; set; }
+        public double Subtotal { get; set; }
 
     }
 }

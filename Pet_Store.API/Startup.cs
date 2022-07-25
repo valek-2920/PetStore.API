@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Pet_Store.API.Services;
+using Pet_Store.Utility;
 using PetStore.DataAccess.Repository.UnityOfWork;
 using Project_PetStore.API.DataAccess;
 using Project_PetStore.API.Models.DataModels;
@@ -73,6 +74,7 @@ namespace Pet_Store.API
             services.AddTransient<IMailService, SendGridMailService>();
             services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
             services.AddScoped<IUnityOfWork, UnityOfWork>();
+            services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

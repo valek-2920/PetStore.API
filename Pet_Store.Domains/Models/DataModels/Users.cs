@@ -28,18 +28,15 @@ namespace Project_PetStore.API.Models.DataModels
         [Required]
         public string Password { get; set; }
 
+        [Required]
+        public string Address { get; set; }
+
         /*Foreign keys*/
         [Required]
         public int RolesId { get; set; }
 
         [ForeignKey("RolesId")]
         public UserRoles Role { get; set; }
-
-        [Required]
-        public string Address { get; set; }
-
-        
-
 
     }
 }

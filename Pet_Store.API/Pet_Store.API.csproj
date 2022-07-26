@@ -35,7 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Pet_Store.DataAcess\Pet_Store.DataAcess.csproj" />
+    <ProjectReference Include="..\Pet_Store.DataAcess\Pet_Store.DataAccess.csproj" />
     <ProjectReference Include="..\Pet_Store.Domains\Pet_Store.Domains.csproj" />
     <ProjectReference Include="..\Pet_Store.Utility\Pet_Store.Utility.csproj" />
   </ItemGroup>

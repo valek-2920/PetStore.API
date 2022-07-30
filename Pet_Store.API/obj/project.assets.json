@@ -1890,7 +1890,7 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Pet_Store.DataAccess/1.0.0": {
+      "Pet_Store.DataAcess/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
@@ -1901,10 +1901,10 @@
           "Pet_Store.Domains": "1.0.0"
         },
         "compile": {
-          "bin/placeholder/Pet_Store.DataAccess.dll": {}
+          "bin/placeholder/Pet_Store.DataAcess.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Pet_Store.DataAccess.dll": {}
+          "bin/placeholder/Pet_Store.DataAcess.dll": {}
         }
       },
       "Pet_Store.Domains/1.0.0": {
@@ -6517,10 +6517,10 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
-    "Pet_Store.DataAccess/1.0.0": {
+    "Pet_Store.DataAcess/1.0.0": {
       "type": "project",
-      "path": "../Pet_Store.DataAcess/Pet_Store.DataAccess.csproj",
-      "msbuildProject": "../Pet_Store.DataAcess/Pet_Store.DataAccess.csproj"
+      "path": "../Pet_Store.DataAcess/Pet_Store.DataAcess.csproj",
+      "msbuildProject": "../Pet_Store.DataAcess/Pet_Store.DataAcess.csproj"
     },
     "Pet_Store.Domains/1.0.0": {
       "type": "project",
@@ -6543,7 +6543,7 @@
       "Microsoft.EntityFrameworkCore.Relational >= 5.0.17",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.17",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.17",
-      "Pet_Store.DataAccess >= 1.0.0",
+      "Pet_Store.DataAcess >= 1.0.0",
       "Pet_Store.Domains >= 1.0.0",
       "Pet_Store.Utility >= 1.0.0",
       "SendGrid >= 9.12.0",
@@ -6583,8 +6583,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\Vale2920\\Desktop\\University\\7 quarter\\Programacion Avanzada en Web\\PrograAvanzadaWeb\\PROYECTO\\Pet_Store.API\\Pet_Store.DataAcess\\Pet_Store.DataAccess.csproj": {
-              "projectPath": "C:\\Users\\Vale2920\\Desktop\\University\\7 quarter\\Programacion Avanzada en Web\\PrograAvanzadaWeb\\PROYECTO\\Pet_Store.API\\Pet_Store.DataAcess\\Pet_Store.DataAccess.csproj"
+            "C:\\Users\\Vale2920\\Desktop\\University\\7 quarter\\Programacion Avanzada en Web\\PrograAvanzadaWeb\\PROYECTO\\Pet_Store.API\\Pet_Store.DataAcess\\Pet_Store.DataAcess.csproj": {
+              "projectPath": "C:\\Users\\Vale2920\\Desktop\\University\\7 quarter\\Programacion Avanzada en Web\\PrograAvanzadaWeb\\PROYECTO\\Pet_Store.API\\Pet_Store.DataAcess\\Pet_Store.DataAcess.csproj"
             },
             "C:\\Users\\Vale2920\\Desktop\\University\\7 quarter\\Programacion Avanzada en Web\\PrograAvanzadaWeb\\PROYECTO\\Pet_Store.API\\Pet_Store.Domains\\Pet_Store.Domains.csproj": {
               "projectPath": "C:\\Users\\Vale2920\\Desktop\\University\\7 quarter\\Programacion Avanzada en Web\\PrograAvanzadaWeb\\PROYECTO\\Pet_Store.API\\Pet_Store.Domains\\Pet_Store.Domains.csproj"

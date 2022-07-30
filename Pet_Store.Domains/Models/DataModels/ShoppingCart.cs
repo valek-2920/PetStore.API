@@ -17,7 +17,6 @@ namespace Project_PetStore.API.Models.DataModels
         [Required]
         public Users User { get; set; }
 
-        [NotMapped] 
         public double Subtotal { get; set; }
     }
 }

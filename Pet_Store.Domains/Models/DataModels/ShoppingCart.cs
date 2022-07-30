@@ -5,6 +5,7 @@ namespace Project_PetStore.API.Models.DataModels
 {
     public class ShoppingCart
     {
+
         [Key]
         public int Id { get; set; }
 
@@ -18,5 +19,6 @@ namespace Project_PetStore.API.Models.DataModels
         public Users User { get; set; }
 
         public double Subtotal { get; set; }
+
     }
 }

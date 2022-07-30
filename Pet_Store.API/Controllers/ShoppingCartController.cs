@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PetStore.DataAccess.Repository.UnityOfWork;
 using PetStore.Domain.Models.ViewModels;
@@ -42,8 +42,7 @@ namespace Pet_Store.API.Controllers
                     if (CartExist != null && products.Contains(model.Product))
                     {
 
-                        //if (CartExist.Product.Name == model.Product) //carrito tiene este producto?
-                        //{
+
                             //actualizar producto existente con nuevos datos
                             CartExist.Count +=  model.Count;
                             CartExist.Subtotal = model.Count * getProduct.Price;
@@ -51,7 +50,6 @@ namespace Pet_Store.API.Controllers
                             _unityOfWork.ShoppingCartRepository.Update(CartExist);
                             _unityOfWork.Save();
                             return Ok(CartExist);
-                        //}
                     }
                         //crear carrito al usuario
                         shoppingCart = new ShoppingCart

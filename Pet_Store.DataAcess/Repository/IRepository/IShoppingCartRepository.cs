@@ -11,6 +11,8 @@ namespace PetStore.DataAccess.Repository.IRepositories
     {
         void Update(ShoppingCart model);
 
+        List<ShoppingCart> GetShoppingcartByUser(int userId);
+        
         List<Products> getProducts(int userId);
 
         List<ShoppingCart> GetShoppingcartByUser(int userId);

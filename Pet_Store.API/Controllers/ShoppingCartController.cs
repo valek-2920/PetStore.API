@@ -3,6 +3,7 @@ using PetStore.DataAccess.Repository.UnityOfWork;
 using PetStore.Domain.Models.ViewModels;
 using Project_PetStore.API.DataAccess;
 using Project_PetStore.API.Models.DataModels;
+using System.Collections.Generic;
 
 namespace Pet_Store.API.Controllers
 {
@@ -32,40 +33,43 @@ namespace Pet_Store.API.Controllers
             {
                 var getUser = _unityOfWork.UsersRepository.GetFirstOrDefault(x => x.UserId == model.UserId);
                 var getProduct = _unityOfWork.ProductsRepository.GetFirstOrDefault(x => x.Name == model.Product);
-                var CartExist = _unityOfWork.ShoppingCartRepository.GetFirstOrDefault(x => x.User.UserId == model.UserId);
+                ShoppingCart shoppingCart = new ShoppingCart();
 
                 if (getUser != null && getProduct != null)
                 {
+
+                    var CartExist = _unityOfWork.ShoppingCartRepository.GetFirstOrDefault(x => x.User.UserId == model.UserId);
+
                     if (CartExist != null)
                     {
-                        //update
+
+                       if(CartExist.Product.Name == model.Product) //carrito tiene este producto?
+                        {
+                            //actualizar producto existente con nuevos datos
+                            CartExist.Count = model.Count;
+                            CartExist.Subtotal = (model.Count * getProduct.Price);
+
+                            _unityOfWork.ShoppingCartRepository.Update(CartExist);
+                            _unityOfWork.Save();
+                            return Ok(CartExist);
+                        }
+
+                       //crear carrito al usuario
+                        shoppingCart = new ShoppingCart
+                        {
+                            Count = model.Count,
+                            Product = getProduct,
+                            User = getUser,
+                            Subtotal = (model.Count * getProduct.Price),
+                        };
+
+                        _unityOfWork.ShoppingCartRepository.Add(shoppingCart);
+                        _unityOfWork.Save();
+                        return Ok(shoppingCart);
 
                     }
-                  
-                    ShoppingCart shoppingCart = new ShoppingCart
-                    {
-                        Count = model.Count,
-                        Product = getProduct,
-                        User = getUser,
-                        Subtotal = (model.Count * getProduct.Price),
-                    };
-                   
-                    var e = _unityOfWork.ShoppingCartRepository.GetFirstOrDefault(x => x.Product.Name == model.Product);
-                    if (e != null)
-                    {
-                        var result = e.Count + model.Count;
-                        var subTotal2 = e.Subtotal + model.Subtotal;
-                        shoppingCart.Count = 0;
-                        model.Count = 0;
-                        shoppingCart.Count = result;
-                        //_unityOfWork.ShoppingCartRepository.Update(shoppingCart);
-                        //_unityOfWork.ShoppingCartRepository.Update(shoppingCart.Count);
-
-                    }
-                    _unityOfWork.ShoppingCartRepository.Add(shoppingCart);
-                    _unityOfWork.Save();
-                    return Ok(shoppingCart);
                 }
+                return BadRequest("Producto o usuario no existe");
             }
             return BadRequest("Error al agregar producto al carrito");
         }
@@ -86,18 +90,18 @@ namespace Pet_Store.API.Controllers
         }
 
 
-        [HttpGet]
-        [Route("GetAll-Products")]
-        public IActionResult GetProducts(int userId)
-        {
-            var allProductosShoppinCart = _unityOfWork.ShoppingCartRepository.GetShoppingcartByUser(userId);
-            _unityOfWork.Save();
+        //[HttpGet]
+        //[Route("GetAll-Products")]
+        //public IActionResult GetProducts(int userId)
+        //{
+        //    List<ShoppingCart> allProductosShoppinCart = _unityOfWork.ShoppingCartRepository.GetShoppingcartByUser(userId);
+        //    _unityOfWork.Save();
 
-            if (allProductosShoppinCart != null)
-            {
-                return Ok(allProductosShoppinCart);
-            }
-            return BadRequest("No hay productos en el carrito");
-        }
+        //    if (allProductosShoppinCart != null)
+        //    {
+        //        return Ok(allProductosShoppinCart);
+        //    }
+        //    return BadRequest("No hay productos en el carrito");
+        //}
     }
 }

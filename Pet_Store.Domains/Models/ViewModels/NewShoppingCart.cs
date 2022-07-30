@@ -10,18 +10,6 @@ namespace PetStore.Domain.Models.ViewModels
     public class NewShoppingCart
     {
 
-        public NewShoppingCart()
-        {
-
-        }
-
-        public NewShoppingCart( int count, double subtotal , string producto)
-        {
-            Count = count;
-            Subtotal = subtotal;
-            Product = producto;
-
-        }
         [Required]
         public int Count { get; set; }
 
@@ -30,8 +18,5 @@ namespace PetStore.Domain.Models.ViewModels
 
         [Required]
         public int UserId { get; set; }
-
-        public double Subtotal { get; set; }
-
     }
 }

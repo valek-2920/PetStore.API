@@ -338,9 +338,6 @@ namespace Pet_Store.DataAcess.Migrations
                     b.Property<int?>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<double>("Subtotal")
-                        .HasColumnType("float");
-
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
 

@@ -41,8 +41,6 @@ namespace Pet_Store.API.Controllers
 
                     if (CartExist != null && products.Contains(model.Product))
                     {
-
-
                             //actualizar producto existente con nuevos datos
                             CartExist.Count +=  model.Count;
                             CartExist.Subtotal = model.Count * getProduct.Price;

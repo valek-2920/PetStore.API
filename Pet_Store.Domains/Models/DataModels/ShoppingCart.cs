@@ -23,13 +23,13 @@ namespace Project_PetStore.API.Models.DataModels
         [Required]
         public int Count { get; set; }
 
+
         [Required]
         public Products Product { get; set; }
 
         [Required]
         public Users User { get; set; }
 
-        
         public double Subtotal { get; set; }
 
     }

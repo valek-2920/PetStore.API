@@ -32,9 +32,16 @@ namespace Pet_Store.API.Controllers
             {
                 var getUser = _unityOfWork.UsersRepository.GetFirstOrDefault(x => x.UserId == model.UserId);
                 var getProduct = _unityOfWork.ProductsRepository.GetFirstOrDefault(x => x.Name == model.Product);
+                var CartExist = _unityOfWork.ShoppingCartRepository.GetFirstOrDefault(x => x.User.UserId == model.UserId);
 
                 if (getUser != null && getProduct != null)
                 {
+                    if (CartExist != null)
+                    {
+                        //update
+
+                    }
+                  
                     ShoppingCart shoppingCart = new ShoppingCart
                     {
                         Count = model.Count,
@@ -42,12 +49,12 @@ namespace Pet_Store.API.Controllers
                         User = getUser,
                         Subtotal = (model.Count * getProduct.Price),
                     };
-                    
-                    var exist = _unityOfWork.ShoppingCartRepository.GetFirstOrDefault(x => x.Product.Name == model.Product);
-                    if (exist != null)
+                   
+                    var e = _unityOfWork.ShoppingCartRepository.GetFirstOrDefault(x => x.Product.Name == model.Product);
+                    if (e != null)
                     {
-                        var result = exist.Count + model.Count;
-                        var subTotal2 = exist.Subtotal + model.Subtotal;
+                        var result = e.Count + model.Count;
+                        var subTotal2 = e.Subtotal + model.Subtotal;
                         shoppingCart.Count = 0;
                         model.Count = 0;
                         shoppingCart.Count = result;

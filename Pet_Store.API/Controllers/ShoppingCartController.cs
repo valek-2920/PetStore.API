@@ -19,8 +19,6 @@ namespace Pet_Store.API.Controllers
         {
             _unityOfWork = unityOfWork;
             Context = context;
-
-
         }
 
         [HttpPost]
@@ -43,9 +41,9 @@ namespace Pet_Store.API.Controllers
                     {
                             //actualizar producto existente con nuevos datos
                             CartExist.Count +=  model.Count;
-                            CartExist.Subtotal = model.Count * getProduct.Price;
+                            CartExist.Subtotal = CartExist.Count * getProduct.Price;
 
-                            _unityOfWork.ShoppingCartRepository.Update(CartExist);
+                        _unityOfWork.ShoppingCartRepository.Update(CartExist);
                             _unityOfWork.Save();
                             return Ok(CartExist);
                     }
@@ -61,8 +59,6 @@ namespace Pet_Store.API.Controllers
                         _unityOfWork.ShoppingCartRepository.Add(shoppingCart);
                         _unityOfWork.Save();
                         return Ok(shoppingCart);
-
-                    
                 }
                 return BadRequest("Producto o usuario no existe");
             }
@@ -74,13 +70,22 @@ namespace Pet_Store.API.Controllers
         [Route("remove-product")]
         public IActionResult DeleteItem(int id)
         {
+            var CartExist = _unityOfWork.ShoppingCartRepository.GetFirstOrDefault(x => x.User.UserId == id);
             var product = _unityOfWork.ShoppingCartRepository.GetFirstOrDefault(x => x.Product.ProductId == id);
             if (product != null)
             {
+                var products = _unityOfWork.ShoppingCartRepository.getProducts(id);
+
                 _unityOfWork.ShoppingCartRepository.Remove(product);
                 _unityOfWork.Save();
                 return Ok($"El producto  ha sido eliminado del carrito ");
             }
+            else if (CartExist == null)
+            {
+                _unityOfWork.Save();
+                return Ok($"Se elimino el carrito ");
+            }
+
             return BadRequest("Error al remover el producto del carrito  Es posible que el producto ya no este en el carrito");
         }
 

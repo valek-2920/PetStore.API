@@ -39,26 +39,26 @@ namespace Pet_Store.API.Controllers
 
                     if (CartExist != null && products.Contains(model.Product))
                     {
-                            //actualizar producto existente con nuevos datos
-                            CartExist.Count +=  model.Count;
-                            CartExist.Subtotal = CartExist.Count * getProduct.Price;
+                        //actualizar producto existente con nuevos datos
+                        CartExist.Count += model.Count;
+                        CartExist.Subtotal = CartExist.Count * getProduct.Price;
 
                         _unityOfWork.ShoppingCartRepository.Update(CartExist);
-                            _unityOfWork.Save();
-                            return Ok(CartExist);
-                    }
-                        //crear carrito al usuario
-                        shoppingCart = new ShoppingCart
-                        {
-                            Count = model.Count,
-                            Product = getProduct,
-                            User = getUser,
-                            Subtotal = (model.Count * getProduct.Price),
-                        };
-
-                        _unityOfWork.ShoppingCartRepository.Add(shoppingCart);
                         _unityOfWork.Save();
-                        return Ok(shoppingCart);
+                        return Ok(CartExist);
+                    }
+                    //crear carrito al usuario
+                    shoppingCart = new ShoppingCart
+                    {
+                        Count = model.Count,
+                        Product = getProduct,
+                        User = getUser,
+                        Subtotal = (model.Count * getProduct.Price),
+                    };
+
+                    _unityOfWork.ShoppingCartRepository.Add(shoppingCart);
+                    _unityOfWork.Save();
+                    return Ok(shoppingCart);
                 }
                 return BadRequest("Producto o usuario no existe");
             }
@@ -78,41 +78,46 @@ namespace Pet_Store.API.Controllers
             if (product != null && CartExist != null)
             {
 
-                if (CartExist.Product.ProductId == ProductoID )
+                if (CartExist.Product.ProductId == ProductoID)
                 {
-                    if (CartExist.Count >= 1 ) { 
-                    //actualizar producto existente con nuevos datos
-                    CartExist.Count = product.Count - count;
-                    CartExist.Subtotal = CartExist.Count * getProduct.Price;
-
-                    _unityOfWork.ShoppingCartRepository.Update(CartExist);
-                    _unityOfWork.Save();
-                    return Ok(CartExist);
-                    }
-                    else if (CartExist.Count <= 0)
+                    if (CartExist.Count >= 1)
                     {
-                        _unityOfWork.ShoppingCartRepository.Remove(product);
+                        //actualizar producto existente con nuevos datos
+                        CartExist.Count = product.Count - count;
+                        CartExist.Subtotal = CartExist.Count * getProduct.Price;
+
+                        if (CartExist.Count <= 0)
+                        {
+                            _unityOfWork.ShoppingCartRepository.Remove(product);
+                            _unityOfWork.Save();
+                            return Ok($"El producto ha sido eliminado del carrito ");
+                        }
+
+                        _unityOfWork.ShoppingCartRepository.Update(CartExist);
                         _unityOfWork.Save();
-                        return Ok($"El producto ha sido eliminado del carrito ");
+                        return Ok(CartExist);
                     }
-                }
-                else
-                {
+
+
                     return Ok($"Es probable que el articulo no exista en el carrito ");
                 }
             }
             else if (CartExist.Product == null)
             {
+
                 _unityOfWork.ShoppingCartRepository.Remove(CartExist);
                 _unityOfWork.Save();
                 return Ok($"Se elimino el carrito ");
-            }else if(product == null) {
+            }
+            else if (product == null)
+            {
 
-            return BadRequest("Error al remover el producto del carrito puede que el usuario no tenga carrito o el articulo no exista");
-        }
+                return BadRequest("Error al remover el producto del carrito puede que el usuario no tenga carrito o el articulo no exista");
+            }
+
             return BadRequest("por favor intentelo de nuevo");
         }
-        
+
 
 
 

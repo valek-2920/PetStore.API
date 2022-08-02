@@ -14,9 +14,6 @@ namespace Pet_Store.Domains.Models.ViewModels
         public int UserId { get; set; }
 
         [Required]
-        public int PhoneNumber { get; set; }
-
-        [Required]
         public string Address { get; set; }
 
         [Required]

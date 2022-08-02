@@ -10,8 +10,8 @@ using Project_PetStore.API.DataAccess;
 namespace Pet_Store.DataAcess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220730214343_fixDataTypeFromSC")]
-    partial class fixDataTypeFromSC
+    [Migration("20220802152409_AddModelsToDb")]
+    partial class AddModelsToDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

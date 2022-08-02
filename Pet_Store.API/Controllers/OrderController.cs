@@ -6,6 +6,7 @@ using PetStore.DataAccess.Repository.UnityOfWork;
 using Project_PetStore.API.Models.DataModels;
 using Stripe.Checkout;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Pet_Store.API.Controllers
 {
@@ -24,45 +25,70 @@ namespace Pet_Store.API.Controllers
         [Route("order")]
         public IActionResult CreateOrder([FromBody] OrderViewModel model)
         {
-
             var GetUser = _unityOfWork.UsersRepository.GetFirstOrDefault(x => x.UserId == model.UserId);
             var getShoppingCart = _unityOfWork.ShoppingCartRepository.GetAll(x => x.User.UserId == model.UserId);
             var getProducts = _unityOfWork.ShoppingCartRepository.getProducts(model.UserId);
-            OrderDetails orderDetails = new OrderDetails();
+            var getOrderHeader = _unityOfWork.OrderHeaderRepository.GetFirstOrDefault(x => x.User.UserId == model.UserId);
+            var getOrderDetails = _unityOfWork.OrderDetailsRepository.GetFirstOrDefault(x => x.OrderHeader == getOrderHeader);
             var quantity = 0;
             var total = 0.0;
 
-
             if (GetUser != null)
             {
-                //add new OrderHeader
-                OrderHeader orderHeader = new OrderHeader
+                if (getProducts.Count() >= 1)
                 {
-                    User = GetUser,
-                    PhoneNumber = model.PhoneNumber,
-                    Address = model.Address,
-                    City = model.City,
-                    Country = model.Country
-                };
-
-                //insert shopping cart to order details
-                foreach (var item in getShoppingCart)
-                {
-                    quantity = item.Count;
-                    total = item.Subtotal;
-
-                    orderDetails = new OrderDetails
+                    if (getOrderHeader == null)
                     {
-                        OrderHeader = orderHeader,
-                        Product = getProducts,
-                        Quantity = quantity +  item.Count,
-                        Total = total + item.Subtotal
-                    };
-                }
+                        //add new OrderHeader
+                        OrderHeader orderHeader = new OrderHeader
+                        {
+                            User = GetUser,
+                            PhoneNumber = GetUser.Phone,
+                            Address = model.Address,
+                            City = model.City,
+                            Country = model.Country
+                        };
 
-                _unityOfWork.OrderDetailsRepository.Add(orderDetails);
-                _unityOfWork.Save();
-                return Ok(orderDetails);
+                        OrderDetails orderDetails = new OrderDetails();
+
+                        //insert shopping cart to order details
+                        foreach (var item in getShoppingCart)
+                        {
+                            quantity += item.Count;
+                            total += item.Subtotal;
+
+                            orderDetails = new OrderDetails
+                            {
+                                OrderHeader = orderHeader,
+                                Product = getProducts,
+                                Quantity = quantity,
+                                Total = total
+                            };
+
+                            _unityOfWork.OrderDetailsRepository.Add(orderDetails);
+                            _unityOfWork.Save();
+                            return Ok(orderDetails);
+                        }
+                    }
+
+                    //update shopping cart to order details
+                    foreach (var item in getShoppingCart)
+                    {
+                        quantity += item.Count;
+                        total += item.Subtotal;
+
+                        getOrderDetails.OrderHeader = getOrderHeader;
+                        getOrderDetails.Product = getProducts;
+                        getOrderDetails.Quantity = quantity;
+                        getOrderDetails.Total = total;
+                    }
+
+                    _unityOfWork.OrderDetailsRepository.Update(getOrderDetails);
+                    _unityOfWork.Save();
+                    return Ok(getOrderDetails);
+                }
+                return BadRequest("Usuario no posee productos en el carrito");
+               
             }
 
             return BadRequest("Usuario no existe");
@@ -100,11 +126,11 @@ namespace Pet_Store.API.Controllers
                 //update OrderHeader
 
                 oldOrderHeader.User = GetUser;
-                oldOrderHeader.PhoneNumber = model.PhoneNumber;
+                oldOrderHeader.PhoneNumber = GetUser.Phone;
                 oldOrderHeader.Address = model.Address;
                 oldOrderHeader.City = model.City;
                 oldOrderHeader.Country = model.Country;
-                
+
 
                 _unityOfWork.OrderHeaderRepository.Update(oldOrderHeader);
                 _unityOfWork.Save();
@@ -112,15 +138,15 @@ namespace Pet_Store.API.Controllers
                 //insert shopping cart to order details
                 foreach (var item in getShoppingCart)
                 {
-                    quantity = item.Count;
-                    total = item.Subtotal;
+                    quantity += item.Count;
+                    total += item.Subtotal;
 
                     orderDetails = new OrderDetails
                     {
                         OrderHeader = oldOrderHeader,
                         Product = getProducts,
-                        Quantity = quantity + item.Count,
-                        Total = total + item.Subtotal
+                        Quantity = quantity,
+                        Total = total
                     };
                 }
 
@@ -131,7 +157,7 @@ namespace Pet_Store.API.Controllers
         }
 
 
-            [HttpDelete]
+        [HttpDelete]
         [Route("order")]
         public IActionResult DeleteOrder(int userId)
         {

@@ -11,7 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pet_Store.DataAcess", "Pet_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pet_Store.Utility", "Pet_Store.Utility\Pet_Store.Utility.csproj", "{05C60AED-B108-4EF2-A85F-434B28EF4826}"
 EndProject
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pet_Store.Responsive", "Pet_Store.Responsive\Pet_Store.Responsive.csproj", "{64D8B571-9B9D-4283-BF9F-6FA0EE7EF2F5}"
 EndProject
 Global

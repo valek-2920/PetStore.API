@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "Registro";
+}
+
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Administración</p>
+                    <h1>Registrar Usuario</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="contact-from-section mt-80 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 mb-5 mb-lg-0">
+                <div class="contact-form text-center">
+                    <form type="POST" onSubmit="">
+                        <p>
+                            <input type="text" placeholder="Nombre" name="nombre" id="nombre">
+                            <input type="text" placeholder="Apellido" name="apellido" id="apellido">
+                        </p>
+                        <p>
+                            <input type="date" placeholder="Fecha de Nacimiento" name="BirthDate" id="BirthDate">
+                            <input type="tel" placeholder="Número de Teléfono" name="Phone" id="Phone">
+                        </p>
+                        <p>
+                            <input type="email" placeholder="Correo Electrónico" name="email" id="email">
+                            <input type="password" placeholder="Contraseña" name="password" id="password">
+                        </p>
+                        <p><textarea name="address" id="address" cols="30" rows="10" placeholder="Ingrese su dirección"></textarea></p>
+                        <input type="hidden" name="role" value="" />
+                        <p><input type="submit" value="Registrar"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+    <script src="~/assets/js/general/CargaPagina.js"></script>
+    <script src="~/assets/js/general/validaciones.js"></script>
+}

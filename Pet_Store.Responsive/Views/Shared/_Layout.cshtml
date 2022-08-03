@@ -4,45 +4,191 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Pet_Store.Responsive</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <script src="https://kit.fontawesome.com/4fe965d05a.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="~/css/owl.carousel.css" />
+    <link rel="stylesheet" href="~/css/magnific-popup.css" />
+    <link rel="stylesheet" href="~/css/animate.css" />
+    <link rel="stylesheet" href="~/css/meanmenu.min.css" />
+    <link rel="stylesheet" href="~/css/main.css" />
+    <link rel="stylesheet" href="~/css/responsive.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Pet_Store.Responsive</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+    <!--Pagina de carga-->
+    <div class="loader">
+        <div class="loader-inner">
+            <div class="circle"></div>
+        </div>
+    </div>
+    <!--fin Pagina de carga-->
+    <!-- header -->
+    <div class="top-header-area" id="sticker">
+        <div class="container">
+            <div class="login text-right">
+                <ul>
+                    <li>@Html.ActionLink("Iniciar Sesión", "Login", "Home")</li>
+                    <li>@Html.ActionLink("Registrar", "Registro", "Home")</li>
+                </ul>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-sm-12 text-center">
+                    <div class="main-menu-wrap">
+                        <!-- logo -->
+                        <div class="site-logo">
+                            <a href="@Url.Action("Index", "Home")">
+                                <img src="~/img/logo.png" alt="">
+                            </a>
+                        </div>
+                        <!-- fin logo -->
+                        <!-- menu -->
+                        <nav class="main-menu">
+                            <ul>
+                                <li class="current-list-item">@Html.ActionLink("Inicio", "Index", "Home")</li>
+                                <li>
+                                    @Html.ActionLink("Tienda", "Shop", "Home")
+                                    <ul class="sub-menu">
+                                        <li><a href="#">Aves</a></li>
+                                        <li><a href="#">Gatos</a></li>
+                                        <li><a href="#">Perros</a></li>
+                                        <li><a href="#">Peces</a></li>
+                                        <li><a href="#">Roedores</a></li>
+                                    </ul>
+                                </li>
+                                <li>@Html.ActionLink("Sobre Nosotros", "About", "Home")</li>
+                                <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                                
+                                <!-- Herramientas de Administrador -->
+
+                                <li>@Html.ActionLink("Herramientas de Administrador", "Inventario", "Inventario")
+                                    <ul class="sub-menu">
+                                        <li>@Html.ActionLink("Inventario Productos", "Inventario", "Inventario")</li>
+                                        <li>@Html.ActionLink("Agregar Producto", "AgregarProducto", "Inventario")</li>
+                                        <li>@Html.ActionLink("Consultar Usuarios", "ConsultarUsuarios", "Usuarios")</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <div class="header-icons">
+                                        <a class="shopping-cart" href="@Url.Action("Cart", "Home")">
+                                            <i id="carrito2" class="fas fa-shopping-cart"></i><p id="cantidad" value="" style="color:#fff"></p>
+                                        </a>
+                                        <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </nav>
+                        <a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+                        <div class="mobile-menu"></div>
+                        <!-- fin menu -->
+                    </div>
                 </div>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+        </div>
+    </div>
+    <!-- fin header -->
+    <!-- Seccion de busqueda -->
+    <div class="search-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <span class="close-btn"><i class="fas fa-window-close"></i></span>
+                    <div class="search-bar">
+                        <div class="search-bar-tablecell">
+                            <h3>Buscar por:</h3>
+                            <input type="text" placeholder="Escribe aquí...">
+                            <button type="submit">Buscar <i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- fin Seccion de busqueda -->
+    <div class="">
+        @RenderBody()
     </div>
 
-    <footer class="border-top footer text-muted">
+    <!-- footer -->
+    <div class="footer-area">
         <div class="container">
-            &copy; 2022 - Pet_Store.Responsive - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-box about-widget">
+                        <h2 class="widget-title">Acerca de Nosotros</h2>
+                        <p>Lo que necesita tu mascota al instante</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-box get-in-touch">
+                        <h2 class="widget-title">Contacto</h2>
+                        <ul>
+                            <li>San Pedro, Mall San Pedro.</li>
+                            <li>consultas@petstore.com</li>
+                            <li>+506 2222 2222</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-box pages">
+                        <h2 class="widget-title">Navegación</h2>
+                        <ul>
+                            <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Tienda", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Sobre Nosotros", "About", "Home")</li>
+                            <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-box subscribe">
+                        <h2 class="widget-title">Subscriberse</h2>
+                        <p>Suscríbase a nuestra lista de correo para recibir las últimas actualizaciones.</p>
+                        <form action="#">
+                            <input type="email" placeholder="Correo Electrónico">
+                            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    </div>
+    <!-- fin footer -->
+    <!-- copyright -->
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <p>
+                        Copyrights &copy; 2022 - <a href="https://ufidelitas.ac.cr/">Universidad Fidélitas</a>,  Todos los derechos reservados.<br>
+                        Creado por: - Jurgen Solano - Valeria Morales - Sebastián Vargas - Marcela Angulo - Bryan Rojas</a>
+                    </p>
+                </div>
+                <div class="col-lg-6 text-right col-md-12">
+                    <div class="social-icons">
+                        <ul>
+                            <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/js/jquery-1.11.3.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/js/jquery.countdown.js"></script>
+    <script src="~/js/jquery.isotope-3.0.6.min.js"></script>
+    <script src="~/js/main.js"></script>
+    <script src="~/js/waypoints.js"></script>
+    <script src="~/js/owl.carousel.min.js"></script>
+    <script src="~/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/js/jquery.meanmenu.min.js"></script>
+    <script src="~/js/sticker.js"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

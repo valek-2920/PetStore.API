@@ -22,30 +22,92 @@
                 <div class="contact-form text-center">
                     <form type="POST" onSubmit="">
                         <p>
-                            <input type="text" placeholder="Nombre" name="nombre" id="nombre">
-                            <input type="text" placeholder="Apellido" name="apellido" id="apellido">
+                            <input type="text" placeholder="Nombre" name="nombre" id="nombre" onblur="LimpiarCampo();" onkeypress="return soloLetras(event)" required>
+                            <input type="text" placeholder="Apellido" name="apellido" id="apellido" onblur="LimpiarCampo();" onkeypress="return soloLetras(event)" required>
                         </p>
                         <p>
-                            <input type="date" placeholder="Fecha de Nacimiento" name="BirthDate" id="BirthDate">
-                            <input type="tel" placeholder="Número de Teléfono" name="Phone" id="Phone">
+                            <input type="date" placeholder="Fecha de Nacimiento" name="BirthDate" id="BirthDate" required>
+                            <input type="tel" placeholder="Número de Teléfono" name="Phone" id="Phone" onkeypress = "return isNumber(event)" onblur = "validarTelefono();" required>
+                            <span id="telOK" style="color: red"></span>
                         </p>
                         <p>
-                            <input type="email" placeholder="Correo Electrónico" name="email" id="email">
-                            <input type="password" placeholder="Contraseña" name="password" id="password">
+                            <input type="email" placeholder="Correo Electrónico" name="email" id="email" onblur = "LimpiarCampo();validar();" required>
+                            <span id="emailOK" style="color: red"></span>
+                            <input type="password" placeholder="Contraseña" name="password" id="password" onblur = "validarContrasena();">
+                            <span id="passOK" style="color: red"></span>
                         </p>
-                        <p><textarea name="address" id="address" cols="30" rows="10" placeholder="Ingrese su dirección"></textarea></p>
+                        <p><textarea name="direccion" id="direccion" cols="30" rows="10" placeholder="Ingrese su dirección" onblur="LimpiarCampo();"></textarea></p>
                         <input type="hidden" name="role" value="" />
-                        <p><input type="submit" value="Registrar"></p>
+                        <p><button type="submit" id="botonEnviar">Registrarse</button></p>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    function soloLetras(e) {
+        var key = e.keyCode || e.which,
+            tecla = String.fromCharCode(key).toLowerCase(),
+            letras = " áéíóúabcdefghijklmnñopqrstuvwxyz",
+            especiales = [8, 37, 39, 46],
+            tecla_especial = false;
 
-@section Scripts{
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
-    <script src="~/assets/js/general/CargaPagina.js"></script>
-    <script src="~/assets/js/general/validaciones.js"></script>
-}
+        for (var i in especiales) {
+            if (key == especiales[i]) {
+                tecla_especial = true;
+                break;
+            }
+        }
+
+        if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+            return false;
+        }
+    }
+    function LimpiarCampo() {
+        $("#email").val($("#email").val().trim());
+        $("#nombre").val($("#nombre").val().trim());
+        $("#direccion").val($("#direccion").val().trim());
+    }
+    function isNumber(evt) {
+        var iKeyCode = (evt.which) ? evt.which : evt.iKeyCode
+        if (iKeyCode < 48 || iKeyCode > 57)
+            return false;
+        return true;
+    }
+    function validarTelefono() {
+        var tel = document.getElementById('Phone').value;
+        valido = document.getElementById('telOK');
+
+        var min = 20000000;
+        var max = 89999999;
+
+        //Se muestra un texto a modo de ejemplo, luego va a ser un icono
+        if (tel < min || tel > max) {
+            valido.innerText = "Número de teléfono incorrecto";
+            $('#botonEnviar').attr('disabled', true);
+        } else {
+            valido.innerText = "";
+            $('#botonEnviar').attr('disabled', false);
+        }
+    } 
+    function validarContrasena() {
+        document.getElementById('password').value;
+        campo = event.target;
+        valido = document.getElementById('passOK');
+
+        contraRegex = /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/;
+        //Se muestra un texto a modo de ejemplo, luego va a ser un icono
+        if (contraRegex.test(campo.value)) {
+            valido.innerText = "ak7";
+            $('#botonEnviar').attr('disabled', false);
+        } else {
+            valido.innerText = "La contraseña debe tener al entre 8 y 16 caracteres \n Al menos un dígito \n Al menos una minúscula \n Al menos una mayúscula \n Al menos un caracter no alfanumérico.";
+            $('#botonEnviar').attr('disabled', true);
+        }
+    }
+   
+</script>
+
+
+    

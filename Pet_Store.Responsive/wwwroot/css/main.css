@@ -432,7 +432,7 @@ p {
 a.boxed-btn {
     font-family: 'Poppins', sans-serif;
     display: inline-block;
-    background-color: #253659;
+    background-color: #f27457;
     color: #fff;
     padding: 10px 20px;
 }
@@ -1033,8 +1033,8 @@ a.boxed-btn {
 }
 
     a.boxed-btn:hover {
-        background-color: #051922;
-        color: #253659;
+        background-color: #bf665e;
+        color: #fff;
     }
 
 a.bordered-btn {
@@ -1194,11 +1194,21 @@ input[type="submit"] {
     transition: 0.3s;
     border-radius: 50px !important;
 }
+button[type="submit"] {
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    border-radius: 50px !important;
+}
 
     input[type="submit"]:hover {
-        background-color: #051922;
-        color: #253659;
+        background-color: #bf665e;
+        color: #fff;
     }
+button[type="submit"]:hover {
+    background-color: #bf665e;
+    color: #fff;
+}
 
 div.owl-controls, .owl-controls div {
     -webkit-transition: 0.3s;
@@ -1476,7 +1486,7 @@ html, body {
 }
 
 input[type="submit"] {
-    background-color: #253659;
+    background-color: #f27457;
     color: #fff;
     font-weight: 700;
     text-transform: uppercase;
@@ -1486,6 +1496,7 @@ input[type="submit"] {
     padding: 15px 25px;
     border-radius: 3px;
 }
+
 
 .homepage-bg-1 {
     background-image: url(../img/hero-bg.jpg);
@@ -2147,26 +2158,31 @@ a.video-play-btn {
     }
 
 .team-bg-1 {
-    background-image: url(../img/team/team-1.jpg);
+    background-image: url(../img/avaters/avatar5.png);
 }
 
 .team-bg-2 {
-    background-image: url(../img/team/team-2.jpg);
+    background-image: url(../img/avaters/avatar3.png);
 }
 
 .team-bg-3 {
-    background-image: url(../img/team/team-3.jpg);
+    background-image: url(../img/avaters/avatar1.png);
 }
 
 .team-bg-4 {
-    background-image: url(../img/team/team-4.jpg);
+    background-image: url(../img/avaters/avatar2.png);
+}
+.team-bg-5 {
+    background-image: url(../img/avaters/avatar4.png);
 }
 
 .team-bg {
-    height: 400px;
-    background-size: cover;
+    height: 200px;
+    background-size: 60% 50%;
     background-position: center;
     border-radius: 5px;
+
+    background-repeat: no-repeat;
     background-color: #ddd;
 }
 
@@ -2206,7 +2222,7 @@ ul.social-link-team {
 
         ul.social-link-team li a {
             color: #fff;
-            background-color: #253659;
+            background-color: #f27457;
             width: 32px;
             height: 32px;
             line-height: 32px;
@@ -2278,7 +2294,7 @@ ul.social-link-team {
         .contact-form-box h4 i {
             position: absolute;
             left: -13%;
-            color: #253659;
+            color: #f27457;
             top: 2px;
         }
 
@@ -2301,7 +2317,7 @@ ul.social-link-team {
 
     .find-location p i {
         margin-right: 10px;
-        color: #cb1e22;
+        color: #f27457;
     }
 
 #form_status span {
@@ -2580,23 +2596,6 @@ tr.total-data td strong {
         margin-right: 20px;
     }
 
-.coupon-section {
-    margin-top: 50px;
-}
-
-    .coupon-section h3 {
-        font-size: 20px;
-        font-weight: 500;
-    }
-
-.coupon-form-wrap form p input[type=text] {
-    border: 1px solid #ddd;
-    color: #051922;
-    padding: 15px;
-    width: 100%;
-    border-radius: 5px;
-    font-size: 15px;
-}
 
 .card.single-accordion {
     margin-bottom: 15px;

@@ -44,5 +44,26 @@ namespace Pet_Store.Responsive.Controllers
 
             return View();
         }
+        public ActionResult Shop()
+        {
+
+            return View();
+        }
+
+        public ActionResult About()
+        {
+
+            return View();
+        }
+        public ActionResult Cart()
+        {
+
+            return View();
+        }
+        public ActionResult Contact()
+        {
+
+            return View();
+        }
     }
 }

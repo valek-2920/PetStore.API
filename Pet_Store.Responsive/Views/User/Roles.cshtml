@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "Roles";
+}
+
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Administración</p>
+                    <h1>Roles</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid mb-5">
+      <input type="button" value="Agregar Rol" class="btn btn-primary"
+                                       onclick="location.href='@Url.Action("AgregarRol", "User")'">
+</div>
+
+<div class="product-section mt-150 mb-150">
+    <div class="container-fluid">
+        <div class="dt-responsive table-responsive">
+            <table id="footer-search" class="table table-striped table-bordered nowrap">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Descripción</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr>
+                            <td>ID</td>
+                            <td>Administrador</td>
+                            <td style="text-align:center">
+                                       <input type="button" value="Eliminar" class="btn btn-danger"
+                                       onclick="location.href='@Url.Action("EliminarRol", "Inventario")'">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>ID</td>
+                            <td>Super Administrador</td>
+                            <td style="text-align:center">
+                                       <input type="button" value="Eliminar" class="btn btn-danger"
+                                       onclick="location.href='@Url.Action("EliminarRol", "Inventario")'">
+                            </td>
+                        </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Código de Categoria</th>
+                        <th>Descripción</th>
+                        <th>Acciones</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+

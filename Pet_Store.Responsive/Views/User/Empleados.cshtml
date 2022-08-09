@@ -1,0 +1,140 @@
+﻿@{
+    ViewBag.Title = "Usuarios";
+}
+
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Administración</p>
+                    <h1>Usuarios Empleados</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Tabla de productos -->
+
+<div class="product-section mt-150 mb-150">
+    <div class="container-fluid">
+        <div class="dt-responsive table-responsive">
+            <table id="footer-search" class="table table-striped table-bordered nowrap">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Fecha de Nacimiento</th>
+                        <th>Teléfono</th>
+                        <th>Email</th>
+                        <th>Dirección</th>
+                        <th>Rol</th>
+                        <th>Foto</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Fecha de Nacimiento</th>
+                            <th>Teléfono</th>
+                            <th>Email</th>
+                            <th>Dirección</th>
+                            <th>Rol</th>
+                            <td style="text-align:center"><img src="~/img/avaters/avatar1.png" alt="" width="100" style="border-radius: 50px"></td>
+                            <td style="text-align:center">
+                                <input type="button" value="Editar" class="btn btn-primary"
+                                       onclick="location.href='@Url.Action("EditarProducto", "Inventario")'">
+                                       <input type="button" value="Eliminar" class="btn btn-danger"
+                                       onclick="location.href='@Url.Action("EliminarProducto", "Inventario")'">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Fecha de Nacimiento</th>
+                            <th>Teléfono</th>
+                            <th>Email</th>
+                            <th>Dirección</th>
+                            <th>Rol</th>
+                            <td style="text-align:center"><img src="~/img/avaters/avatar2.png" alt="" width="100" style="border-radius: 50px"></td>
+                            <td style="text-align:center">
+                                <input type="button" value="Editar" class="btn btn-primary"
+                                       onclick="location.href='@Url.Action("EditarProducto", "Inventario")'">
+                                       <input type="button" value="Eliminar" class="btn btn-danger"
+                                       onclick="location.href='@Url.Action("EliminarProducto", "Inventario")'">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Fecha de Nacimiento</th>
+                            <th>Teléfono</th>
+                            <th>Email</th>
+                            <th>Dirección</th>
+                            <th>Rol</th>
+                            <td style="text-align:center"><img src="~/img/avaters/avatar3.png" alt="" width="100" style="border-radius: 50px"></td>
+                            <td style="text-align:center">
+                                <input type="button" value="Editar" class="btn btn-primary"
+                                       onclick="location.href='@Url.Action("EditarProducto", "Inventario")'">
+                                       <input type="button" value="Eliminar" class="btn btn-danger"
+                                       onclick="location.href='@Url.Action("EliminarProducto", "Inventario")'">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Fecha de Nacimiento</th>
+                            <th>Teléfono</th>
+                            <th>Email</th>
+                            <th>Dirección</th>
+                            <th>Rol</th>
+                            <td style="text-align:center"><img src="~/img/avaters/avatar4.png" alt="" width="100" style="border-radius: 50px"></td>
+                            <td style="text-align:center">
+                                <input type="button" value="Editar" class="btn btn-primary"
+                                       onclick="location.href='@Url.Action("EditarProducto", "Inventario")'">
+                                       <input type="button" value="Eliminar" class="btn btn-danger"
+                                       onclick="location.href='@Url.Action("EliminarProducto", "Inventario")'">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Fecha de Nacimiento</th>
+                            <th>Teléfono</th>
+                            <th>Email</th>
+                            <th>Dirección</th>
+                            <th>Rol</th>
+                            <td style="text-align:center"><img src="~/img/avaters/avatar5.png" alt="" width="100" style="border-radius: 50px"></td>
+                            <td style="text-align:center">
+                                <input type="button" value="Editar" class="btn btn-primary"
+                                       onclick="location.href='@Url.Action("EditarProducto", "Inventario")'">
+                                       <input type="button" value="Eliminar" class="btn btn-danger"
+                                       onclick="location.href='@Url.Action("EliminarProducto", "Inventario")'">
+                            </td>
+                        </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Fecha de Nacimiento</th>
+                        <th>Teléfono</th>
+                        <th>Email</th>
+                        <th>Dirección</th>
+                        <th>Rol</th>
+                        <th>Acciones</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

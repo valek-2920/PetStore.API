@@ -8,5 +8,21 @@ namespace Pet_Store.Responsive.Controllers
         {
             return View();
         }
+        public IActionResult AgregarProducto()
+        {
+            return View();
+        }
+        public IActionResult EditarProducto()
+        {
+            return View();
+        }
+        public IActionResult Categorias()
+        {
+            return View();
+        }
+        public IActionResult AgregarCategorias()
+        {
+            return View();
+        }
     }
 }

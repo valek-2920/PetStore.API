@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Pet_Store.Responsive.Models;
+using Project_PetStore.API.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PetStore.DataAccess.Repository.IRepositories
+namespace Pet_Store.DataAcess.Repository.IRepository
 {
     public interface IOrderDetailsRepository : IRepository<OrderDetails>
     {

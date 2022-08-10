@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PetStore.DataAccess.Repository;
-using PetStore.DataAccess.Repository.IRepositories;
 using PetStore.DataAccess.Repository.UnityOfWork;
 using PetStore.Domain.Models.ViewModels;
 using Project_PetStore.API.Models.DataModels;

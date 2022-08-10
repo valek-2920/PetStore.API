@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PetStore.DataAccess.Repository.IRepositories;
+using Pet_Store.DataAcess.Repository.IRepository;
 using Project_PetStore.API.DataAccess;
 using Project_PetStore.API.Models.DataModels;
 using System;

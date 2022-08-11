@@ -1,5 +1,4 @@
-﻿using Project_PetStore.API.Models.DataModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;

@@ -1,7 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Pet_Store.Domains.Models.DataModels;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Project_PetStore.API.Models.DataModels
+namespace Pet_Store.Domains.Models.DataModels
 {
     public class Products
     {
@@ -19,5 +20,9 @@ namespace Project_PetStore.API.Models.DataModels
 
         [Required]
         public Category Category { get; set; }
+
+        [Required]
+        public Files Files { get; set; }
+
     }
 }

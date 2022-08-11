@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PetStore.DataAccess.Repository.IRepositories;
+using Pet_Store.DataAcess.Repository.IRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;

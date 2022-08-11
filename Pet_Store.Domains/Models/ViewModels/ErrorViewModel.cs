@@ -1,4 +1,5 @@
-namespace Project_PetStore.API.Models.ViewModels
+ namespace Pet_Store.Domains.Models.ViewModels
+
 {
     public class ErrorViewModel
     {

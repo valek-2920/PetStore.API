@@ -2,14 +2,11 @@
 using Microsoft.Extensions.Configuration;
 using Pet_Store.API.Services;
 using Pet_Store.Domains.Models.AuthModelsForIdentity;
+using Pet_Store.Domains.Models.DataModels;
 using Pet_Store.Domains.Models.ViewModels;
-using PetStore.DataAccess.Repository;
-using PetStore.DataAccess.Repository.IRepositories;
 using PetStore.DataAccess.Repository.UnityOfWork;
 using Project_PetStore.API.DataAccess;
-using Project_PetStore.API.Models.DataModels;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 

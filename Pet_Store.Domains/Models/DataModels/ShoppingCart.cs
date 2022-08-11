@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Project_PetStore.API.Models.DataModels
+namespace Pet_Store.Domains.Models.DataModels
 {
     public class ShoppingCart
     {

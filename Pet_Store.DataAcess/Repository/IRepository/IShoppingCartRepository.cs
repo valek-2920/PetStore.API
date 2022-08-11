@@ -1,11 +1,7 @@
-﻿using Project_PetStore.API.Models.DataModels;
-using System;
+﻿using Pet_Store.Domains.Models.DataModels;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace PetStore.DataAccess.Repository.IRepositories
+namespace Pet_Store.DataAcess.Repository.IRepository
 {
     public interface IShoppingCartRepository : IRepository<ShoppingCart>
     {

@@ -1,14 +1,17 @@
-﻿using Project_PetStore.API.Models.DataModels;
-using System;
+﻿using Pet_Store.Domains.Models.DataModels;
+using PetStore.Domain.Models.ViewModels;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace PetStore.DataAccess.Repository.IRepositories
+namespace Pet_Store.DataAcess.Repository.IRepository
 {
     public interface IProductRepository : IRepository<Products>
     {
+        Task<Products> CreateProduct(NewProduct model);
         void Update(Products model);
+        bool ProductExist(string name);
+        Task<List<Products>> GetAllProductsAsync();
+        Task<Products> GetProductAsync(int id);
+
     }
 }

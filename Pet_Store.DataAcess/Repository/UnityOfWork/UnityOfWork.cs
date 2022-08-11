@@ -1,33 +1,34 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Storage;
-using PetStore.DataAccess.Repository.IRepositories;
+﻿
+using Microsoft.Extensions.Hosting;
+using Pet_Store.DataAcess.Repository;
+using Pet_Store.DataAcess.Repository.IRepository;
 using Project_PetStore.API.DataAccess;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace PetStore.DataAccess.Repository.UnityOfWork
 {
     public class UnityOfWork : IUnityOfWork
-    {
-        private readonly ApplicationDbContext _context;
 
-        public UnityOfWork(ApplicationDbContext context)
+    {
+        readonly ApplicationDbContext _context;
+        readonly IHostEnvironment _hostEnvironment;
+
+        public UnityOfWork(ApplicationDbContext context, IHostEnvironment hostEnvironment)
         {
             _context = context;
+            _hostEnvironment = hostEnvironment;
             CategoryRepository = new CategoryRepository(_context);
-            ProductsRepository = new ProductsRepository(_context);
+            FilesRepository = new FilesRepository(_context, _hostEnvironment);
+            ProductsRepository = new ProductsRepository(_context, FilesRepository, CategoryRepository);
             OrderDetailsRepository = new OrderDetailsRepository(_context);
             OrderHeaderRepository = new OrderHeaderRepository(_context);
             ShoppingCartRepository = new ShoppingCartRepository(_context);
             UsersRepository = new UsersRepository(_context);
-
         }
 
         public ICategoryRepository CategoryRepository { get; private set; }
+
+        public IFilesRepository FilesRepository { get; private set; }
 
         public IProductRepository ProductsRepository { get; private set; }
 
@@ -38,6 +39,7 @@ namespace PetStore.DataAccess.Repository.UnityOfWork
         public IOrderDetailsRepository OrderDetailsRepository { get; private set; }
 
         public IUsersRepository UsersRepository { get; private set; }
+
 
 
         public void Save()

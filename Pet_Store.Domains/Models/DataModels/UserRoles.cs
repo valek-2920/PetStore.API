@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Project_PetStore.API.Models.DataModels
+namespace Pet_Store.Domains.Models.DataModels
 {
     public class UserRoles
     {

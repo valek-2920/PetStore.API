@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<Products>
+
+@{
     ViewBag.Title = "Inventario";
 }
 
@@ -24,7 +26,6 @@
                     <tr>
                         <th>Código</th>
                         <th>Nombre</th>
-                        <th>Lista Precio</th>
                         <th>Precio</th>
                         <th>Categoria</th>
                         <th>Imagen</th>
@@ -32,12 +33,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                        <tr>
-                            <td>ID</td>
-                            <td>Nombre</td>
-                            <td>Lista Precio</td>
-                            <td>Precio</td>
-                            <td>Categoria</td>
+                    @foreach (var item in Model)
+                    {
+                          <tr>
+                            <td>@item.ProductId</td>
+                            <td>@item.Name</td>
+                            <td>@item.Price</td>
+                            <td>@item.Category</td>
                             <td><img src="~/img/productos/cepillo-doble.jpg" alt="" width="100"></td>
                             <td style="text-align:center">
                                 <input type="button" value="Editar" class="btn btn-primary"
@@ -45,149 +47,10 @@
                                        <input type="button" value="Eliminar" class="btn btn-danger"
                                        onclick="location.href='@Url.Action("EliminarProducto", "Inventario")'">
                             </td>
-                        </tr>
-                        <tr>
-                            <td>ID</td>
-                            <td>Petstore</td>
-                            <td>Lista Precio</td>
-                            <td>Precio</td>
-                            <td>Categoria</td>
-                            <td><img src="~/img/productos/cepillo-doble.jpg" alt="" width="100"></td>
-                            <td style="text-align:center">
-                                <input type="button" value="Editar" class="btn btn-primary"
-                                       onclick="location.href='@Url.Action("EditarProducto", "Inventario")'">
-                                       <input type="button" value="Eliminar" class="btn btn-danger"
-                                       onclick="location.href='@Url.Action("EliminarProducto", "Inventario")'">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>ID</td>
-                            <td>Nombre</td>
-                            <td>Lista Precio</td>
-                            <td>Precio</td>
-                            <td>Categoria</td>
-                            <td><img src="~/img/productos/cepillo-doble.jpg" alt="" width="100"></td>
-                            <td style="text-align:center">
-                                <input type="button" value="Editar" class="btn btn-primary"
-                                       onclick="location.href='@Url.Action("EditarProducto", "Inventario")'">
-                                       <input type="button" value="Eliminar" class="btn btn-danger"
-                                       onclick="location.href='@Url.Action("EliminarProducto", "Inventario")'">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>ID</td>
-                            <td>Nombre</td>
-                            <td>Lista Precio</td>
-                            <td>Precio</td>
-                            <td>Categoria</td>
-                            <td><img src="~/img/productos/cepillo-doble.jpg" alt="" width="100"></td>
-                            <td style="text-align:center">
-                                <input type="button" value="Editar" class="btn btn-primary"
-                                       onclick="location.href='@Url.Action("EditarProducto", "Inventario")'">
-                                       <input type="button" value="Eliminar" class="btn btn-danger"
-                                       onclick="location.href='@Url.Action("EliminarProducto", "Inventario")'">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>ID</td>
-                            <td>Nombre</td>
-                            <td>Lista Precio</td>
-                            <td>Precio</td>
-                            <td>Categoria</td>
-                            <td><img src="~/img/productos/cepillo-doble.jpg" alt="" width="100"></td>
-                            <td style="text-align:center">
-                                <input type="button" value="Editar" class="btn btn-primary"
-                                       onclick="location.href='@Url.Action("EditarProducto", "Inventario")'">
-                                       <input type="button" value="Eliminar" class="btn btn-danger"
-                                       onclick="location.href='@Url.Action("EliminarProducto", "Inventario")'">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>ID</td>
-                            <td>Nombre</td>
-                            <td>Lista Precio</td>
-                            <td>Precio</td>
-                            <td>Categoria</td>
-                            <td><img src="~/img/productos/cepillo-doble.jpg" alt="" width="100"></td>
-                            <td style="text-align:center">
-                                <input type="button" value="Editar" class="btn btn-primary"
-                                       onclick="location.href='@Url.Action("EditarProducto", "Inventario")'">
-                                       <input type="button" value="Eliminar" class="btn btn-danger"
-                                       onclick="location.href='@Url.Action("EliminarProducto", "Inventario")'">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>ID</td>
-                            <td>Nombre</td>
-                            <td>Lista Precio</td>
-                            <td>Precio</td>
-                            <td>Categoria</td>
-                            <td><img src="~/img/productos/cepillo-doble.jpg" alt="" width="100"></td>
-                            <td style="text-align:center">
-                                <input type="button" value="Editar" class="btn btn-primary"
-                                       onclick="location.href='@Url.Action("EditarProducto", "Inventario")'">
-                                       <input type="button" value="Eliminar" class="btn btn-danger"
-                                       onclick="location.href='@Url.Action("EliminarProducto", "Inventario")'">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>ID</td>
-                            <td>Nombre</td>
-                            <td>Lista Precio</td>
-                            <td>Precio</td>
-                            <td>Categoria</td>
-                            <td><img src="~/img/productos/cepillo-doble.jpg" alt="" width="100"></td>
-                            <td style="text-align:center">
-                                <input type="button" value="Editar" class="btn btn-primary"
-                                       onclick="location.href='@Url.Action("EditarProducto", "Inventario")'">
-                                       <input type="button" value="Eliminar" class="btn btn-danger"
-                                       onclick="location.href='@Url.Action("EliminarProducto", "Inventario")'">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>ID</td>
-                            <td>Nombre</td>
-                            <td>Lista Precio</td>
-                            <td>Precio</td>
-                            <td>Categoria</td>
-                            <td><img src="~/img/productos/cepillo-doble.jpg" alt="" width="100"></td>
-                            <td style="text-align:center">
-                                <input type="button" value="Editar" class="btn btn-primary"
-                                       onclick="location.href='@Url.Action("EditarProducto", "Inventario")'">
-                                       <input type="button" value="Eliminar" class="btn btn-danger"
-                                       onclick="location.href='@Url.Action("EliminarProducto", "Inventario")'">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>ID</td>
-                            <td>Nombre</td>
-                            <td>Lista Precio</td>
-                            <td>Precio</td>
-                            <td>Categoria</td>
-                            <td><img src="~/img/productos/cepillo-doble.jpg" alt="" width="100"></td>
-                            <td style="text-align:center">
-                                <input type="button" value="Editar" class="btn btn-primary"
-                                       onclick="location.href='@Url.Action("EditarProducto", "Inventario")'">
-                                       <input type="button" value="Eliminar" class="btn btn-danger"
-                                       onclick="location.href='@Url.Action("EliminarProducto", "Inventario")'">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>ID</td>
-                            <td>Nombre</td>
-                            <td>Lista Precio</td>
-                            <td>Precio</td>
-                            <td>Categoria</td>
-                            <td><img src="~/img/productos/cepillo-doble.jpg" alt="" width="100"></td>
-                            <td style="text-align:center">
-                                <input type="button" value="Editar" class="btn btn-primary"
-                                       onclick="location.href='@Url.Action("EditarProducto", "Inventario")'">
-                                       <input type="button" value="Eliminar" class="btn btn-danger"
-                                       onclick="location.href='@Url.Action("EliminarProducto", "Inventario")'">
-                            </td>
-                        </tr>
+                          </tr>
+                    }
                 </tbody>
-                <tfoot>
+               @* <tfoot>
                     <tr>
                         <th>Código</th>
                         <th>Nombre</th>
@@ -197,7 +60,7 @@
                         <th>Imagen</th>
                         <th>Acciones</th>
                     </tr>
-                </tfoot>
+                </tfoot>*@
             </table>
         </div>
     </div>

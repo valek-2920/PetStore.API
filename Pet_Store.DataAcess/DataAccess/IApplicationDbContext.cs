@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Project_PetStore.API.Models.DataModels;
+using Pet_Store.Domains.Models.DataModels;
 
 namespace Project_PetStore.API.DataAccess
 {
@@ -10,6 +10,7 @@ namespace Project_PetStore.API.DataAccess
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Products> Products { get; set; }
+        public DbSet<Files> Files { get; set; }
 
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
 
@@ -29,6 +30,7 @@ namespace Project_PetStore.API.DataAccess
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Products> Products { get; set; }
+        public DbSet<Files> Files { get; set; }
 
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
 

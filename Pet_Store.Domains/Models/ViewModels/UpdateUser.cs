@@ -5,8 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Project_PetStore.API.Models.DataModels;
-
 namespace Pet_Store.Domains.Models.ViewModels
 {
     public class UpdateUser

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Pet_Store.Domains.Models.ViewModels
-{
+namespace Pet_Store.Domains.Models.ViewModels {
+
     public class LoginViewModel
     {
         [Required]

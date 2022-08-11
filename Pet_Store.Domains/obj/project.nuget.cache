@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "VqtLNBdcjCAm4JeBQkSuaxhBH5qO5ecQIyCRe9ztnnv+J52XTbUHkuaDr/EfYQ1FEhO68d+Fbw1Q7FI8n0UcCA==",
+  "dgSpecHash": "ZLKFOD45sVDHSIMfgaRpX1YT96byOo+fUb+ezYGTOJSEgMJ480BMFT7Upw0ldLSdvkgxbo1zipV8r1TNZ4t0KA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Vale2920\\Desktop\\University\\7 quarter\\Programacion Avanzada en Web\\PrograAvanzadaWeb\\PROYECTO\\Pet_Store.API\\Pet_Store.Domains\\Pet_Store.Domains.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Vale2920\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\Vale2920\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.2.0\\microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
     "C:\\Users\\Vale2920\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Vale2920\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.17\\microsoft.entityframeworkcore.5.0.17.nupkg.sha512",
     "C:\\Users\\Vale2920\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.17\\microsoft.entityframeworkcore.abstractions.5.0.17.nupkg.sha512",

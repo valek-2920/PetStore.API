@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PetStore.DataAccess.Repository.IRepositories;
+using Pet_Store.DataAcess.Repository.IRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +11,7 @@ namespace PetStore.DataAccess.Repository.UnityOfWork
     public interface IUnityOfWork
     {
         ICategoryRepository CategoryRepository { get; }
+        IFilesRepository FilesRepository { get; }
         IProductRepository ProductsRepository { get; }
         IOrderDetailsRepository OrderDetailsRepository { get; }
         IOrderHeaderRepository OrderHeaderRepository { get; }

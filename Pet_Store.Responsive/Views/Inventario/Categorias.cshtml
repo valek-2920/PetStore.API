@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<Category>
+
+@{
     ViewBag.Title = "Inventario";
 }
 
@@ -27,34 +29,29 @@
                     <tr>
                         <th>Código de Categoria</th>
                         <th>Descripción</th>
-                        <th>Acciones</th>
+                        <th style="text-align:center">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach (var item in Model)
+                    {
                         <tr>
-                            <td>ID</td>
-                            <td>Nombre</td>
+                            <td>@item.CategoryId</td>
+                            <td>@item.Description</td>
                             <td style="text-align:center">
                                        <input type="button" value="Eliminar" class="btn btn-danger"
                                        onclick="location.href='@Url.Action("EliminarCategoria", "Inventario")'">
                             </td>
                         </tr>
-                        <tr>
-                            <td>ID</td>
-                            <td>Nombre</td>
-                            <td style="text-align:center">
-                                       <input type="button" value="Eliminar" class="btn btn-danger"
-                                       onclick="location.href='@Url.Action("EliminarCategoria", "Inventario")'">
-                            </td>
-                        </tr>
+                    } 
                 </tbody>
-                <tfoot>
+               @* <tfoot>
                     <tr>
                         <th>Código de Categoria</th>
                         <th>Descripción</th>
                         <th>Acciones</th>
                     </tr>
-                </tfoot>
+                </tfoot>*@
             </table>
         </div>
     </div>

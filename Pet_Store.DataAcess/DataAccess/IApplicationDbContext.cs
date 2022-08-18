@@ -10,7 +10,6 @@ namespace Project_PetStore.API.DataAccess
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Products> Products { get; set; }
-        public DbSet<Files> Files { get; set; }
 
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
 
@@ -30,7 +29,6 @@ namespace Project_PetStore.API.DataAccess
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Products> Products { get; set; }
-        public DbSet<Files> Files { get; set; }
 
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
 

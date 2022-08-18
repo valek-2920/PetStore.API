@@ -11,15 +11,12 @@ namespace PetStore.DataAccess.Repository.UnityOfWork
 
     {
         readonly ApplicationDbContext _context;
-        readonly IHostEnvironment _hostEnvironment;
 
         public UnityOfWork(ApplicationDbContext context, IHostEnvironment hostEnvironment)
         {
             _context = context;
-            _hostEnvironment = hostEnvironment;
             CategoryRepository = new CategoryRepository(_context);
-            FilesRepository = new FilesRepository(_context, _hostEnvironment);
-            ProductsRepository = new ProductsRepository(_context, FilesRepository, CategoryRepository);
+            ProductsRepository = new ProductsRepository(_context);
             OrderDetailsRepository = new OrderDetailsRepository(_context);
             OrderHeaderRepository = new OrderHeaderRepository(_context);
             ShoppingCartRepository = new ShoppingCartRepository(_context);
@@ -27,8 +24,6 @@ namespace PetStore.DataAccess.Repository.UnityOfWork
         }
 
         public ICategoryRepository CategoryRepository { get; private set; }
-
-        public IFilesRepository FilesRepository { get; private set; }
 
         public IProductRepository ProductsRepository { get; private set; }
 

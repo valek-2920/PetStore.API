@@ -6,10 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PetStore.Domain.Models.ViewModels
+namespace Pet_Store.Domains.Models.InputModels
 {
-    public class NewProduct
+    public class UpdateProduct
     {
+        [Required]
+        public int Id { get; set; }
+
         [Required]
         public string Name { get; set; }
 

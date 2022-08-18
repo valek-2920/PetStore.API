@@ -11,7 +11,6 @@ namespace PetStore.DataAccess.Repository.UnityOfWork
     public interface IUnityOfWork
     {
         ICategoryRepository CategoryRepository { get; }
-        IFilesRepository FilesRepository { get; }
         IProductRepository ProductsRepository { get; }
         IOrderDetailsRepository OrderDetailsRepository { get; }
         IOrderHeaderRepository OrderHeaderRepository { get; }

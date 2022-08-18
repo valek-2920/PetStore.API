@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Pet_Store.Domains.Models.ViewModels;
+using Pet_Store.Responsive.Services.IServices;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,15 +13,19 @@ namespace Pet_Store.Responsive.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        readonly IInventarioServices _services;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,  IInventarioServices services)
         {
             _logger = logger;
+            _services = services;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var products = await _services.getProductsAsync();
+
+            return View(products);
         }
 
         public IActionResult Privacy()
@@ -44,10 +49,12 @@ namespace Pet_Store.Responsive.Controllers
 
             return View();
         }
-        public ActionResult Shop()
+        public async Task<IActionResult> Shop()
         {
 
-            return View();
+            var products = await _services.getProductsAsync();
+
+            return View(products);
         }
 
         public ActionResult About()

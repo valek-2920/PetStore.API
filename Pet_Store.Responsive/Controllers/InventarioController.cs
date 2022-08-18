@@ -1,12 +1,16 @@
 ﻿
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
 using Pet_Store.Domains.Models.DataModels;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
+using Pet_Store.Domains.Models.ViewModels;
+using Pet_Store.Responsive.Services.IServices;
+using System;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Pet_Store.Responsive.Controllers
 {
@@ -14,75 +18,138 @@ namespace Pet_Store.Responsive.Controllers
     {
 
         readonly IConfiguration _configuration;
+        readonly IInventarioServices _services;
+        readonly IWebHostEnvironment _hostEnvironment;
 
-        public InventarioController(IConfiguration configuration)
+        public InventarioController
+            (
+            IConfiguration configuration, 
+            IInventarioServices services, 
+            IWebHostEnvironment hostEnvironment
+            )
         {
+            _services = services;
             _configuration = configuration;
+            _hostEnvironment = hostEnvironment;
         }
-
 
         public async Task<IActionResult> Inventario()
         {
-            List<Products> products = new List<Products>();
+            var products = await _services.getProductsAsync();
 
-            using (var httpClient = new HttpClient())
+            return View(products);
+
+        }
+
+        public async Task<IActionResult> Upsert(int? id)
+        {
+            var categories = await _services.GetCategoriesAsync();
+
+            ProductsViewModel viewModel = new()
             {
-                using (var response = await httpClient.GetAsync("https://localhost:44316/api/Products/products"))
+                Product = new(),
+
+
+                CategoryList = categories.Select(i => new SelectListItem
                 {
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    Text = i.Description,
+                    Value = i.CategoryId.ToString()
+                }),
+            };
+
+            if (id == null || id == 0)
+            {
+                //insert new product
+                return View(viewModel);
+            }
+            else
+            {
+                //update existing product
+                viewModel.Product = await _services.getProductById( (int) id);
+                return View(viewModel);
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Upsert([FromForm] ProductsViewModel model, IFormFile? file)
+        {
+
+            if (ModelState.IsValid)
+            {
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                if (file != null)
+                {
+                    string fileName = Guid.NewGuid().ToString();
+                    var uploads = Path.Combine(wwwRootPath, @"img\productos");
+                    var extension = Path.GetExtension(file.FileName);
+
+                    if (model.Product.Files != null)
                     {
-                        var Response = await response.Content.ReadAsStringAsync();
-                        products = JsonConvert.DeserializeObject<List<Products>>(Response);
+                        var oldImagePath = Path.Combine(wwwRootPath, model.Product.Files.TrimStart('\\'));
+                        if (System.IO.File.Exists(oldImagePath))
+                        {
+                            System.IO.File.Delete(oldImagePath);
+                        }
                     }
 
+                    using (var fileStreams = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                    {
+                        file.CopyTo(fileStreams);
+                    }
+                    model.Product.Files = @"\images\products\" + fileName + extension;
+
                 }
+                if (model.Product.ProductId == 0)
+                {
+                   //add
+                   await _services.addProductAsync(model.Product);
+                }
+                else
+                {
+                   //update
+                  await _services.updateProductById(model.Product);
+
+                }
+                return RedirectToAction("Index");
             }
-            return View(products);
+            return View(model);
         }
 
-        public IActionResult AgregarProducto()
+        [HttpPost]
+        public async Task<IActionResult> EliminarProductos(int id)
         {
-            return View();
-        }
-        public IActionResult EditarProducto()
-        {
-            return View();
+            var response = await _services.deleteProductById(id);
+            return RedirectToAction("Inventario");
+
         }
 
+        [HttpGet]
         public async Task<IActionResult> Categorias()
         {
-            List<Category> categories = new List<Category>();
-            var apiUrl = _configuration.GetSection("apiUrl");
-
-            using (var httpClient = new HttpClient())
-            {
-                using (var response = await httpClient.GetAsync("https://localhost:44316/api/Category/categories"))
-                {
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                    {
-                        var Response = await response.Content.ReadAsStringAsync();
-                        categories = JsonConvert.DeserializeObject<List<Category>>(Response);
-                    }
-
-                }
-            }
+            var categories = await _services.GetCategoriesAsync();
             return View(categories);
         }
 
+        public IActionResult AgregarCategorias()
+        {
+            return View();
+        }
+
+        [HttpPost]
         public async Task<IActionResult> AgregarCategorias(Category category)
         {
-            Category postCategory = new Category();
-            using (var httpClient = new HttpClient())
-            {
-                StringContent content = new StringContent(JsonConvert.SerializeObject(category), Encoding.UTF8, "application/json");
-
-                using (var response = await httpClient.PostAsync("https://localhost:44316/api/Category/category", content))
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    postCategory = JsonConvert.DeserializeObject<Category>(apiResponse);
-                }
-            }
-            return View(postCategory);
+            await _services.AddCategoryAsync(category);
+            return RedirectToAction("Categorias");
         }
+
+        [HttpPost]
+        public async Task<IActionResult> EliminarCategorias(int id)
+        {
+               var response = await _services.deleteCategoryById(id);
+                return RedirectToAction("Categorias");
+
+        }
+
     }
 }

@@ -40,8 +40,4 @@
     <ProjectReference Include="..\Pet_Store.Utility\Pet_Store.Utility.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Resources\ProductsPicture\" />
-  </ItemGroup>
-
 </Project>

@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Pet_Store.Domains.Models.DataModels;
-using Pet_Store.Domains.Models.ViewModels;
+using Pet_Store.Domains.Models.InputModels;
 using PetStore.DataAccess.Repository.UnityOfWork;
-using PetStore.Domain.Models.ViewModels;
 using Project_PetStore.API.DataAccess;
 using System;
 using System.Collections.Generic;
@@ -16,75 +15,56 @@ namespace Pet_Store.API.Controllers
     {
         private readonly IUnityOfWork _unityOfWork;
 
-        public ProductsController(IUnityOfWork unityOfWork, ApplicationDbContext context)
+        public ProductsController(IUnityOfWork unityOfWork)
         {
             _unityOfWork = unityOfWork;
         }
 
         [HttpPost]
         [Route("product")]
-        public async Task<IActionResult> CreateProduct([FromForm] NewProduct model)
+        public IActionResult CreateProduct([FromForm] NewProduct model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                var product = await _unityOfWork.ProductsRepository.CreateProduct(model);
 
-                if (product != null)
+                var GetCategory = _unityOfWork.CategoryRepository.GetFirstOrDefault(x => x.CategoryId == model.Category);
+
+                Products product = new Products
                 {
-                    return Ok(product);
-                }
+                    Name = model.Name,
+                    Description = model.Description,
+                    Price = model.Price,
+                    Category = GetCategory,
+                    Files = model.Files
+                };
 
-                 return BadRequest("Por favor revisa los detalles del producto");
+                _unityOfWork.ProductsRepository.Add(product);
+                _unityOfWork.Save();
+                return Ok(product);
             }
-            catch (Exception ex)
-            {
-                var msg = ex.Message;
-                return BadRequest("Se ha dado un error: " + msg);
-            }
+            return BadRequest("Error al crear el producto");
         }
 
         [HttpGet]
         [Route("products")]
-        public async Task<IActionResult> GetProducts()
+        public IActionResult GetProducts()
         {
-            var allProducts = await _unityOfWork.ProductsRepository.GetAllProductsAsync();
+            var allProducts = _unityOfWork.ProductsRepository.GetAll(includeProperties:"Category");
+            _unityOfWork.Save();
 
             if (allProducts != null)
             {
-                var domainProjects = new List<Products>();
-
-                foreach (var items in allProducts)
-                {
-                    domainProjects.Add(new Products()
-                    {
-                        ProductId = items.ProductId,
-                        Name = items.Name,
-                        Description = items.Description,
-                        Files = new Files()
-                        {
-                            Id = items.Files.Id,
-                            Name = items.Files.Name,
-                            Size = items.Files.Size,
-                            Url = items.Files.Url,
-                            uploadDateTime = items.Files.uploadDateTime
-                        },
-                        Category = new Category()
-                        {
-                            CategoryId = items.Category.CategoryId,
-                            Description = items.Category.Description
-                        }
-                    });
-                }
-                return Ok(domainProjects);
+                return Ok(allProducts);
             }
-            return BadRequest("No se encuentran productos en el sistema.");
+            return BadRequest("No hay productos");
         }
 
         [HttpGet]
         [Route("product")]
-        public async Task<IActionResult> GetProduct(int id)
+        public IActionResult GetProduct(int id)
         {
-            var product = await _unityOfWork.ProductsRepository.GetProductAsync(id);
+            var product = _unityOfWork.ProductsRepository.GetFirstOrDefault(x => x.ProductId == id);
+            _unityOfWork.Save();
 
             if (product != null)
             {
@@ -95,48 +75,33 @@ namespace Pet_Store.API.Controllers
 
         [HttpPut]
         [Route("product")]
-        public async Task<IActionResult> UpdateProducts([FromForm] UpdateProduct model)
+        public IActionResult UpdateProducts([FromBody] Products model)
         {
 
             if (ModelState.IsValid)
             {
-                var updateProduct = await _unityOfWork.ProductsRepository.GetProductAsync(model.Id);
-                _unityOfWork.FilesRepository.DeleteFiles(updateProduct.Files.Id);
+                _unityOfWork.ProductsRepository.Update(model);
+                _unityOfWork.Save();
 
-                if (updateProduct != null)
-                {
-                    updateProduct.Files = await _unityOfWork.FilesRepository.AddProductsPicture(model.Files);
-                    updateProduct.Name = model.Name;
-                    updateProduct.Description = model.Description;
-                    updateProduct.Price = model.Price;
-                    updateProduct.Category = _unityOfWork.CategoryRepository.GetFirstOrDefault(x => x.CategoryId == model.Category); ;
-
-                    _unityOfWork.ProductsRepository.Update(updateProduct);
-                    _unityOfWork.Save();
-                    return Ok(model);
-
-                }
-                return BadRequest("Por favor revisa los detalles del producto");
-
+                return Ok(model);
             }
             return BadRequest("Error al actualizar el producto");
         }
 
         [HttpDelete]
         [Route("product")]
-        public async Task<IActionResult> DeleteProduct(int id)
+        public IActionResult DeleteProduct(int id)
         {
-            var product = await _unityOfWork.ProductsRepository.GetProductAsync(id);
+            var product = _unityOfWork.ProductsRepository.GetFirstOrDefault(x => x.ProductId == id);
 
             if (product != null)
             {
-                _unityOfWork.FilesRepository.DeleteFiles(product.Files.Id);
                 _unityOfWork.ProductsRepository.Remove(product);
                 _unityOfWork.Save();
 
-                return Ok($"El producto {id} ha sido eliminado");
+                return Ok(200);
             }
-            return BadRequest($"No existe el producto con Id: {id}");
+            return BadRequest(400);
         }
     }
 }

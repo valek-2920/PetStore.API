@@ -17,8 +17,9 @@
     </div>
 </div>
 <div class="container-fluid mb-5">
-    <input type="button" value="Regresar" class="btn btn-primary"
-           onclick="location.href='@Url.Action("Categorias", "Inventario")'">
+    <a asp-controller="Inventario" asp-action="Categorias" class="btn btn-primary">
+        Regresar
+    </a>
 </div>
 <form asp-action="AgregarCategorias" method="post">
     <div class="container">

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PetStore.Domain.Models.ViewModels
+namespace Pet_Store.Domains.Models.InputModels
 {
     public class NewShoppingCart
     {
@@ -17,7 +17,7 @@ namespace PetStore.Domain.Models.ViewModels
         public string Product { get; set; }
 
         [Required]
-        public int  UserId { get; set; }
+        public int UserId { get; set; }
 
     }
 }

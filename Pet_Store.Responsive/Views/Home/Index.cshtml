@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<Products>
+
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -75,84 +77,49 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="product-filters">
-                    <ul>
+                     <ul>
                         <li class="active" data-filter="*">Todo</li>
-                        <li data-filter=".Gato">Gatos</li>
-                        <li data-filter=".Perro">Perros</li>
+                        @foreach (var item in Model)
+                        {
+                               <li data-filter=".@item.Category.Description">@item.Category.Description</li>
+                        }
                     </ul>
                 </div>
             </div>
         </div>
-
-        <div class="row product-lists">
-            <div class="col-lg-4 col-md-6 text-center Gato">
-                <div class="single-product-item">
-                    <div class="product-image">
-                        <a href="single-product.html"><img src="~/img/productos/bolso-para-grooming.jpg" alt=""></a>
+      <div class="row product-lists">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-md-6 text-center @item.Category.Description">
+                    <div class="single-product-item">
+                        <div class="product-image">
+                            <a href="single-product.html"><img src="@item.Files" alt=""></a>
+                        </div>
+                        <h3>@item.Name</h3>
+                        <p class="product-price"><span>Unidad</span> ₡@item.Price</p>
+                        <a class="cart-btn" href="@Url.Action("Cart", "Home")">
+                            <i class="fas fa-shopping-cart"></i> Agregar al Carrito
+                        </a>
                     </div>
-                    <h3>Camisa Garoppolo</h3>
-                    <p class="product-price"><span>Unidad</span> ₡25.000 </p>
-                    <a class="cart-btn" href="@Url.Action("Cart", "Home")">
-                        <i class="fas fa-shopping-cart"></i> Agregar al Carrito
-                    </a>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6 text-center Perro">
-                <div class="single-product-item">
-                    <div class="product-image">
-                        <a href="single-product.html"><img src="~/img/productos/cepillo-doble.jpg" alt=""></a>
-                    </div>
-                    <h3>Camisa Garoppolo</h3>
-                    <p class="product-price"><span>Unidad</span> ₡25.000 </p>
-                    <a class="cart-btn" href="@Url.Action("Cart", "Home")">
-                        <i class="fas fa-shopping-cart"></i> Agregar al Carrito
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 text-center Gato">
-                <div class="single-product-item">
-                    <div class="product-image">
-                        <a href="single-product.html"><img src="~/img/productos/collar-de-rayas.jpg" alt=""></a>
-                    </div>
-                    <h3>Camisa Garoppolo</h3>
-                    <p class="product-price"><span>Unidad</span> ₡25.000 </p>
-                    <a class="cart-btn" href="@Url.Action("Cart", "Home")">
-                        <i class="fas fa-shopping-cart"></i> Agregar al Carrito
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 text-center Perro">
-                <div class="single-product-item">
-                    <div class="product-image">
-                        <a href="single-product.html"><img src="~/img/productos/mini-biscuit-pedigree.jpg" alt=""></a>
-                    </div>
-                    <h3>Camisa Garoppolo</h3>
-                    <p class="product-price"><span>Unidad</span> ₡25.000 </p>
-                    <a class="cart-btn" href="@Url.Action("Cart", "Home")">
-                        <i class="fas fa-shopping-cart"></i> Agregar al Carrito
-                    </a>
-                </div>
-            </div>
-
+            }
         </div>
-
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <div class="pagination-wrap">
-                    <ul>
-                        <li><a href="#">Anterior</a></li>
-                        <li><a class="active" href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">Siguiente</a></li>
-                    </ul>
-                </div>
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <div class="pagination-wrap">
+                <ul>
+                    <li><a href="#">Anterior</a></li>
+                    <li><a class="active" href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">Siguiente</a></li>
+                </ul>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Oferta Seccion Banner -->
+@*<!-- Oferta Seccion Banner -->
 <section class="cart-banner pt-100 pb-100">
     <div class="container">
         <div class="row clearfix">
@@ -183,7 +150,7 @@
         </div>
     </div>
 </section>
-<!-- fin Oferta Seccion Banner -->
+<!-- fin Oferta Seccion Banner -->*@
 <!-- Seccion Testimonios -->
 <div class="testimonail-section mt-150 mb-150">
     <div class="container">

@@ -1,6 +1,5 @@
-﻿using Pet_Store.Domains.Models.DataModels;
+﻿using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Pet_Store.Domains.Models.DataModels
 {
@@ -22,7 +21,7 @@ namespace Pet_Store.Domains.Models.DataModels
         public Category Category { get; set; }
 
         [Required]
-        public Files Files { get; set; }
+        public string Files { get; set; }
 
     }
 }

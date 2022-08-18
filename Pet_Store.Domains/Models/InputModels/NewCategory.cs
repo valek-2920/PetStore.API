@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PetStore.Domain.Models.ViewModels
+namespace Pet_Store.Domains.Models.InputModels
 {
     public class NewCategory
     {

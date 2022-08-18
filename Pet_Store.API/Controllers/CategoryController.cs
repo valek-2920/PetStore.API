@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Pet_Store.Domains.Models.DataModels;
+using Pet_Store.Domains.Models.InputModels;
 using PetStore.DataAccess.Repository.UnityOfWork;
-using PetStore.Domain.Models.ViewModels;
 
 namespace Pet_Store.API.Controllers
 {
@@ -88,9 +88,9 @@ namespace Pet_Store.API.Controllers
                 _unityOfWork.CategoryRepository.Remove(category);
                 _unityOfWork.Save();
 
-                return Ok($"Categoria ha sido eliminada");
+                return Ok(200);
             }
-            return BadRequest($"No existe categoria con Id: {id}");
+            return BadRequest(400);
         }
     }
 }

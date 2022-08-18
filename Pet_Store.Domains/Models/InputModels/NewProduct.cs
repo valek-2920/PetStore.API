@@ -6,13 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pet_Store.Domains.Models.ViewModels
+namespace Pet_Store.Domains.Models.InputModels
 {
-    public class UpdateProduct
+    public class NewProduct
     {
-        [Required]
-        public int Id { get; set; }
-
         [Required]
         public string Name { get; set; }
 
@@ -26,7 +23,7 @@ namespace Pet_Store.Domains.Models.ViewModels
         public int Category { get; set; }
 
         [Required]
-        public IFormFile Files { get; set; }
+        public string Files { get; set; }
 
     }
 }

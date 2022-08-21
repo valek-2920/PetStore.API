@@ -38,13 +38,13 @@ namespace Pet_Store.API.Controllers
         {
             var GetUser = _usersRepository.GetFirstOrDefault(x => x.Id == model.UserId);
             var getShoppingCart = _shoppingCartRepository.GetAll(x => x.User.Id == model.UserId);
-            var getProducts = getShoppingCartProducts(model.UserId);
+            var getProducts = (from x in _context.ShoppingCarts where x.User.Id == model.UserId select x.Product).ToList();
             var getOrderHeader = _orderHeaderRepository.GetFirstOrDefault(x => x.User.Id == model.UserId);
             var getOrderDetails = _orderDetailsRepository.GetFirstOrDefault(x => x.OrderHeader == getOrderHeader);
             var quantity = 0;
             var total = 0.0;
 
-            if (GetUser != null)
+            if (GetUser != null && getProducts != null)
             {
                 if (getProducts.Count() >= 1)
                 {
@@ -109,8 +109,11 @@ namespace Pet_Store.API.Controllers
         [Route("order")]
         public IActionResult GetOrder(string userId)
         {
-            var orderDetails = GetOrderByUser(userId);
-            _unitOfWork.Save();
+            var orderDetails = (from x in _context.OrderDetails
+                          .Include(x => x.OrderHeader.User)
+                          .Include(x => x.Product)
+                                where x.OrderHeader.User.Id == userId
+                                select x).ToList();
 
             if (orderDetails != null)
             {
@@ -126,13 +129,13 @@ namespace Pet_Store.API.Controllers
             var oldOrderHeader = _orderHeaderRepository.GetFirstOrDefault(x => x.User.Id == model.UserId);
             var GetUser = _usersRepository.GetFirstOrDefault(x => x.Id == model.UserId);
             var getShoppingCart = _shoppingCartRepository.GetAll(x => x.User.Id == model.UserId);
-            var getProducts = getShoppingCartProducts(model.UserId);
+            var getProducts = (from x in _context.ShoppingCarts where x.User.Id == model.UserId select x.Product).ToList();
             OrderDetails orderDetails = new OrderDetails();
             var quantity = 0;
             var total = 0.0;
 
 
-            if (GetUser != null)
+            if (GetUser != null && getProducts != null)
             {
                 //update OrderHeader
 
@@ -184,33 +187,5 @@ namespace Pet_Store.API.Controllers
             return BadRequest("Usuario no posee orden");
         }
 
-
-        /*******************LINQS************************************************/
-
-        public List<OrderDetails> GetOrderByUser(string userId)
-        {
-            var result = (from x in _context.OrderDetails
-                          .Include(x => x.OrderHeader.User)
-                          .Include(x => x.Product)
-                          where x.OrderHeader.User.Id == userId
-                          select x).ToList();
-
-            if (result != null)
-            {
-                return result;
-            }
-            return null;
-        }
-
-        public List<Products> getShoppingCartProducts(string userId)
-        {
-            var result = (from x in _context.ShoppingCarts where x.User.Id == userId select x.Product).ToList();
-
-            if (result != null)
-            {
-                return result;
-            }
-            return null;
-        }
     }
 }

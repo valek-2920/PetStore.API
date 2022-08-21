@@ -46,9 +46,9 @@ namespace Pet_Store.API.Controllers
                 {
 
                     var CartExist = _shoppingCartRepository.GetFirstOrDefault(x => x.User.Id == model.UserId);
-                    var products = getProductsName(model.UserId);
+                    var products = (from x in _context.ShoppingCarts where x.User.Id == model.UserId select x.Product.Name).ToList();
 
-                    if (CartExist != null && products.Contains(model.Product))
+                    if (CartExist != null && products != null && products.Contains(model.Product))
                     {
                         //actualizar producto existente con nuevos datos
                         CartExist.Count += model.Count;
@@ -82,7 +82,13 @@ namespace Pet_Store.API.Controllers
         public IActionResult DeleteItem(string Userid, int count, int ProductoID)
         {
             var CartExist = _shoppingCartRepository.GetFirstOrDefault(x => x.User.Id == Userid);
-            var products = getProducts(Userid);
+
+            var products = (from x in _context.ShoppingCarts
+                          .Include(x => x.User)
+                          .Include(x => x.Product)
+                            where x.User.Id == Userid
+                            select x).ToList();
+
             var product = _shoppingCartRepository.GetFirstOrDefault(x => x.Product.ProductId == ProductoID);
             var getProduct = _productsRepository.GetFirstOrDefault(x => x.Name == product.Product.Name);
 
@@ -130,15 +136,15 @@ namespace Pet_Store.API.Controllers
         }
 
 
-
-
-
         [HttpGet]
         [Route("GetAll-Products")]
         public IActionResult GetProducts(string userId)
         {
-            List<ShoppingCart> allProductosShoppinCart = GetShoppingcartByUser(userId);
-            _unitOfWork.Save();
+            List<ShoppingCart> allProductosShoppinCart = (from x in _context.ShoppingCarts
+                          .Include(x => x.User)
+                          .Include(x => x.Product)
+                          where x.User.Id == userId
+                          select x).ToList();
 
             if (allProductosShoppinCart != null)
             {
@@ -147,44 +153,5 @@ namespace Pet_Store.API.Controllers
             return BadRequest("No hay productos en el carrito");
         }
 
-
-        /*******************LINQS************************************************/
-
-        public List<ShoppingCart> GetShoppingcartByUser(string userId)
-        {
-            var result = (from x in _context.ShoppingCarts
-                          .Include(x => x.User)
-                          .Include(x => x.Product)
-                          where x.User.Id == userId
-                          select x).ToList();
-            if (result != null)
-            {
-                return result;
-            }
-            return null;
-        }
-
-
-        public List<Products> getProducts(string userId)
-        {
-            var result = (from x in _context.ShoppingCarts where x.User.Id == userId select x.Product).ToList();
-
-            if (result != null)
-            {
-                return result;
-            }
-            return null;
-        }
-
-        public List<string> getProductsName(string userId)
-        {
-            var result = (from x in _context.ShoppingCarts where x.User.Id == userId select x.Product.Name).ToList();
-
-            if (result != null)
-            {
-                return result;
-            }
-            return null;
-        }
     }
 }

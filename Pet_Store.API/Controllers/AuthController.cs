@@ -1,11 +1,8 @@
 ﻿//using Microsoft.AspNetCore.Mvc;
 //using Microsoft.Extensions.Configuration;
-//using Pet_Store.API.Services;
 //using Pet_Store.Domains.Models.AuthModelsForIdentity;
 //using Pet_Store.Domains.Models.DataModels;
 //using Pet_Store.Domains.Models.ViewModels;
-//using PetStore.DataAccess.Repository.unitOfWork;
-//using Pet_Store.DataAcess.Data;
 //using System;
 //using System.Linq;
 //using System.Threading.Tasks;
@@ -32,9 +29,9 @@
 //            _configuration = configuration;
 //        }
 
-//        // Para acceder a este API vamos a usar este link --> /api/auth/register-admin
-//        //Se utiliza para crear un usuario admin ya que se quema el ID del rol
-//        [HttpPost("Register-admin")]
+//        //Para acceder a este API vamos a usar este link --> /api/auth/register-admin
+//       //Se utiliza para crear un usuario admin ya que se quema el ID del rol
+//       [HttpPost("Register-admin")]
 //        public async Task<IActionResult> RegisterAdminAsync([FromBody] RegisterViewModel model)
 //        {
 

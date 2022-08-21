@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Pet_Store.Domains.Models.DataModels;
 using Pet_Store.Domains.Models.InputModels;
 using PetStore.DataAccess.Repository.UnityOfWork;
@@ -22,27 +23,34 @@ namespace Pet_Store.API.Controllers
 
         [HttpPost]
         [Route("product")]
-        public IActionResult CreateProduct([FromForm] NewProduct model)
+        public IActionResult CreateProduct([FromBody] Products model)
         {
-            if (ModelState.IsValid)
+            try
             {
-
-                var GetCategory = _unityOfWork.CategoryRepository.GetFirstOrDefault(x => x.CategoryId == model.Category);
-
-                Products product = new Products
+                if (ModelState.IsValid)
                 {
-                    Name = model.Name,
-                    Description = model.Description,
-                    Price = model.Price,
-                    Category = GetCategory,
-                    Files = model.Files
-                };
+                    var GetCategory = _unityOfWork.CategoryRepository.GetFirstOrDefault(x => x.CategoryId == model.CategoryId);
 
-                _unityOfWork.ProductsRepository.Add(product);
-                _unityOfWork.Save();
-                return Ok(product);
+                    Products product = new Products
+                    {
+                        Name = model.Name,
+                        Description = model.Description,
+                        Price = model.Price,
+                        Category = GetCategory,
+                        Files = model.Files
+                    };
+
+                    _unityOfWork.ProductsRepository.Add(product);
+                    _unityOfWork.Save();
+                    return Ok(product);
+                }
+                return BadRequest("Error al crear el producto");
             }
-            return BadRequest("Error al crear el producto");
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                "Se ha dado un error en el servidor");
+            }
         }
 
         [HttpGet]

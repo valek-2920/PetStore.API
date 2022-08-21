@@ -1,10 +1,8 @@
 ﻿@model ProductsViewModel
 
-@{
-    ViewBag.Title = "Manejo de productos";
-}
-
-<form asp-action="Upsert" method="post" >
+<form asp-action="Upsert" method="post" enctype="multipart/form-data">
+    <input asp-for="Product.ProductId" hidden />
+    <input asp-for="Product.Files" hidden />
 
     <div class="breadcrumb-section breadcrumb-bg">
         <div class="container">
@@ -25,43 +23,48 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="p-5">
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input asp-for="Product.Name" class="form-control form-control-user" name="Product.Name"
-                                               placeholder="Nombre del Producto">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input asp-for="Product.Description" type="text" class="form-control form-control-user" name="Product.Description"
-                                               placeholder="Descripción del Producto">
-                                    </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <input asp-for="Product.Name" class="form-control form-control-user"
+                                           placeholder="Nombre del Producto">
+                                    <span asp-validation-for="Product.Name" class="text-danger"></span>
+
                                 </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input asp-for="Product.Price" type="number" class="form-control form-control-user"
-                                               name="Product.Price" placeholder="Precio del Producto">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <select asp-for="Product.Category" asp-items="@Model.CategoryList" class="form-select form-control-user" name="CategoryList">
-                                            <option disabled selected>--Seleccionar Categoría--</option>
-                                        </select>
-                                    </div>
+                                <div class="col-sm-6">
+                                    <input asp-for="Product.Description" type="text" class="form-control form-control-user"
+                                           placeholder="Descripción del Producto">
+                                    <span asp-validation-for="Product.Description" class="text-danger"></span>
+
                                 </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0 align-items-center">
-                                        <input asp-for="Product.Files" type="file" name="file" class="form-control form-control-user" />
-                                    </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <input asp-for="Product.Price" class="form-control form-control-user"
+                                           name="Product.Price" placeholder="Precio del Producto">
+                                    <span asp-validation-for="Product.Price" class="text-danger"></span>
+
                                 </div>
-                                @if (Model.Product.ProductId != 0)
-                                {
-                                    <button asp-action="Upsert" asp-route-id="@Model.Product.ProductId" class="btn btn-primary btn-user btn-block">Actualizar</button>
-                                }
-                                else
-                                {
-                                    <button asp-action="Upsert" class="btn btn-primary btn-user btn-block">Crear</button>
-                                }
-                            <a asp-controller="Inventario" asp-action="Inventario" class="btn btn-secondary btn-user btn-block">
-                                Regresar
-                            </a>
+                                <div class="col-sm-6">
+                                    <select asp-for="Product.CategoryId" asp-items="@Model.CategoryList" class="form-control">
+                                        <option disabled selected>--Seleccionar Categoría--</option>
+                                    </select>
+                                    <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-12 align-items-center">
+                                    <input name="file" type="file" class="form-control form-control-user" />
+                                </div>
+                            </div>
+                            @if (Model.Product.ProductId != 0)
+                            {
+                                <button asp-action="Upsert" asp-route-id="@Model.Product.ProductId" class="btn btn-primary btn-user btn-block">Actualizar</button>
+                            }
+                            else
+                            {
+                                <button asp-action="Upsert" class="btn btn-primary btn-user btn-block">Crear</button>
+                            }
                             <hr>
                         </div>
                     </div>

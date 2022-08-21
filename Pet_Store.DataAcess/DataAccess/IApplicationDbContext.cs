@@ -15,9 +15,11 @@ namespace Project_PetStore.API.DataAccess
 
         public DbSet<OrderHeader> OrderHeaders { get; set; }
         public DbSet<OrderDetails> OrderDetails { get; set; }
+        public DbSet<Payments> Payments { get; set; }
+
     }
 
-        public class ApplicationDbContext : IdentityDbContext, IApplicationDbContext
+    public class ApplicationDbContext : IdentityDbContext, IApplicationDbContext
         {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -34,5 +36,7 @@ namespace Project_PetStore.API.DataAccess
 
         public DbSet<OrderHeader> OrderHeaders { get; set; }
         public DbSet<OrderDetails> OrderDetails { get; set; }
+        public DbSet<Payments> Payments { get; set; }
+
     }
 }

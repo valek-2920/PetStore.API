@@ -17,13 +17,13 @@
     </div>
 </div>
 <!-- Tabla de productos -->
-<form method="post">
+<form>
     <div class="product-section mt-150 mb-150">
         <div class="container-fluid">
             <div class="dt-responsive table-responsive">
                 <table id="footer-search" class="table table-striped table-bordered nowrap">
                     <thead>
-                        <tr>
+                        <tr >
                             <th>Código</th>
                             <th>Nombre</th>
                             <th>Precio</th>
@@ -35,8 +35,8 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <input asp-for="@item.ProductId" hiden />
+                            <tr id="producto_@item.ProductId">
+                                <input asp-for="@item.ProductId" hidden />
                                 <td>@item.ProductId</td>
                                 <td>@item.Name</td>
                                 <td>@item.Price</td>
@@ -46,9 +46,9 @@
                                     <button asp-action="Upsert" asp-route-id="@item.ProductId" class="btn btn-primary">
                                         Editar
                                     </button>
-                                    <button  asp-action="EliminarProductos" asp-route-id="@item.ProductId" class="btn btn-danger">
+                                    <a onclick=deleteProducts("@item.ProductId") class="btn btn-danger">
                                         Eliminar
-                                    </button>
+                                    </a>
                                 </td>
                             </tr>
                         }
@@ -69,3 +69,42 @@
         </div>
     </div>
 </form>
+
+<script>
+    function deleteProducts(id) {
+        Swal.fire({
+            title: 'Administración de productos',
+            text: "¿Estás seguro que quieres borrar este producto?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Aceptar',
+            cancelButtonText: 'Cancelar'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "DELETE",
+                    url: "/Inventario/EliminarProductos/" + id,
+                    success: function (response) {
+                        if (response.success) {
+                            Swal.fire(
+                                'Administración de productos',
+                                'El producto ha sido eliminado, exitosamente!',
+                                'success'
+                            );
+                            $("#producto_" + id).remove();
+                        }
+                        else {
+                            Swal.fire(
+                                'Administración de productos',
+                                'Se ha dado un error al eliminar producto',
+                                'error'
+                            )
+                        }
+                    }
+                })
+            }
+        })
+    }
+</script>

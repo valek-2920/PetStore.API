@@ -4,6 +4,7 @@ using Pet_Store.Domains.Models.InputModels;
 using PetStore.DataAccess.Repository.UnityOfWork;
 using Project_PetStore.API.DataAccess;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Pet_Store.API.Controllers
 {
@@ -18,6 +19,13 @@ namespace Pet_Store.API.Controllers
             _unityOfWork = unityOfWork;
             Context = context;
         }
+
+        //public async Task<IActionResult> Index()
+        //{
+        //    var Cart = await _services.getProductsAsync();
+
+        //    return View(Cart);
+        //}
 
         [HttpPost]
         [Route("add-products")]

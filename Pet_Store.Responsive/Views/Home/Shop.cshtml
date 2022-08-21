@@ -43,9 +43,13 @@
                         </div>
                         <h3>@item.Name</h3>
                         <p class="product-price"><span>Unidad</span> ₡@item.Price</p>
-                        <a class="cart-btn" href="@Url.Action("Cart", "Home")">
+                        @*<a class="cart-btn" href="@Url.Action("Cart", "Home")">
                             <i class="fas fa-shopping-cart"></i> Agregar al Carrito
-                        </a>
+                        </a>*@
+                    <button asp-action="Upsert" asp-route-id="@item.ProductId"
+                            class="btn btn-outline-info" style="border-radius:30%">
+                        <i class="fas fa-shopping-cart"></i>Agregar al Carrito
+                    </button>
                     </div>
                 </div>
             }

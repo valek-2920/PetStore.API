@@ -67,6 +67,11 @@ namespace Pet_Store.Responsive.Controllers
 
             return View();
         }
+        public ActionResult Checkout()
+        {
+
+            return View();
+        }
         public ActionResult Contact()
         {
 

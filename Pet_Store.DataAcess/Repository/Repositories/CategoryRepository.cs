@@ -12,18 +12,9 @@ namespace PetStore.DataAccess.Repository
 {
     public class CategoryRepository : Repository<Category>, IRepository<Category>
     {
-
-        private readonly ApplicationDbContext _context;
         public CategoryRepository(ApplicationDbContext context)
             : base(context)
         {
-
-        }
-
-        public void Update(Category model)
-        {
-            _context.Categories.Update(model);
-
         }
 
     }

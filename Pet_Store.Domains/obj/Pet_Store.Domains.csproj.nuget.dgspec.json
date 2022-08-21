@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\svarg\\Documents\\Fidelitas\\II CUATRI 2022\\Programación Avanzada en Web\\PROYECTO\\ProyectoFinal\\Pet_Store.Domains\\Pet_Store.Domains.csproj": {}
+    "C:\\Users\\Vale2920\\Desktop\\University\\7 quarter\\Programacion Avanzada en Web\\PrograAvanzadaWeb\\PROYECTO\\Pet_Store.API\\Pet_Store.Domains\\Pet_Store.Domains.csproj": {}
   },
   "projects": {
-    "C:\\Users\\svarg\\Documents\\Fidelitas\\II CUATRI 2022\\Programación Avanzada en Web\\PROYECTO\\ProyectoFinal\\Pet_Store.Domains\\Pet_Store.Domains.csproj": {
+    "C:\\Users\\Vale2920\\Desktop\\University\\7 quarter\\Programacion Avanzada en Web\\PrograAvanzadaWeb\\PROYECTO\\Pet_Store.API\\Pet_Store.Domains\\Pet_Store.Domains.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\svarg\\Documents\\Fidelitas\\II CUATRI 2022\\Programación Avanzada en Web\\PROYECTO\\ProyectoFinal\\Pet_Store.Domains\\Pet_Store.Domains.csproj",
+        "projectUniqueName": "C:\\Users\\Vale2920\\Desktop\\University\\7 quarter\\Programacion Avanzada en Web\\PrograAvanzadaWeb\\PROYECTO\\Pet_Store.API\\Pet_Store.Domains\\Pet_Store.Domains.csproj",
         "projectName": "Pet_Store.Domains",
-        "projectPath": "C:\\Users\\svarg\\Documents\\Fidelitas\\II CUATRI 2022\\Programación Avanzada en Web\\PROYECTO\\ProyectoFinal\\Pet_Store.Domains\\Pet_Store.Domains.csproj",
-        "packagesPath": "C:\\Users\\svarg\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\svarg\\Documents\\Fidelitas\\II CUATRI 2022\\Programación Avanzada en Web\\PROYECTO\\ProyectoFinal\\Pet_Store.Domains\\obj\\",
+        "projectPath": "C:\\Users\\Vale2920\\Desktop\\University\\7 quarter\\Programacion Avanzada en Web\\PrograAvanzadaWeb\\PROYECTO\\Pet_Store.API\\Pet_Store.Domains\\Pet_Store.Domains.csproj",
+        "packagesPath": "C:\\Users\\Vale2920\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Vale2920\\Desktop\\University\\7 quarter\\Programacion Avanzada en Web\\PrograAvanzadaWeb\\PROYECTO\\Pet_Store.API\\Pet_Store.Domains\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\svarg\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Vale2920\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -85,7 +85,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -94,7 +95,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

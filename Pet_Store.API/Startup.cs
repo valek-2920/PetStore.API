@@ -1,17 +1,13 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Pet_Store.Application;
+using Pet_Store.Application.Middlewares;
+using Pet_Store.DataAcess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Pet_Store.Utility;
-using PetStore.DataAccess.Repository.UnityOfWork;
-using Pet_Store.DataAcess.Data;
-using System.Text;
+using System.Linq;
 
 namespace Pet_Store.API
 {
@@ -27,6 +23,21 @@ namespace Pet_Store.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
+            services.RegisterApplicationServices(Configuration);
+            services.RegisterInfrastructureServices(Configuration);
+
+
+            services.AddControllers();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Pet_Store.API", Version = "v1" });
+            });
+
+
+            //services.AddScoped<IApplicationDbContext>
+            //    (options => options.GetService<ApplicationDbContext>());
+
             //services.AddDbContext<ApplicationDbContext>
             //   (options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
 
@@ -63,16 +74,8 @@ namespace Pet_Store.API
             //services.AddScoped<IUserService, UserService>();
             //services.AddTransient<IMailService, SendGridMailService>();
             //services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
-            //services.AddScoped<IUnityOfWork, UnityOfWork>();
-            services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
-
-            services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Pet_Store.API", Version = "v1" });
-            });
-            services.AddRazorPages();
-
+            //services.AddScoped<IunitOfWork, UnitOfWork>();
+            //services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
 
         }
 
@@ -86,17 +89,14 @@ namespace Pet_Store.API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Pet_Store.API v1"));
             }
 
-            app.UseHttpsRedirection();
-
-            app.UseStaticFiles();
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
-            //app.UseAuthentication();
-            //app.UseAuthorization();
+            app.UseMiddleware<JwtMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
                 endpoints.MapControllers();
             });
         }

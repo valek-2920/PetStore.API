@@ -6,14 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pet_Store.DataAcess.Repository.UnityOfWork
+namespace Pet_Store.DataAcess.Repository.UnitOfWork
 {
-    public static class UnityOfWorkServiceCollectionExtensions
+    public static class UnitOfWorkServiceCollectionExtensions
     {
         public static IServiceCollection AddUnitOfWork<TContext>(this IServiceCollection services)
             where TContext : DbContext
         {
-            services.AddScoped<IUnityOfWork<TContext>, UnityOfWork<TContext>>();
+            services.AddScoped<IUnitOfWork<TContext>, UnitOfWork<TContext>>();
             return services;
         }
 

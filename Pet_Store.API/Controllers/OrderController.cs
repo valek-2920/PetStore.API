@@ -1,7 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Pet_Store.DataAcess.Data;
+using Pet_Store.DataAcess.Repository;
+using Pet_Store.DataAcess.Repository.UnitOfWork;
 using Pet_Store.Domains.Models.DataModels;
 using Pet_Store.Domains.Models.ViewModels;
-using PetStore.DataAccess.Repository.UnityOfWork;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Pet_Store.API.Controllers
@@ -10,22 +14,33 @@ namespace Pet_Store.API.Controllers
     [ApiController]
     public class OrderController : ControllerBase
     {
-        private readonly IUnityOfWork _unityOfWork;
+        readonly IUnitOfWork<ApplicationDbContext> _unitOfWork;
+        readonly IRepository<OrderDetails> _orderDetailsRepository;
+        readonly IRepository<OrderHeader> _orderHeaderRepository;
+        readonly IRepository<Users> _usersRepository;
+        readonly IRepository<ShoppingCart> _shoppingCartRepository;
+        readonly ApplicationDbContext _context;
 
-        public OrderController(IUnityOfWork unityOfWork)
+
+        public OrderController(IUnitOfWork<ApplicationDbContext> unitOfWork, ApplicationDbContext context)
         {
-            _unityOfWork = unityOfWork;
+            _unitOfWork = unitOfWork;
+            _orderDetailsRepository = _unitOfWork.Repository<OrderDetails>();
+            _orderHeaderRepository = _unitOfWork.Repository<OrderHeader>();
+            _usersRepository = _unitOfWork.Repository<Users>();
+            _shoppingCartRepository = _unitOfWork.Repository<ShoppingCart>();
+            _context = context;
         }
 
         [HttpPost]
         [Route("order")]
         public IActionResult CreateOrder([FromBody] OrderViewModel model)
         {
-            var GetUser = _unityOfWork.UsersRepository.GetFirstOrDefault(x => x.Id == model.UserId);
-            var getShoppingCart = _unityOfWork.ShoppingCartRepository.GetAll(x => x.User.Id == model.UserId);
-            var getProducts = _unityOfWork.ShoppingCartRepository.getProducts(model.UserId);
-            var getOrderHeader = _unityOfWork.OrderHeaderRepository.GetFirstOrDefault(x => x.User.Id == model.UserId);
-            var getOrderDetails = _unityOfWork.OrderDetailsRepository.GetFirstOrDefault(x => x.OrderHeader == getOrderHeader);
+            var GetUser = _usersRepository.GetFirstOrDefault(x => x.Id == model.UserId);
+            var getShoppingCart = _shoppingCartRepository.GetAll(x => x.User.Id == model.UserId);
+            var getProducts = getShoppingCartProducts(model.UserId);
+            var getOrderHeader = _orderHeaderRepository.GetFirstOrDefault(x => x.User.Id == model.UserId);
+            var getOrderDetails = _orderDetailsRepository.GetFirstOrDefault(x => x.OrderHeader == getOrderHeader);
             var quantity = 0;
             var total = 0.0;
 
@@ -61,8 +76,8 @@ namespace Pet_Store.API.Controllers
                                 Total = total
                             };
 
-                            _unityOfWork.OrderDetailsRepository.Add(orderDetails);
-                            _unityOfWork.Save();
+                            _orderDetailsRepository.Add(orderDetails);
+                            _unitOfWork.Save();
                             return Ok(orderDetails);
                         }
                     }
@@ -79,12 +94,12 @@ namespace Pet_Store.API.Controllers
                         getOrderDetails.Total = total;
                     }
 
-                    _unityOfWork.OrderDetailsRepository.Update(getOrderDetails);
-                    _unityOfWork.Save();
+                    _orderDetailsRepository.Update(getOrderDetails);
+                    _unitOfWork.Save();
                     return Ok(getOrderDetails);
                 }
                 return BadRequest("Usuario no posee productos en el carrito");
-               
+
             }
 
             return BadRequest("Usuario no existe");
@@ -94,8 +109,8 @@ namespace Pet_Store.API.Controllers
         [Route("order")]
         public IActionResult GetOrder(string userId)
         {
-            var orderDetails = _unityOfWork.OrderDetailsRepository.GetOrderByUser(userId);
-            _unityOfWork.Save();
+            var orderDetails = GetOrderByUser(userId);
+            _unitOfWork.Save();
 
             if (orderDetails != null)
             {
@@ -108,10 +123,10 @@ namespace Pet_Store.API.Controllers
         [Route("order")]
         public IActionResult UpdateOrder(OrderViewModel model)
         {
-            var oldOrderHeader = _unityOfWork.OrderHeaderRepository.GetFirstOrDefault(x => x.User.Id == model.UserId);
-            var GetUser = _unityOfWork.UsersRepository.GetFirstOrDefault(x => x.Id == model.UserId);
-            var getShoppingCart = _unityOfWork.ShoppingCartRepository.GetAll(x => x.User.Id == model.UserId);
-            var getProducts = _unityOfWork.ShoppingCartRepository.getProducts(model.UserId);
+            var oldOrderHeader = _orderHeaderRepository.GetFirstOrDefault(x => x.User.Id == model.UserId);
+            var GetUser = _usersRepository.GetFirstOrDefault(x => x.Id == model.UserId);
+            var getShoppingCart = _shoppingCartRepository.GetAll(x => x.User.Id == model.UserId);
+            var getProducts = getShoppingCartProducts(model.UserId);
             OrderDetails orderDetails = new OrderDetails();
             var quantity = 0;
             var total = 0.0;
@@ -128,8 +143,8 @@ namespace Pet_Store.API.Controllers
                 oldOrderHeader.Country = model.Country;
 
 
-                _unityOfWork.OrderHeaderRepository.Update(oldOrderHeader);
-                _unityOfWork.Save();
+                _orderHeaderRepository.Update(oldOrderHeader);
+                _unitOfWork.Save();
 
                 //insert shopping cart to order details
                 foreach (var item in getShoppingCart)
@@ -157,16 +172,45 @@ namespace Pet_Store.API.Controllers
         [Route("order")]
         public IActionResult DeleteOrder(string userId)
         {
-            var orderDetails = _unityOfWork.OrderDetailsRepository.GetFirstOrDefault(x => x.OrderHeader.User.Id == userId);
+            var orderDetails = _orderDetailsRepository.GetFirstOrDefault(x => x.OrderHeader.User.Id == userId);
 
             if (orderDetails != null)
             {
-                _unityOfWork.OrderDetailsRepository.Remove(orderDetails);
-                _unityOfWork.Save();
+                _orderDetailsRepository.Remove(orderDetails);
+                _unitOfWork.Save();
 
                 return Ok("La orden del usuario ha sido eliminada");
             }
             return BadRequest("Usuario no posee orden");
+        }
+
+
+        /*******************LINQS************************************************/
+
+        public List<OrderDetails> GetOrderByUser(string userId)
+        {
+            var result = (from x in _context.OrderDetails
+                          .Include(x => x.OrderHeader.User)
+                          .Include(x => x.Product)
+                          where x.OrderHeader.User.Id == userId
+                          select x).ToList();
+
+            if (result != null)
+            {
+                return result;
+            }
+            return null;
+        }
+
+        public List<Products> getShoppingCartProducts(string userId)
+        {
+            var result = (from x in _context.ShoppingCarts where x.User.Id == userId select x.Product).ToList();
+
+            if (result != null)
+            {
+                return result;
+            }
+            return null;
         }
     }
 }

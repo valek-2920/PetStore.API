@@ -4,7 +4,7 @@
 //using Pet_Store.Domains.Models.AuthModelsForIdentity;
 //using Pet_Store.Domains.Models.DataModels;
 //using Pet_Store.Domains.Models.ViewModels;
-//using PetStore.DataAccess.Repository.UnityOfWork;
+//using PetStore.DataAccess.Repository.unitOfWork;
 //using Pet_Store.DataAcess.Data;
 //using System;
 //using System.Linq;
@@ -18,15 +18,15 @@
 //    {
 
 //        private IUserService _userService;
-//        private readonly IUnityOfWork _unityOfWork;
+//        private readonly IunitOfWork _unitOfWork;
 //        IApplicationDbContext Context;
 //        private IMailService _mailService;
 //        private IConfiguration _configuration;
 
-//        public AuthController(IUserService userService, IUnityOfWork unityOfWork, IApplicationDbContext context, IMailService mailService, IConfiguration configuration)
+//        public AuthController(IUserService userService, IunitOfWork unitOfWork, IApplicationDbContext context, IMailService mailService, IConfiguration configuration)
 //        {
 //            _userService = userService;
-//            _unityOfWork = unityOfWork;
+//            _unitOfWork = unitOfWork;
 //            Context = context;
 //            _mailService = mailService;
 //            _configuration = configuration;
@@ -61,8 +61,8 @@
 
 //                    };
 
-//                    _unityOfWork.UsersRepository.Add(user);
-//                    _unityOfWork.Save();
+//                    _unitOfWork.UsersRepository.Add(user);
+//                    _unitOfWork.Save();
 
 //                }
 
@@ -106,8 +106,8 @@
 
 //                    };
 
-//                    _unityOfWork.UsersRepository.Add(user);
-//                    _unityOfWork.Save();
+//                    _unitOfWork.UsersRepository.Add(user);
+//                    _unitOfWork.Save();
 
 //                }
 

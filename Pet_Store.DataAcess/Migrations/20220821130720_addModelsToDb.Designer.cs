@@ -10,8 +10,8 @@ using Pet_Store.DataAcess.Data;
 namespace Pet_Store.DataAcess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220821031026_initTables")]
-    partial class initTables
+    [Migration("20220821130720_addModelsToDb")]
+    partial class addModelsToDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -32,6 +32,16 @@ namespace Pet_Store.DataAcess.Repository
             dbSet.Add(entity);
         }
 
+        public void Update(TEntity entity)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException("entidad");
+            }
+
+            dbSet.Update(entity);
+        }
+
 
         public IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>>? Filter = null, string? includeProperties = "")
         {

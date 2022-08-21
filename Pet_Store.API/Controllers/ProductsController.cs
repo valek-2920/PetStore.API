@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Pet_Store.Domains.Models.DataModels;
 using Pet_Store.Domains.Models.InputModels;
-using PetStore.DataAccess.Repository.UnityOfWork;
 using Pet_Store.DataAcess.Data;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Pet_Store.DataAcess.Repository.UnitOfWork;
+using Pet_Store.DataAcess.Repository;
 
 namespace Pet_Store.API.Controllers
 {
@@ -13,11 +14,16 @@ namespace Pet_Store.API.Controllers
     [ApiController]
     public class ProductsController : Controller
     {
-        private readonly IUnityOfWork _unityOfWork;
+        readonly IUnitOfWork<ApplicationDbContext> _unitOfWork;
+        readonly IRepository<Category> _categoryRepository;
+        readonly IRepository<Products> _productsRepository;
 
-        public ProductsController(IUnityOfWork unityOfWork)
+
+        public ProductsController(IUnitOfWork<ApplicationDbContext> unitOfWork)
         {
-            _unityOfWork = unityOfWork;
+            _unitOfWork = unitOfWork;
+            _categoryRepository = _unitOfWork.Repository<Category>();
+            _productsRepository = _unitOfWork.Repository<Products>();
         }
 
         [HttpPost]
@@ -27,7 +33,7 @@ namespace Pet_Store.API.Controllers
             if (ModelState.IsValid)
             {
 
-                var GetCategory = _unityOfWork.CategoryRepository.GetFirstOrDefault(x => x.CategoryId == model.Category);
+                var GetCategory = _categoryRepository.GetFirstOrDefault(x => x.CategoryId == model.Category);
 
                 Products product = new Products
                 {
@@ -38,8 +44,8 @@ namespace Pet_Store.API.Controllers
                     Files = model.Files
                 };
 
-                _unityOfWork.ProductsRepository.Add(product);
-                _unityOfWork.Save();
+                _productsRepository.Add(product);
+                _unitOfWork.Save();
                 return Ok(product);
             }
             return BadRequest("Error al crear el producto");
@@ -49,8 +55,8 @@ namespace Pet_Store.API.Controllers
         [Route("products")]
         public IActionResult GetProducts()
         {
-            var allProducts = _unityOfWork.ProductsRepository.GetAll(includeProperties:"Category");
-            _unityOfWork.Save();
+            var allProducts = _productsRepository.GetAll(includeProperties:"Category");
+            _unitOfWork.Save();
 
             if (allProducts != null)
             {
@@ -63,8 +69,8 @@ namespace Pet_Store.API.Controllers
         [Route("product")]
         public IActionResult GetProduct(int id)
         {
-            var product = _unityOfWork.ProductsRepository.GetFirstOrDefault(x => x.ProductId == id);
-            _unityOfWork.Save();
+            var product = _productsRepository.GetFirstOrDefault(x => x.ProductId == id);
+            _unitOfWork.Save();
 
             if (product != null)
             {
@@ -80,8 +86,8 @@ namespace Pet_Store.API.Controllers
 
             if (ModelState.IsValid)
             {
-                _unityOfWork.ProductsRepository.Update(model);
-                _unityOfWork.Save();
+                _productsRepository.Update(model);
+                _unitOfWork.Save();
 
                 return Ok(model);
             }
@@ -92,12 +98,12 @@ namespace Pet_Store.API.Controllers
         [Route("product")]
         public IActionResult DeleteProduct(int id)
         {
-            var product = _unityOfWork.ProductsRepository.GetFirstOrDefault(x => x.ProductId == id);
+            var product = _productsRepository.GetFirstOrDefault(x => x.ProductId == id);
 
             if (product != null)
             {
-                _unityOfWork.ProductsRepository.Remove(product);
-                _unityOfWork.Save();
+                _productsRepository.Remove(product);
+                _unitOfWork.Save();
 
                 return Ok(200);
             }

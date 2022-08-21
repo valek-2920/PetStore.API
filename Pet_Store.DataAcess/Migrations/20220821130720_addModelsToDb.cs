@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Pet_Store.DataAcess.Migrations
 {
-    public partial class initTables : Migration
+    public partial class addModelsToDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

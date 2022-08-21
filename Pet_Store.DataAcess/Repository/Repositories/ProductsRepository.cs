@@ -13,16 +13,9 @@ namespace PetStore.DataAccess.Repository
 {
     public class ProductsRepository : Repository<Products>, IRepository<Products>
     {
-        readonly ApplicationDbContext _context;
 
         public ProductsRepository(ApplicationDbContext context) : base(context)
         {
-            _context = context;
-        }
-
-        public void Update(Products model)
-        {
-            _context.Products.Update(model);
         }
     }
 }

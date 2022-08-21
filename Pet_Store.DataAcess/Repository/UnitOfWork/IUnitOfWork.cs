@@ -5,20 +5,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pet_Store.DataAcess.Repository.UnityOfWork
+namespace Pet_Store.DataAcess.Repository.UnitOfWork
 {
-    public interface IUnityOfWork<out TContext>
+    public interface IUnitOfWork<out TContext>
         where TContext : DbContext
     {
         TContext Context { get; }
 
-        void CrearTransaccion();
+        void CreateTransaction();
 
         void Commit();
 
         void Rollback();
 
-        void Guardar();
+        void Save();
 
         IRepository<TEntity> Repository<TEntity>()
             where TEntity : class;

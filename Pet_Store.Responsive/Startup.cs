@@ -9,18 +9,10 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Pet_Store.Application;
+using Pet_Store.DataAcess;
 using Pet_Store.Responsive.Services;
 using Pet_Store.Responsive.Services.IServices;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Pet_Store.DataAcess.Data;
-using Pet_Store.DataAcess.Repository.UnitOfWork;
-using Pet_Store.DataAcess;
-using PetStore.DataAccess.Repository;
-using Pet_Store.Domains.Models.DataModels;
 
 namespace Pet_Store.Responsive
 {
@@ -28,7 +20,6 @@ namespace Pet_Store.Responsive
     {
         public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
-            var contentRoot = env.ContentRootPath;
             Configuration = configuration;
         }
 
@@ -37,43 +28,29 @@ namespace Pet_Store.Responsive
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>
-                (options => options.UseSqlServer(Configuration.GetConnectionString("Default")))
-                    .AddUnitOfWork<ApplicationDbContext>()
-                    .AddRepository<Category, CategoryRepository>()
-                    .AddRepository<OrderDetails, OrderDetailsRepository>()
-                    .AddRepository<OrderHeader, OrderHeaderRepository>()
-                    .AddRepository<Products, ProductsRepository>()
-                    .AddRepository<ShoppingCart, ShoppingCartRepository>()
-                    .AddRepository<Users, UsersRepository>();
-
-
-
-            services.AddScoped<IApplicationDbContext>
-                (options => options.GetService<ApplicationDbContext>());
-
+          
             services.RegisterApplicationServices(Configuration);
             services.RegisterInfrastructureServices(Configuration);
 
-            services.AddAuthentication
-                (
-                    options =>
-                    {
-                        options.DefaultScheme =
-                            CookieAuthenticationDefaults.AuthenticationScheme;
-                    }
-                );
+            //services.ConfigureApplicationCookie
+            //    (
+            //        options =>
+            //        {
+            //            options.LoginPath = new PathString("/Accounts/login");
+            //            options.LogoutPath = new PathString("/Accounts/logout");
+            //            //ADD NEW ONE FOR EACH CONTROLLER IS PENDING
+            //            options.Cookie.SameSite = SameSiteMode.Lax;
+            //        }
+            //    );
 
-            services.ConfigureApplicationCookie
-                (
-                    options =>
-                    {
-                        options.LoginPath = new PathString("/Accounts/login");
-                        options.LogoutPath = new PathString("/Accounts/logout");
-                        //ADD NEW ONE FOR EACH CONTROLLER IS PENDING
-                        options.Cookie.SameSite = SameSiteMode.Lax;
-                    }
-                );
+            services.AddAuthentication
+               (
+                   options =>
+                   {
+                       options.DefaultScheme =
+                           CookieAuthenticationDefaults.AuthenticationScheme;
+                   }
+               );
 
             services.AddMvc
                 (
@@ -94,16 +71,17 @@ namespace Pet_Store.Responsive
                 (
                     options =>
                     {
-                        options.Password.RequiredLength = 8;
+                        options.Password.RequiredLength = 6;
                         options.Password.RequiredUniqueChars = 3;
                         options.Password.RequireUppercase = true;
                         options.Password.RequireLowercase = true;
                         options.Password.RequireDigit = true;
-                        options.Password.RequireNonAlphanumeric = true;
                     }
                 );
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                .AddRazorRuntimeCompilation();
+
             services.AddScoped<IInventarioServices, InventarioServices>();
         }
 
@@ -117,10 +95,7 @@ namespace Pet_Store.Responsive
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
             }
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -134,6 +109,7 @@ namespace Pet_Store.Responsive
                 );
 
             app.UseAuthentication();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

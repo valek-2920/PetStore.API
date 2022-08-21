@@ -7,12 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pet_Store.DataAcess.Repository.UnityOfWork
+namespace Pet_Store.DataAcess.Repository.UnitOfWork
 {
-    public class UnityOfWork<TContext> : IUnityOfWork<TContext>, IDisposable
+    public class UnitOfWork<TContext> : IUnitOfWork<TContext>, IDisposable
         where TContext : DbContext
     {
-        public UnityOfWork(TContext dbContext)
+        public UnitOfWork(TContext dbContext)
         {
             context = dbContext;
         }
@@ -28,7 +28,7 @@ namespace Pet_Store.DataAcess.Repository.UnityOfWork
             get { return context; }
         }
 
-        public void CrearTransaccion()
+        public void CreateTransaction()
         {
             transaction = Context.Database.BeginTransaction();
         }
@@ -44,7 +44,7 @@ namespace Pet_Store.DataAcess.Repository.UnityOfWork
             transaction.Dispose();
         }
 
-        public void Guardar()
+        public void Save()
         {
             Context.SaveChanges();
         }

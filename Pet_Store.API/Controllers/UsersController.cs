@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Pet_Store.DataAcess.Data;
+using Pet_Store.DataAcess.Repository.UnitOfWork;
+using Pet_Store.DataAcess.Repository;
+using Pet_Store.Domains.Models.DataModels;
 using Pet_Store.Domains.Models.InputModels;
-using PetStore.DataAccess.Repository.UnityOfWork;
 
 namespace Pet_Store.API.Controllers
 {
@@ -9,19 +12,21 @@ namespace Pet_Store.API.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly IUnityOfWork _unityOfWork;
+        readonly IUnitOfWork<ApplicationDbContext> _unitOfWork;
+        readonly IRepository<Users> _usersRepository;
 
-        public UsersController(IUnityOfWork unityOfWork)
+        public UsersController(IUnitOfWork<ApplicationDbContext> unitOfWork)
         {
-            _unityOfWork = unityOfWork;
+            _unitOfWork = unitOfWork;
+            _usersRepository = _unitOfWork.Repository<Users>();
         }
 
         [HttpGet]
         [Route("users")]
         public IActionResult GetUsers()
         {
-            var allUsers = _unityOfWork.UsersRepository.GetAll();
-            _unityOfWork.Save();
+            var allUsers = _usersRepository.GetAll();
+            _unitOfWork.Save();
 
             if (allUsers != null)
             {
@@ -34,8 +39,8 @@ namespace Pet_Store.API.Controllers
         [Route("user")]
         public IActionResult GetUser(string id)
         {
-            var User = _unityOfWork.UsersRepository.GetFirstOrDefault(x => x.Id == id);
-            _unityOfWork.Save();
+            var User = _usersRepository.GetFirstOrDefault(x => x.Id == id);
+            _unitOfWork.Save();
 
             if (User != null)
             {
@@ -49,7 +54,7 @@ namespace Pet_Store.API.Controllers
         public IActionResult UpdateUser([FromBody] UpdateUser model)
         {
             //traemos el usuario
-            var OldUser = _unityOfWork.UsersRepository.GetFirstOrDefault(x => x.Id == model.Id);
+            var OldUser = _usersRepository.GetFirstOrDefault(x => x.Id == model.Id);
 
             if (ModelState.IsValid)
             {
@@ -62,8 +67,8 @@ namespace Pet_Store.API.Controllers
                 OldUser.Email = model.Email;
                 OldUser.Address = model.Address;
 
-                _unityOfWork.UsersRepository.Update(OldUser);
-                _unityOfWork.Save();
+                _usersRepository.Update(OldUser);
+                _unitOfWork.Save();
 
                 return Ok(model);
             }
@@ -74,12 +79,12 @@ namespace Pet_Store.API.Controllers
         [Route("user")]
         public IActionResult DeleteUser(string id)
         {
-            var User = _unityOfWork.UsersRepository.GetFirstOrDefault(x => x.Id == id);
+            var User = _usersRepository.GetFirstOrDefault(x => x.Id == id);
 
             if (User != null)
             {
-                _unityOfWork.UsersRepository.Remove(User);
-                _unityOfWork.Save();
+                _usersRepository.Remove(User);
+                _unitOfWork.Save();
 
                 return Ok($"El usuario ha sido eliminado");
             }

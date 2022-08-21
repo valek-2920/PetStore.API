@@ -73,29 +73,25 @@
             confirmButtonText: 'Aceptar',
             cancelButtonText: 'Cancelar'
         }).then((result) => {
-            if (result.isConfirmed) {
+            if (result) {
                 $.ajax({
                     type: "DELETE",
                     url: "/Inventario/EliminarCategorias/" + id,
                     success: function (response) {
                         if (response.success) {
-                            Swal.fire(
-                                'Administración de categorías',
-                                'La categoría ha sido eliminada, exitosamente!',
-                                'success'
-                            );
+                            toastr.success(data.message);
                             $("#categories_" + id).remove();
                         }
                         else {
-                            Swal.fire(
-                                'Administración de categorías',
-                                'Se ha dado un error al eliminar la categoría',
-                                'error'
-                            )
+                            toastr.error(data.message);
                         }
                     }
-                })
+                });
             }
-        })
+            Swal.fire({
+                title: "Se ha eliminado la categoría exitosamente",
+                icon: "success",
+            })
+        });
     }
 </script>

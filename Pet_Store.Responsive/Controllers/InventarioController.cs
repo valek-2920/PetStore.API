@@ -119,9 +119,17 @@ namespace Pet_Store.Responsive.Controllers
         [HttpDelete]
         public async Task<IActionResult> EliminarProductos(int id)
         {
-            await _services.deleteProductById(id);
-            return RedirectToAction("Inventario");
 
+            var model = await _services.getProductById(id);
+
+                var oldImagePath = Path.Combine(_hostEnvironment.WebRootPath, model.Files.TrimStart('\\'));
+                if (System.IO.File.Exists(oldImagePath))
+                {
+                    System.IO.File.Delete(oldImagePath);
+                }
+
+                await _services.deleteProductById(id);
+                return RedirectToAction("Inventario");
         }
 
         [HttpGet]

@@ -82,29 +82,25 @@
             confirmButtonText: 'Aceptar',
             cancelButtonText: 'Cancelar'
             }).then((result) => {
-            if (result.isConfirmed) {
+            if (result) {
                 $.ajax({
                     type: "DELETE",
                     url: "/Inventario/EliminarProductos/" + id,
                     success: function (response) {
                         if (response.success) {
-                            Swal.fire(
-                                'Administración de productos',
-                                'El producto ha sido eliminado, exitosamente!',
-                                'success'
-                            );
+                            toastr.success(data.message);
                             $("#producto_" + id).remove();
                         }
                         else {
-                            Swal.fire(
-                                'Administración de productos',
-                                'Se ha dado un error al eliminar producto',
-                                'error'
-                            )
+                            toastr.error(data.message);
                         }
                     }
-                })
+                });
             }
-        })
+            Swal.fire({
+                title: "Se ha eliminado la categoría exitosamente",
+                icon: "success",
+            })
+        });
     }
 </script>

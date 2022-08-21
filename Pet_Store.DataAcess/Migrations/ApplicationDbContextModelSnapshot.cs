@@ -292,6 +292,43 @@ namespace Pet_Store.DataAcess.Migrations
                     b.ToTable("OrderHeaders");
                 });
 
+            modelBuilder.Entity("Pet_Store.Domains.Models.DataModels.Payments", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CVV")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<long>("cardNumber")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("expirationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("firstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("lastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("zipCode")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Payments");
+                });
+
             modelBuilder.Entity("Pet_Store.Domains.Models.DataModels.Products", b =>
                 {
                     b.Property<int>("ProductId")
@@ -299,7 +336,7 @@ namespace Pet_Store.DataAcess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CategoryId")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -307,7 +344,6 @@ namespace Pet_Store.DataAcess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Files")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -485,11 +521,22 @@ namespace Pet_Store.DataAcess.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Pet_Store.Domains.Models.DataModels.Payments", b =>
+                {
+                    b.HasOne("Pet_Store.Domains.Models.DataModels.Users", "user")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("user");
+                });
+
             modelBuilder.Entity("Pet_Store.Domains.Models.DataModels.Products", b =>
                 {
                     b.HasOne("Pet_Store.Domains.Models.DataModels.Category", "Category")
                         .WithMany()
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Pet_Store.Domains.Models.DataModels.OrderDetails", null)
                         .WithMany("Product")

@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Pet_Store.Domains.Models.DataModels
 {
@@ -18,9 +20,13 @@ namespace Pet_Store.Domains.Models.DataModels
         public double Price { get; set; }
 
         [Required]
+        public int CategoryId { get; set; }
+
+        [ForeignKey("CategoryId")]
+        [ValidateNever]
         public Category Category { get; set; }
 
-        [Required]
+        [ValidateNever]
         public string Files { get; set; }
 
     }

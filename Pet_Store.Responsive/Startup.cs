@@ -28,7 +28,12 @@ namespace Pet_Store.Responsive
         {
             services.AddControllersWithViews();
             services.AddScoped<IInventarioServices, InventarioServices>();
+
             services.AddScoped<IShoppingCartService, ShoppingCartService>();
+
+            services.AddScoped<IUserServices, UsersServices>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

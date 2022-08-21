@@ -16,6 +16,7 @@ namespace PetStore.DataAccess.Repository.UnityOfWork
         IOrderHeaderRepository OrderHeaderRepository { get; }
         IShoppingCartRepository ShoppingCartRepository { get; }
         IUsersRepository UsersRepository { get; }
+        IPaymentRepository PaymentsRepository { get; }
 
         void Save();
 

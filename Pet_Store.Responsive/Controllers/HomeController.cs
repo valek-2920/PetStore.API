@@ -134,6 +134,7 @@ namespace Pet_Store.Responsive.Controllers
         public async Task<IActionResult> UpsertShopping([FromForm] ShoppingCartViewModel model, IFormFile? file)
         {
 
+
             if (ModelState.IsValid)
             {
                 string wwwRootPath = _hostEnvironment.WebRootPath;
@@ -142,6 +143,17 @@ namespace Pet_Store.Responsive.Controllers
                     string fileName = Guid.NewGuid().ToString();
                     var uploads = Path.Combine(wwwRootPath, @"img\productos");
                     var extension = Path.GetExtension(file.FileName);
+
+            return View();
+        }
+        public ActionResult Checkout()
+        {
+
+            return View();
+        }
+        public ActionResult Contact()
+        {
+
 
                     if (model.Product.Files != null)
                     {

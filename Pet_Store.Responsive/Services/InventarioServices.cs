@@ -4,6 +4,7 @@ using Pet_Store.Domains.Models.DataModels;
 using Pet_Store.Domains.Models.InputModels;
 using Pet_Store.Responsive.Services.IServices;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -58,7 +59,7 @@ namespace Pet_Store.Responsive.Services
 
             using (var httpClient = new HttpClient())
             {
-                StringContent content = new StringContent(JsonConvert.SerializeObject(product), Encoding.UTF8);
+                StringContent content = new StringContent(JsonConvert.SerializeObject(product), Encoding.UTF8, "application/json");
 
                 using (var response = await httpClient.PutAsync("https://localhost:44316/api/Products/product", content))
                 {
@@ -77,7 +78,7 @@ namespace Pet_Store.Responsive.Services
             Products postProduct = new Products();
             using (var httpClient = new HttpClient())
             {
-                StringContent content = new StringContent(JsonConvert.SerializeObject(product), Encoding.UTF8);
+                StringContent content = new StringContent(JsonConvert.SerializeObject(product), Encoding.UTF8, "application/json");
 
                 using (var response = await httpClient.PostAsync("https://localhost:44316/api/Products/product", content))
                 {
@@ -144,26 +145,6 @@ namespace Pet_Store.Responsive.Services
                 }
             }
             return category;
-        }
-
-        public async Task<Category> updateCategoryById(Category category)
-        {
-            Category putCategory = new Category();
-
-            using (var httpClient = new HttpClient())
-            {
-                StringContent content = new StringContent(JsonConvert.SerializeObject(category), Encoding.UTF8);
-
-                using (var response = await httpClient.PutAsync("https://localhost:44316/api/Category/category", content))
-                {
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                    {
-                        var Response = await response.Content.ReadAsStringAsync();
-                        putCategory = JsonConvert.DeserializeObject<Category>(Response);
-                    }
-                }
-            }
-            return putCategory;
         }
 
         public async Task<Category> AddCategoryAsync(Category category)

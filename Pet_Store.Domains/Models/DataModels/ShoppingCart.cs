@@ -6,6 +6,7 @@ namespace Pet_Store.Domains.Models.DataModels
     public class ShoppingCart
     {
 
+
         [Key]
         [Display(Name = "Carrito#")]
         public int Id { get; set; }

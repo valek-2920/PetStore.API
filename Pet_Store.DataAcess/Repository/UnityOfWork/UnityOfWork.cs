@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Hosting;
 using Pet_Store.DataAcess.Repository;
 using Pet_Store.DataAcess.Repository.IRepository;
-using Project_PetStore.API.DataAccess;
+using Pet_Store.DataAcess.Data;
 
 
 namespace PetStore.DataAccess.Repository.UnityOfWork

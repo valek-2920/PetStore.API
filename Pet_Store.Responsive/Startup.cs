@@ -1,11 +1,17 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Pet_Store.Responsive.Services;
 using Pet_Store.Responsive.Services.IServices;
+using Pet_Store.DataAcess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +32,57 @@ namespace Pet_Store.Responsive
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.RegisterApplicationServices(Configuration);
+            services.RegisterInfrastructureServices(Configuration);
+
+            services.AddAuthentication
+                (
+                    options =>
+                    {
+                        options.DefaultScheme =
+                            CookieAuthenticationDefaults.AuthenticationScheme;
+                    }
+                );
+
+            services.ConfigureApplicationCookie
+                (
+                    options =>
+                    {
+                        options.LoginPath = new PathString("/Accounts/login");
+                        options.LogoutPath = new PathString("/Accounts/logout");
+                        //ADD NEW ONE FOR EACH CONTROLLER IS PENDING
+                        options.Cookie.SameSite = SameSiteMode.Lax;
+                    }
+                );
+
+            services.AddMvc
+                (
+                    options =>
+                    {
+                        var policy =
+                            new AuthorizationPolicyBuilder()
+                                    .RequireAuthenticatedUser()
+                                    .Build();
+
+                        options.Filters.Add
+                            (new AuthorizeFilter(policy));
+                    }
+                )
+                .AddXmlSerializerFormatters();
+
+            services.Configure<IdentityOptions>
+                (
+                    options =>
+                    {
+                        options.Password.RequiredLength = 8;
+                        options.Password.RequiredUniqueChars = 3;
+                        options.Password.RequireUppercase = true;
+                        options.Password.RequireLowercase = true;
+                        options.Password.RequireDigit = true;
+                        options.Password.RequireNonAlphanumeric = true;
+                    }
+                );
+
             services.AddControllersWithViews();
             services.AddScoped<IInventarioServices, InventarioServices>();
         }
@@ -48,6 +105,15 @@ namespace Pet_Store.Responsive
 
             app.UseRouting();
 
+            app.UseCookiePolicy
+                (
+                    new CookiePolicyOptions
+                    {
+                        MinimumSameSitePolicy = SameSiteMode.Lax
+                    }
+                );
+
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

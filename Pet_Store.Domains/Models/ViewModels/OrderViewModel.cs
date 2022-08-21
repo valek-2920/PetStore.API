@@ -10,7 +10,7 @@ namespace Pet_Store.Domains.Models.ViewModels
     public class OrderViewModel
     {
         [Required]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
         [Required]
         public string Address { get; set; }

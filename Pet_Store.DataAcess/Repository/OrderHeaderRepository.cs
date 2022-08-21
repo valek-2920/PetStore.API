@@ -1,6 +1,6 @@
 ﻿using Pet_Store.DataAcess.Repository.IRepository;
 using Pet_Store.Domains.Models.DataModels;
-using Project_PetStore.API.DataAccess;
+using Pet_Store.DataAcess.Data;
 
 namespace PetStore.DataAccess.Repository
 {

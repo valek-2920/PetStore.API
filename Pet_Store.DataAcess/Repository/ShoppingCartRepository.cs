@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Pet_Store.DataAcess.Repository.IRepository;
 using Pet_Store.Domains.Models.DataModels;
-using Project_PetStore.API.DataAccess;
+using Pet_Store.DataAcess.Data;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,12 +16,12 @@ namespace PetStore.DataAccess.Repository
             _context = context;
         }
 
-        public List<ShoppingCart> GetShoppingcartByUser(int userId)
+        public List<ShoppingCart> GetShoppingcartByUser(string userId)
         {
             var result = (from x in _context.ShoppingCarts
                           .Include(x => x.User)
                           .Include(x => x.Product)
-                          where x.User.UserId == userId
+                          where x.User.Id == userId
                           select x).ToList();
             if (result != null)
             {
@@ -35,9 +35,9 @@ namespace PetStore.DataAccess.Repository
             _context.ShoppingCarts.Update(model);
         }
 
-        public List<Products> getProducts(int userId)
+        public List<Products> getProducts(string userId)
         {
-            var result =  (from x in _context.ShoppingCarts where x.User.UserId == userId select x.Product).ToList();
+            var result =  (from x in _context.ShoppingCarts where x.User.Id == userId select x.Product).ToList();
 
             if (result != null)
             {
@@ -46,9 +46,9 @@ namespace PetStore.DataAccess.Repository
             return null;
         }
 
-        public List<string> getProductsName(int userId)
+        public List<string> getProductsName(string userId)
         {
-            var result = (from x in _context.ShoppingCarts where x.User.UserId == userId select x.Product.Name).ToList();
+            var result = (from x in _context.ShoppingCarts where x.User.Id == userId select x.Product.Name).ToList();
 
             if (result != null)
             {

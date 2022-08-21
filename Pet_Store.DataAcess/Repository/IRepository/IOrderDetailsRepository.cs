@@ -11,6 +11,6 @@ namespace Pet_Store.DataAcess.Repository.IRepository
     {
         void Update(OrderDetails model);
 
-        List<OrderDetails> GetOrderByUser(int userId);
+        List<OrderDetails> GetOrderByUser(string userId);
     }
 }

@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Pet_Store.Domains.Models.DataModels;
 using Pet_Store.Domains.Models.InputModels;
 using PetStore.DataAccess.Repository.UnityOfWork;
-using Project_PetStore.API.DataAccess;
+using Pet_Store.DataAcess.Data;
 using System.Collections.Generic;
 
 namespace Pet_Store.API.Controllers
@@ -25,14 +25,14 @@ namespace Pet_Store.API.Controllers
         {
             if (ModelState.IsValid)
             {
-                var getUser = _unityOfWork.UsersRepository.GetFirstOrDefault(x => x.UserId == model.UserId);
+                var getUser = _unityOfWork.UsersRepository.GetFirstOrDefault(x => x.Id == model.UserId);
                 var getProduct = _unityOfWork.ProductsRepository.GetFirstOrDefault(x => x.Name == model.Product);
                 ShoppingCart shoppingCart = new ShoppingCart();
 
                 if (getUser != null && getProduct != null)
                 {
 
-                    var CartExist = _unityOfWork.ShoppingCartRepository.GetFirstOrDefault(x => x.User.UserId == model.UserId);
+                    var CartExist = _unityOfWork.ShoppingCartRepository.GetFirstOrDefault(x => x.User.Id == model.UserId);
                     var products = _unityOfWork.ShoppingCartRepository.getProductsName(model.UserId);
 
                     if (CartExist != null && products.Contains(model.Product))
@@ -66,9 +66,9 @@ namespace Pet_Store.API.Controllers
 
         [HttpDelete]
         [Route("remove-product")]
-        public IActionResult DeleteItem(int Userid, int count, int ProductoID)
+        public IActionResult DeleteItem(string Userid, int count, int ProductoID)
         {
-            var CartExist = _unityOfWork.ShoppingCartRepository.GetFirstOrDefault(x => x.User.UserId == Userid);
+            var CartExist = _unityOfWork.ShoppingCartRepository.GetFirstOrDefault(x => x.User.Id == Userid);
             var products = _unityOfWork.ShoppingCartRepository.getProducts(Userid);
             var product = _unityOfWork.ShoppingCartRepository.GetFirstOrDefault(x => x.Product.ProductId == ProductoID);
             var getProduct = _unityOfWork.ProductsRepository.GetFirstOrDefault(x => x.Name == product.Product.Name);
@@ -122,7 +122,7 @@ namespace Pet_Store.API.Controllers
 
         [HttpGet]
         [Route("GetAll-Products")]
-        public IActionResult GetProducts(int userId)
+        public IActionResult GetProducts(string userId)
         {
             List<ShoppingCart> allProductosShoppinCart = _unityOfWork.ShoppingCartRepository.GetShoppingcartByUser(userId);
             _unityOfWork.Save();

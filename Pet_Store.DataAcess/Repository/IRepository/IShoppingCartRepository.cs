@@ -7,10 +7,10 @@ namespace Pet_Store.DataAcess.Repository.IRepository
     {
         void Update(ShoppingCart model);
 
-        List<ShoppingCart> GetShoppingcartByUser(int userId);
+        List<ShoppingCart> GetShoppingcartByUser(string userId);
         
-        List<Products> getProducts(int userId);
+        List<Products> getProducts(string userId);
 
-        List<string> getProductsName(int userId);
+        List<string> getProductsName(string userId);
     }
 }

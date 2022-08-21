@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Project_PetStore.API.DataAccess;
+using Pet_Store.DataAcess.Data;
 
 namespace Pet_Store.DataAcess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220810003813_addFilesToDb")]
-    partial class addFilesToDb
+    [Migration("20220821031026_initTables")]
+    partial class initTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -84,6 +84,10 @@ namespace Pet_Store.DataAcess.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -135,6 +139,8 @@ namespace Pet_Store.DataAcess.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -217,31 +223,7 @@ namespace Pet_Store.DataAcess.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Pet_Store.Domains.Models.DataModels.Files", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("Size")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Url")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("uploadDateTime")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Files");
-                });
-
-            modelBuilder.Entity("Project_PetStore.API.Models.DataModels.Category", b =>
+            modelBuilder.Entity("Pet_Store.Domains.Models.DataModels.Category", b =>
                 {
                     b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
@@ -257,7 +239,7 @@ namespace Pet_Store.DataAcess.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("Project_PetStore.API.Models.DataModels.OrderDetails", b =>
+            modelBuilder.Entity("Pet_Store.Domains.Models.DataModels.OrderDetails", b =>
                 {
                     b.Property<int>("OrderDetailsId")
                         .ValueGeneratedOnAdd()
@@ -280,7 +262,7 @@ namespace Pet_Store.DataAcess.Migrations
                     b.ToTable("OrderDetails");
                 });
 
-            modelBuilder.Entity("Project_PetStore.API.Models.DataModels.OrderHeader", b =>
+            modelBuilder.Entity("Pet_Store.Domains.Models.DataModels.OrderHeader", b =>
                 {
                     b.Property<int>("OrderId")
                         .ValueGeneratedOnAdd()
@@ -308,8 +290,8 @@ namespace Pet_Store.DataAcess.Migrations
                     b.Property<DateTime>("ShippingDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("OrderId");
 
@@ -318,7 +300,7 @@ namespace Pet_Store.DataAcess.Migrations
                     b.ToTable("OrderHeaders");
                 });
 
-            modelBuilder.Entity("Project_PetStore.API.Models.DataModels.Products", b =>
+            modelBuilder.Entity("Pet_Store.Domains.Models.DataModels.Products", b =>
                 {
                     b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
@@ -332,8 +314,9 @@ namespace Pet_Store.DataAcess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("FilesId")
-                        .HasColumnType("int");
+                    b.Property<string>("Files")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -349,14 +332,12 @@ namespace Pet_Store.DataAcess.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("FilesId");
-
                     b.HasIndex("OrderDetailsId");
 
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("Project_PetStore.API.Models.DataModels.ShoppingCart", b =>
+            modelBuilder.Entity("Pet_Store.Domains.Models.DataModels.ShoppingCart", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -372,8 +353,8 @@ namespace Pet_Store.DataAcess.Migrations
                     b.Property<double>("Subtotal")
                         .HasColumnType("float");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
@@ -384,28 +365,9 @@ namespace Pet_Store.DataAcess.Migrations
                     b.ToTable("ShoppingCarts");
                 });
 
-            modelBuilder.Entity("Project_PetStore.API.Models.DataModels.UserRoles", b =>
+            modelBuilder.Entity("Pet_Store.Domains.Models.DataModels.Users", b =>
                 {
-                    b.Property<int>("RolesId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("RolName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("RolesId");
-
-                    b.ToTable("UserRoles");
-                });
-
-            modelBuilder.Entity("Project_PetStore.API.Models.DataModels.Users", b =>
-                {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -414,7 +376,7 @@ namespace Pet_Store.DataAcess.Migrations
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Email")
+                    b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -422,25 +384,10 @@ namespace Pet_Store.DataAcess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("Phone")
                         .HasColumnType("int");
 
-                    b.Property<int>("RolesId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserId");
-
-                    b.HasIndex("RolesId");
-
-                    b.ToTable("Users");
+                    b.HasDiscriminator().HasValue("Users");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -494,50 +441,44 @@ namespace Pet_Store.DataAcess.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Project_PetStore.API.Models.DataModels.OrderDetails", b =>
+            modelBuilder.Entity("Pet_Store.Domains.Models.DataModels.OrderDetails", b =>
                 {
-                    b.HasOne("Project_PetStore.API.Models.DataModels.OrderHeader", "OrderHeader")
+                    b.HasOne("Pet_Store.Domains.Models.DataModels.OrderHeader", "OrderHeader")
                         .WithMany()
                         .HasForeignKey("OrderHeaderOrderId");
 
                     b.Navigation("OrderHeader");
                 });
 
-            modelBuilder.Entity("Project_PetStore.API.Models.DataModels.OrderHeader", b =>
+            modelBuilder.Entity("Pet_Store.Domains.Models.DataModels.OrderHeader", b =>
                 {
-                    b.HasOne("Project_PetStore.API.Models.DataModels.Users", "User")
+                    b.HasOne("Pet_Store.Domains.Models.DataModels.Users", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Project_PetStore.API.Models.DataModels.Products", b =>
+            modelBuilder.Entity("Pet_Store.Domains.Models.DataModels.Products", b =>
                 {
-                    b.HasOne("Project_PetStore.API.Models.DataModels.Category", "Category")
+                    b.HasOne("Pet_Store.Domains.Models.DataModels.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId");
 
-                    b.HasOne("Pet_Store.Domains.Models.DataModels.Files", "Files")
-                        .WithMany()
-                        .HasForeignKey("FilesId");
-
-                    b.HasOne("Project_PetStore.API.Models.DataModels.OrderDetails", null)
+                    b.HasOne("Pet_Store.Domains.Models.DataModels.OrderDetails", null)
                         .WithMany("Product")
                         .HasForeignKey("OrderDetailsId");
 
                     b.Navigation("Category");
-
-                    b.Navigation("Files");
                 });
 
-            modelBuilder.Entity("Project_PetStore.API.Models.DataModels.ShoppingCart", b =>
+            modelBuilder.Entity("Pet_Store.Domains.Models.DataModels.ShoppingCart", b =>
                 {
-                    b.HasOne("Project_PetStore.API.Models.DataModels.Products", "Product")
+                    b.HasOne("Pet_Store.Domains.Models.DataModels.Products", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId");
 
-                    b.HasOne("Project_PetStore.API.Models.DataModels.Users", "User")
+                    b.HasOne("Pet_Store.Domains.Models.DataModels.Users", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
 
@@ -546,18 +487,7 @@ namespace Pet_Store.DataAcess.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Project_PetStore.API.Models.DataModels.Users", b =>
-                {
-                    b.HasOne("Project_PetStore.API.Models.DataModels.UserRoles", "Role")
-                        .WithMany()
-                        .HasForeignKey("RolesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Role");
-                });
-
-            modelBuilder.Entity("Project_PetStore.API.Models.DataModels.OrderDetails", b =>
+            modelBuilder.Entity("Pet_Store.Domains.Models.DataModels.OrderDetails", b =>
                 {
                     b.Navigation("Product");
                 });

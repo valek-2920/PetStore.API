@@ -8,10 +8,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Pet_Store.API.Services;
 using Pet_Store.Utility;
 using PetStore.DataAccess.Repository.UnityOfWork;
-using Project_PetStore.API.DataAccess;
+using Pet_Store.DataAcess.Data;
 using System.Text;
 
 namespace Pet_Store.API
@@ -26,43 +25,44 @@ namespace Pet_Store.API
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public async void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>
-               (options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
+            //services.AddDbContext<ApplicationDbContext>
+            //   (options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
 
-           
-            services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
 
-            services.AddIdentity<IdentityUser, IdentityRole>(options =>
-            {
-                options.Password.RequireDigit = true;
-                options.Password.RequireLowercase = true;
-                options.Password.RequiredLength = 5;
-            }).AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+            //services.AddScoped<IApplicationDbContext>
+            //    (options => options.GetService<ApplicationDbContext>());
 
-            services.AddAuthentication(auth =>
-            {
-                auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(options =>
-            {
-                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
-                {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidAudience = Configuration["AuthSettings:Audience"],
-                    ValidIssuer = Configuration["AuthSettings:Issuer"],
-                    RequireExpirationTime = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["AuthSettings:Key"])),
-                    ValidateIssuerSigningKey = true
-                };
-            });
+            //services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            //{
+            //    options.Password.RequireDigit = true;
+            //    options.Password.RequireLowercase = true;
+            //    options.Password.RequiredLength = 5;
+            //}).AddEntityFrameworkStores<ApplicationDbContext>()
+            //    .AddDefaultTokenProviders();
 
-            services.AddScoped<IUserService, UserService>();
-            services.AddTransient<IMailService, SendGridMailService>();
-            services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
+            //services.AddAuthentication(auth =>
+            //{
+            //    auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            //    auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            //}).AddJwtBearer(options =>
+            //{
+            //    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+            //    {
+            //        ValidateIssuer = true,
+            //        ValidateAudience = true,
+            //        ValidAudience = Configuration["AuthSettings:Audience"],
+            //        ValidIssuer = Configuration["AuthSettings:Issuer"],
+            //        RequireExpirationTime = true,
+            //        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["AuthSettings:Key"])),
+            //        ValidateIssuerSigningKey = true
+            //    };
+            //});
+
+            //services.AddScoped<IUserService, UserService>();
+            //services.AddTransient<IMailService, SendGridMailService>();
+            //services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
             services.AddScoped<IUnityOfWork, UnityOfWork>();
             services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
 
@@ -91,8 +91,8 @@ namespace Pet_Store.API
             app.UseStaticFiles();
             app.UseRouting();
 
-            app.UseAuthentication();
-            app.UseAuthorization();
+            //app.UseAuthentication();
+            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

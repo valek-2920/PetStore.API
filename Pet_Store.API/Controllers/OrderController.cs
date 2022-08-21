@@ -21,10 +21,10 @@ namespace Pet_Store.API.Controllers
         [Route("order")]
         public IActionResult CreateOrder([FromBody] OrderViewModel model)
         {
-            var GetUser = _unityOfWork.UsersRepository.GetFirstOrDefault(x => x.UserId == model.UserId);
-            var getShoppingCart = _unityOfWork.ShoppingCartRepository.GetAll(x => x.User.UserId == model.UserId);
+            var GetUser = _unityOfWork.UsersRepository.GetFirstOrDefault(x => x.Id == model.UserId);
+            var getShoppingCart = _unityOfWork.ShoppingCartRepository.GetAll(x => x.User.Id == model.UserId);
             var getProducts = _unityOfWork.ShoppingCartRepository.getProducts(model.UserId);
-            var getOrderHeader = _unityOfWork.OrderHeaderRepository.GetFirstOrDefault(x => x.User.UserId == model.UserId);
+            var getOrderHeader = _unityOfWork.OrderHeaderRepository.GetFirstOrDefault(x => x.User.Id == model.UserId);
             var getOrderDetails = _unityOfWork.OrderDetailsRepository.GetFirstOrDefault(x => x.OrderHeader == getOrderHeader);
             var quantity = 0;
             var total = 0.0;
@@ -92,7 +92,7 @@ namespace Pet_Store.API.Controllers
 
         [HttpGet]
         [Route("order")]
-        public IActionResult GetOrder(int userId)
+        public IActionResult GetOrder(string userId)
         {
             var orderDetails = _unityOfWork.OrderDetailsRepository.GetOrderByUser(userId);
             _unityOfWork.Save();
@@ -108,9 +108,9 @@ namespace Pet_Store.API.Controllers
         [Route("order")]
         public IActionResult UpdateOrder(OrderViewModel model)
         {
-            var oldOrderHeader = _unityOfWork.OrderHeaderRepository.GetFirstOrDefault(x => x.User.UserId == model.UserId);
-            var GetUser = _unityOfWork.UsersRepository.GetFirstOrDefault(x => x.UserId == model.UserId);
-            var getShoppingCart = _unityOfWork.ShoppingCartRepository.GetAll(x => x.User.UserId == model.UserId);
+            var oldOrderHeader = _unityOfWork.OrderHeaderRepository.GetFirstOrDefault(x => x.User.Id == model.UserId);
+            var GetUser = _unityOfWork.UsersRepository.GetFirstOrDefault(x => x.Id == model.UserId);
+            var getShoppingCart = _unityOfWork.ShoppingCartRepository.GetAll(x => x.User.Id == model.UserId);
             var getProducts = _unityOfWork.ShoppingCartRepository.getProducts(model.UserId);
             OrderDetails orderDetails = new OrderDetails();
             var quantity = 0;
@@ -155,9 +155,9 @@ namespace Pet_Store.API.Controllers
 
         [HttpDelete]
         [Route("order")]
-        public IActionResult DeleteOrder(int userId)
+        public IActionResult DeleteOrder(string userId)
         {
-            var orderDetails = _unityOfWork.OrderDetailsRepository.GetFirstOrDefault(x => x.OrderHeader.User.UserId == userId);
+            var orderDetails = _unityOfWork.OrderDetailsRepository.GetFirstOrDefault(x => x.OrderHeader.User.Id == userId);
 
             if (orderDetails != null)
             {

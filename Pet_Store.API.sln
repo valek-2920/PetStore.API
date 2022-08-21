@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pet_Store.Domains", "Pet_St
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pet_Store.DataAcess", "Pet_Store.DataAcess\Pet_Store.DataAcess.csproj", "{080E5491-2D03-48F9-AE43-33A10EC5FE65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pet_Store.Utility", "Pet_Store.Utility\Pet_Store.Utility.csproj", "{05C60AED-B108-4EF2-A85F-434B28EF4826}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pet_Store.Utility", "Pet_Store.Utility\Pet_Store.Utility.csproj", "{05C60AED-B108-4EF2-A85F-434B28EF4826}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pet_Store.Responsive", "Pet_Store.Responsive\Pet_Store.Responsive.csproj", "{64D8B571-9B9D-4283-BF9F-6FA0EE7EF2F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pet_Store.Application", "Pet_Store.Application\Pet_Store.Application.csproj", "{608EC251-08C8-45D7-9398-A27EF3020647}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{64D8B571-9B9D-4283-BF9F-6FA0EE7EF2F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64D8B571-9B9D-4283-BF9F-6FA0EE7EF2F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64D8B571-9B9D-4283-BF9F-6FA0EE7EF2F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{608EC251-08C8-45D7-9398-A27EF3020647}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{608EC251-08C8-45D7-9398-A27EF3020647}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{608EC251-08C8-45D7-9398-A27EF3020647}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{608EC251-08C8-45D7-9398-A27EF3020647}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -32,9 +32,9 @@ namespace Pet_Store.API.Controllers
 
         [HttpGet]
         [Route("user")]
-        public IActionResult GetUser(int id)
+        public IActionResult GetUser(string id)
         {
-            var User = _unityOfWork.UsersRepository.GetFirstOrDefault(x => x.UserId == id);
+            var User = _unityOfWork.UsersRepository.GetFirstOrDefault(x => x.Id == id);
             _unityOfWork.Save();
 
             if (User != null)
@@ -49,13 +49,13 @@ namespace Pet_Store.API.Controllers
         public IActionResult UpdateUser([FromBody] UpdateUser model)
         {
             //traemos el usuario
-            var OldUser = _unityOfWork.UsersRepository.GetFirstOrDefault(x => x.UserId == model.Id);
+            var OldUser = _unityOfWork.UsersRepository.GetFirstOrDefault(x => x.Id == model.Id);
 
             if (ModelState.IsValid)
             {
                 //cambiamos los datos viejos del usuario con los datos nuevos
-                OldUser.UserId = model.Id;
-                OldUser.Name = model.Name;
+                OldUser.Id = model.Id;
+                OldUser.FirstName = model.Name;
                 OldUser.LastName = model.LastName;
                 OldUser.BirthDate = model.BirthDate;
                 OldUser.Phone = model.Phone;
@@ -72,9 +72,9 @@ namespace Pet_Store.API.Controllers
 
         [HttpDelete]
         [Route("user")]
-        public IActionResult DeleteUser(int id)
+        public IActionResult DeleteUser(string id)
         {
-            var User = _unityOfWork.UsersRepository.GetFirstOrDefault(x => x.UserId == id);
+            var User = _unityOfWork.UsersRepository.GetFirstOrDefault(x => x.Id == id);
 
             if (User != null)
             {

@@ -2,7 +2,7 @@
 using Pet_Store.Domains.Models.DataModels;
 using Pet_Store.Domains.Models.InputModels;
 using PetStore.DataAccess.Repository.UnityOfWork;
-using Project_PetStore.API.DataAccess;
+using Pet_Store.DataAcess.Data;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

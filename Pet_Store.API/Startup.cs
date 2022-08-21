@@ -63,7 +63,7 @@ namespace Pet_Store.API
             //services.AddScoped<IUserService, UserService>();
             //services.AddTransient<IMailService, SendGridMailService>();
             //services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
-            services.AddScoped<IUnityOfWork, UnityOfWork>();
+            //services.AddScoped<IUnityOfWork, UnityOfWork>();
             services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
 
             services.AddControllers();

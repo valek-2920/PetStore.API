@@ -11,11 +11,16 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Pet_Store.Responsive.Services;
 using Pet_Store.Responsive.Services.IServices;
-using Pet_Store.DataAcess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Pet_Store.DataAcess.Data;
+using Pet_Store.DataAcess.Repository.UnitOfWork;
+using Pet_Store.DataAcess;
+using PetStore.DataAccess.Repository;
+using Pet_Store.Domains.Models.DataModels;
 
 namespace Pet_Store.Responsive
 {
@@ -32,6 +37,21 @@ namespace Pet_Store.Responsive
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ApplicationDbContext>
+                (options => options.UseSqlServer(Configuration.GetConnectionString("Default")))
+                    .AddUnitOfWork<ApplicationDbContext>()
+                    .AddRepository<Category, CategoryRepository>()
+                    .AddRepository<OrderDetails, OrderDetailsRepository>()
+                    .AddRepository<OrderHeader, OrderHeaderRepository>()
+                    .AddRepository<Products, ProductsRepository>()
+                    .AddRepository<ShoppingCart, ShoppingCartRepository>()
+                    .AddRepository<Users, UsersRepository>();
+
+
+
+            services.AddScoped<IApplicationDbContext>
+                (options => options.GetService<ApplicationDbContext>());
+
             services.RegisterApplicationServices(Configuration);
             services.RegisterInfrastructureServices(Configuration);
 

@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Pet_Store.DataAcess.Repository.IRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PetStore.DataAccess.Repository
+namespace Pet_Store.DataAcess.Repository
 {
     public class Repository<TEntity> : IRepository<TEntity>, IDisposable where TEntity : class
     {

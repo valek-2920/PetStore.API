@@ -1,46 +1,97 @@
-﻿
-using Microsoft.Extensions.Hosting;
-using Pet_Store.DataAcess.Repository;
-using Pet_Store.DataAcess.Repository.IRepository;
-using Pet_Store.DataAcess.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-
-namespace PetStore.DataAccess.Repository.UnityOfWork
+namespace Pet_Store.DataAcess.Repository.UnityOfWork
 {
-    public class UnityOfWork : IUnityOfWork
-
+    public class UnityOfWork<TContext> : IUnityOfWork<TContext>, IDisposable
+        where TContext : DbContext
     {
-        readonly ApplicationDbContext _context;
-
-        public UnityOfWork(ApplicationDbContext context, IHostEnvironment hostEnvironment)
+        public UnityOfWork(TContext dbContext)
         {
-            _context = context;
-            CategoryRepository = new CategoryRepository(_context);
-            ProductsRepository = new ProductsRepository(_context);
-            OrderDetailsRepository = new OrderDetailsRepository(_context);
-            OrderHeaderRepository = new OrderHeaderRepository(_context);
-            ShoppingCartRepository = new ShoppingCartRepository(_context);
-            UsersRepository = new UsersRepository(_context);
+            context = dbContext;
         }
 
-        public ICategoryRepository CategoryRepository { get; private set; }
+        readonly TContext context;
+        IDbContextTransaction transaction;
+        IDictionary<string, object> repositories;
 
-        public IProductRepository ProductsRepository { get; private set; }
+        bool isDisposed;
 
-        public IShoppingCartRepository ShoppingCartRepository { get; private set; }
-
-        public IOrderHeaderRepository OrderHeaderRepository { get; private set; }
-
-        public IOrderDetailsRepository OrderDetailsRepository { get; private set; }
-
-        public IUsersRepository UsersRepository { get; private set; }
-
-
-
-        public void Save()
+        public TContext Context
         {
-            _context.SaveChanges();
+            get { return context; }
         }
 
+        public void CrearTransaccion()
+        {
+            transaction = Context.Database.BeginTransaction();
+        }
+
+        public void Commit()
+        {
+            transaction.Commit();
+        }
+
+        public void Rollback()
+        {
+            transaction.Rollback();
+            transaction.Dispose();
+        }
+
+        public void Guardar()
+        {
+            Context.SaveChanges();
+        }
+
+
+        public IRepository<TEntity> Repository<TEntity>() where TEntity : class
+        {
+            var repository = Context.GetService<IRepository<TEntity>>();
+            if (repository != null)
+            {
+                return repository;
+            }
+
+            var type = typeof(TEntity);
+            var typeName = type.Name;
+
+            if (repositories == null)
+            {
+                repositories = new Dictionary<string, object>();
+            }
+
+            if (!repositories.ContainsKey(typeName))
+            {
+                var repositoryInstance = new Repository<TEntity>(Context);
+                repositories.Add(typeName, repositoryInstance);
+            }
+
+            return (IRepository<TEntity>)repositories[typeName];
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!isDisposed)
+            {
+                if (disposing)
+                {
+                    Context.Dispose();
+                }
+            }
+
+            isDisposed = true;
+        }
     }
 }

@@ -1,10 +1,10 @@
-﻿using Pet_Store.DataAcess.Repository.IRepository;
-using Pet_Store.Domains.Models.DataModels;
+﻿using Pet_Store.Domains.Models.DataModels;
 using Pet_Store.DataAcess.Data;
+using Pet_Store.DataAcess.Repository;
 
 namespace PetStore.DataAccess.Repository
 {
-    public class OrderHeaderRepository : Repository<OrderHeader>, IOrderHeaderRepository
+    public class OrderHeaderRepository : Repository<OrderHeader>, IRepository<OrderHeader>
     {
         private readonly ApplicationDbContext _context;
 

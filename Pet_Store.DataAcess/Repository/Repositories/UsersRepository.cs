@@ -1,11 +1,10 @@
-﻿using Pet_Store.DataAcess.Repository.IRepository;
-using Pet_Store.Domains.Models.DataModels;
+﻿using Pet_Store.Domains.Models.DataModels;
 using Pet_Store.DataAcess.Data;
-
+using Pet_Store.DataAcess.Repository;
 
 namespace PetStore.DataAccess.Repository
 {
-    public class UsersRepository : Repository<Users>, IUsersRepository
+    public class UsersRepository : Repository<Users>, IRepository<Users>
     {
         private readonly ApplicationDbContext _context;
 

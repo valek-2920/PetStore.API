@@ -1,23 +1,26 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Pet_Store.DataAcess.Repository.IRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PetStore.DataAccess.Repository.UnityOfWork
+namespace Pet_Store.DataAcess.Repository.UnityOfWork
 {
-    public interface IUnityOfWork
+    public interface IUnityOfWork<out TContext>
+        where TContext : DbContext
     {
-        ICategoryRepository CategoryRepository { get; }
-        IProductRepository ProductsRepository { get; }
-        IOrderDetailsRepository OrderDetailsRepository { get; }
-        IOrderHeaderRepository OrderHeaderRepository { get; }
-        IShoppingCartRepository ShoppingCartRepository { get; }
-        IUsersRepository UsersRepository { get; }
+        TContext Context { get; }
 
-        void Save();
+        void CrearTransaccion();
 
+        void Commit();
+
+        void Rollback();
+
+        void Guardar();
+
+        IRepository<TEntity> Repository<TEntity>()
+            where TEntity : class;
     }
 }

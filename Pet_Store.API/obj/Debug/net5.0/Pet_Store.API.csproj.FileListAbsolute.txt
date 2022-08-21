@@ -19,13 +19,7 @@ C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\Prog
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\Pet_Store.API.Views.dll
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\Pet_Store.API.Views.pdb
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\Humanizer.dll
-C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\System.Web.Mvc.dll
-C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\System.Web.Razor.dll
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\System.Net.Http.Formatting.dll
-C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\System.Web.Helpers.dll
-C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\System.Web.WebPages.Deployment.dll
-C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\System.Web.WebPages.Razor.dll
-C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\System.Web.WebPages.dll
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.Internal.dll
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
@@ -33,6 +27,7 @@ C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\Prog
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.WebApiCompatShim.dll
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
+C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\Microsoft.DotNet.PlatformAbstractions.dll
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
@@ -49,11 +44,8 @@ C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\Prog
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\Microsoft.OpenApi.dll
-C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\Microsoft.Web.Infrastructure.dll
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\Newtonsoft.Json.dll
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
-C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\SendGrid.dll
-C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\Stripe.net.dll
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -75,11 +67,9 @@ C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\Prog
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\Pet_Store.Application.dll
-C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\Pet_Store.DataAcess.dll
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\Pet_Store.Domains.dll
-C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\Pet_Store.DataAcess.pdb
-C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\Pet_Store.Domains.pdb
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\Pet_Store.Application.pdb
+C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\Pet_Store.Domains.pdb
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\obj\Debug\net5.0\Pet_Store.API.csproj.AssemblyReference.cache
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\obj\Debug\net5.0\Pet_Store.API.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\obj\Debug\net5.0\Pet_Store.API.AssemblyInfoInputs.cache
@@ -96,4 +86,5 @@ C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\Prog
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\obj\Debug\net5.0\Pet_Store.API.pdb
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\obj\Debug\net5.0\Pet_Store.API.genruntimeconfig.cache
 C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\obj\Debug\net5.0\ref\Pet_Store.API.dll
-C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\Pet_Store.Infraestructure.dll
+C:\Users\Vale2920\Desktop\University\7 quarter\Programacion Avanzada en Web\PrograAvanzadaWeb\PROYECTO\Pet_Store.API\Pet_Store.API\bin\Debug\net5.0\Pet_Store.Infraestructure.pdb

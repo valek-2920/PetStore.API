@@ -1,13 +1,15 @@
-using Pet_Store.Application;
-using Pet_Store.Application.Middlewares;
-using Pet_Store.DataAcess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using System.Linq;
+using Pet_Store.Domains.Models.DataModels;
+using Pet_Store.Infraestructure.Data;
+using PetStore.Infraestructure.Data;
+using PetStore.Infraestructure.Repository;
+using PetStore.Infraestructure.Repository.UnitOfWork;
 
 namespace Pet_Store.API
 {
@@ -23,10 +25,18 @@ namespace Pet_Store.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
-            services.RegisterApplicationServices(Configuration);
-            services.RegisterInfrastructureServices(Configuration);
+            services.AddDbContext<ApplicationDbContext>
+             (options => options.UseSqlServer(Configuration.GetConnectionString("ConnectionString")))
+                 .AddUnitOfWork<ApplicationDbContext>()
+                   .AddRepository<Category, CategoryRepository>()
+                   .AddRepository<OrderDetails, OrderDetailsRepository>()
+                   .AddRepository<OrderHeader, OrderHeaderRepository>()
+                   .AddRepository<Products, ProductsRepository>()
+                   .AddRepository<ShoppingCart, ShoppingCartRepository>()
+                   .AddRepository<Users, UsersRepository>();
 
+            services.AddScoped<IApplicationDbContext>
+                (options => options.GetService<ApplicationDbContext>());
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -89,11 +99,11 @@ namespace Pet_Store.API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Pet_Store.API v1"));
             }
 
-            app.UseRouting();
-            app.UseAuthentication();
-            app.UseAuthorization();
+            app.UseHttpsRedirection();
 
-            app.UseMiddleware<JwtMiddleware>();
+            app.UseRouting();
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

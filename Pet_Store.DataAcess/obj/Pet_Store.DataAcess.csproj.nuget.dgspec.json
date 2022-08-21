@@ -52,10 +52,6 @@
               "target": "Package",
               "version": "[5.0.17, )"
             },
-            "Microsoft.AspNetCore.Identity": {
-              "target": "Package",
-              "version": "[2.2.0, )"
-            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.17, )"
@@ -64,17 +60,15 @@
               "target": "Package",
               "version": "[2.2.0, )"
             },
-            "Microsoft.Extensions.Configuration.Abstractions": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[5.0.0, )"
+              "version": "[5.0.17, )"
             },
-            "Microsoft.Extensions.Options": {
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
-              "version": "[5.0.0, )"
-            },
-            "Microsoft.Extensions.Options.ConfigurationExtensions": {
-              "target": "Package",
-              "version": "[5.0.0, )"
+              "version": "[5.0.17, )"
             }
           },
           "imports": [
@@ -156,20 +150,6 @@
               "target": "Package",
               "version": "[5.0.17, )"
             },
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[5.0.17, )"
-            },
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[5.0.17, )"
-            },
-            "Microsoft.EntityFrameworkCore.Relational": {
-              "target": "Package",
-              "version": "[5.0.17, )"
-            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[5.0.17, )"
@@ -179,22 +159,6 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[5.0.17, )"
-            },
-            "Microsoft.Extensions.Configuration.Abstractions": {
-              "target": "Package",
-              "version": "[5.0.0, )"
-            },
-            "Microsoft.Extensions.Hosting.Abstractions": {
-              "target": "Package",
-              "version": "[5.0.0, )"
-            },
-            "Microsoft.Extensions.Options": {
-              "target": "Package",
-              "version": "[5.0.0, )"
-            },
-            "Microsoft.Extensions.Options.ConfigurationExtensions": {
-              "target": "Package",
-              "version": "[5.0.0, )"
             }
           },
           "imports": [
@@ -257,37 +221,21 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
-            "Microsoft.AspNet.Mvc": {
-              "target": "Package",
-              "version": "[5.2.9, )"
-            },
-            "Microsoft.AspNetCore.Http.Features": {
-              "target": "Package",
-              "version": "[2.2.0, )"
-            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.17, )"
-            },
-            "Microsoft.AspNetCore.Mvc.Core": {
-              "target": "Package",
-              "version": "[2.2.5, )"
             },
             "Microsoft.AspNetCore.Mvc.ViewFeatures": {
               "target": "Package",
               "version": "[2.2.0, )"
             },
-            "Microsoft.EntityFrameworkCore": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[5.0.17, )"
             },
-            "Microsoft.EntityFrameworkCore.Design": {
+            "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
-              "target": "Package",
-              "version": "[5.0.17, )"
-            },
-            "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
               "version": "[5.0.17, )"
             }

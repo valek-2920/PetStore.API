@@ -15,36 +15,6 @@
           }
         }
       },
-      "Microsoft.AspNet.Mvc/5.2.9": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNet.Razor": "[3.2.9, 3.3.0)",
-          "Microsoft.AspNet.WebPages": "[3.2.9, 3.3.0)"
-        },
-        "compile": {
-          "lib/net45/System.Web.Mvc.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net45/System.Web.Mvc.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "Microsoft.AspNet.Razor/3.2.9": {
-        "type": "package",
-        "compile": {
-          "lib/net45/System.Web.Razor.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net45/System.Web.Razor.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "Microsoft.AspNet.WebApi.Client/5.2.6": {
         "type": "package",
         "dependencies": {
@@ -59,41 +29,6 @@
         "runtime": {
           "lib/netstandard2.0/System.Net.Http.Formatting.dll": {
             "related": ".xml"
-          }
-        }
-      },
-      "Microsoft.AspNet.WebPages/3.2.9": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNet.Razor": "[3.2.9, 3.3.0)",
-          "Microsoft.Web.Infrastructure": "1.0.0"
-        },
-        "compile": {
-          "lib/net45/System.Web.Helpers.dll": {
-            "related": ".xml"
-          },
-          "lib/net45/System.Web.WebPages.Deployment.dll": {
-            "related": ".xml"
-          },
-          "lib/net45/System.Web.WebPages.Razor.dll": {
-            "related": ".xml"
-          },
-          "lib/net45/System.Web.WebPages.dll": {
-            "related": ".Deployment.xml;.Razor.xml;.xml"
-          }
-        },
-        "runtime": {
-          "lib/net45/System.Web.Helpers.dll": {
-            "related": ".xml"
-          },
-          "lib/net45/System.Web.WebPages.Deployment.dll": {
-            "related": ".xml"
-          },
-          "lib/net45/System.Web.WebPages.Razor.dll": {
-            "related": ".xml"
-          },
-          "lib/net45/System.Web.WebPages.dll": {
-            "related": ".Deployment.xml;.Razor.xml;.xml"
           }
         }
       },
@@ -516,7 +451,7 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Mvc.Core/2.2.5": {
+      "Microsoft.AspNetCore.Mvc.Core/2.2.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.Core": "2.2.0",
@@ -956,22 +891,6 @@
           }
         }
       },
-      "Microsoft.Extensions.Configuration.Binder/5.0.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Extensions.Configuration.Abstractions": "5.0.0"
-        },
-        "compile": {
-          "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "Microsoft.Extensions.DependencyInjection/5.0.2": {
         "type": "package",
         "dependencies": {
@@ -1017,10 +936,10 @@
           "lib/netstandard1.6/Microsoft.Extensions.DependencyModel.dll": {}
         }
       },
-      "Microsoft.Extensions.FileProviders.Abstractions/5.0.0": {
+      "Microsoft.Extensions.FileProviders.Abstractions/2.2.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.Primitives": "5.0.0"
+          "Microsoft.Extensions.Primitives": "2.2.0"
         },
         "compile": {
           "lib/netstandard2.0/Microsoft.Extensions.FileProviders.Abstractions.dll": {
@@ -1033,20 +952,21 @@
           }
         }
       },
-      "Microsoft.Extensions.Hosting.Abstractions/5.0.0": {
+      "Microsoft.Extensions.Hosting.Abstractions/2.2.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.Configuration.Abstractions": "5.0.0",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "5.0.0",
-          "Microsoft.Extensions.FileProviders.Abstractions": "5.0.0"
+          "Microsoft.Extensions.Configuration.Abstractions": "2.2.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.2.0",
+          "Microsoft.Extensions.FileProviders.Abstractions": "2.2.0",
+          "Microsoft.Extensions.Logging.Abstractions": "2.2.0"
         },
         "compile": {
-          "lib/netstandard2.1/Microsoft.Extensions.Hosting.Abstractions.dll": {
+          "lib/netstandard2.0/Microsoft.Extensions.Hosting.Abstractions.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.1/Microsoft.Extensions.Hosting.Abstractions.dll": {
+          "lib/netstandard2.0/Microsoft.Extensions.Hosting.Abstractions.dll": {
             "related": ".xml"
           }
         }
@@ -1177,26 +1097,6 @@
         },
         "runtime": {
           "lib/net5.0/Microsoft.Extensions.Options.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "Microsoft.Extensions.Options.ConfigurationExtensions/5.0.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Extensions.Configuration.Abstractions": "5.0.0",
-          "Microsoft.Extensions.Configuration.Binder": "5.0.0",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "5.0.0",
-          "Microsoft.Extensions.Options": "5.0.0",
-          "Microsoft.Extensions.Primitives": "5.0.0"
-        },
-        "compile": {
-          "lib/netstandard2.0/Microsoft.Extensions.Options.ConfigurationExtensions.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.Extensions.Options.ConfigurationExtensions.dll": {
             "related": ".xml"
           }
         }
@@ -1370,15 +1270,6 @@
         },
         "runtime": {
           "lib/netstandard1.0/_._": {}
-        }
-      },
-      "Microsoft.Web.Infrastructure/1.0.0": {
-        "type": "package",
-        "compile": {
-          "lib/net40/Microsoft.Web.Infrastructure.dll": {}
-        },
-        "runtime": {
-          "lib/net40/Microsoft.Web.Infrastructure.dll": {}
         }
       },
       "Microsoft.Win32.Primitives/4.3.0": {
@@ -3308,12 +3199,9 @@
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.JwtBearer": "5.0.17",
-          "Microsoft.AspNetCore.Identity": "2.2.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.17",
           "Microsoft.AspNetCore.Mvc.WebApiCompatShim": "2.2.0",
-          "Microsoft.Extensions.Configuration.Abstractions": "5.0.0",
-          "Microsoft.Extensions.Options": "5.0.0",
-          "Microsoft.Extensions.Options.ConfigurationExtensions": "5.0.0",
+          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.17",
           "Pet_Store.Domains": "1.0.0"
         },
         "compile": {
@@ -3327,13 +3215,9 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
-          "Microsoft.AspNet.Mvc": "5.2.9",
-          "Microsoft.AspNetCore.Http.Features": "2.2.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.17",
-          "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
           "Microsoft.AspNetCore.Mvc.ViewFeatures": "2.2.0",
-          "Microsoft.EntityFrameworkCore": "5.0.17",
-          "Microsoft.EntityFrameworkCore.Relational": "5.0.17"
+          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.17"
         },
         "compile": {
           "bin/placeholder/Pet_Store.Domains.dll": {}
@@ -3361,38 +3245,6 @@
         "logo.png"
       ]
     },
-    "Microsoft.AspNet.Mvc/5.2.9": {
-      "sha512": "bcekKshCAh7kTWSMZPavQStSZQF/QmjEjO2gVWGITEd0/t5eRlb+ZLDE+az2qY1bZ8L6Hz0OCNeS0uzXtJcK5w==",
-      "type": "package",
-      "path": "microsoft.aspnet.mvc/5.2.9",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Content/Web.config.install.xdt",
-        "Content/Web.config.uninstall.xdt",
-        "NET.icon.png",
-        "NET_Library_EULA_ENU.txt",
-        "lib/net45/System.Web.Mvc.dll",
-        "lib/net45/System.Web.Mvc.xml",
-        "microsoft.aspnet.mvc.5.2.9.nupkg.sha512",
-        "microsoft.aspnet.mvc.nuspec"
-      ]
-    },
-    "Microsoft.AspNet.Razor/3.2.9": {
-      "sha512": "QOJEnEw3xp+t5lMvYR5nGCF4CfZpHqr2p8uZOBEgDZoB6r2txtSj6581YNr+/dOHjI3YRlo1QAKGQoSohbQ/KA==",
-      "type": "package",
-      "path": "microsoft.aspnet.razor/3.2.9",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "NET.icon.png",
-        "NET_Library_EULA_ENU.txt",
-        "lib/net45/System.Web.Razor.dll",
-        "lib/net45/System.Web.Razor.xml",
-        "microsoft.aspnet.razor.3.2.9.nupkg.sha512",
-        "microsoft.aspnet.razor.nuspec"
-      ]
-    },
     "Microsoft.AspNet.WebApi.Client/5.2.6": {
       "sha512": "owAlEIUZXWSnkK8Z1c+zR47A0X6ykF4XjbPok4lQKNuciUfHLGPd6QnI+rt/8KlQ17PmF+I4S3f+m+Qe4IvViw==",
       "type": "package",
@@ -3408,29 +3260,6 @@
         "lib/portable-wp8+netcore45+net45+wp81+wpa81/System.Net.Http.Formatting.xml",
         "microsoft.aspnet.webapi.client.5.2.6.nupkg.sha512",
         "microsoft.aspnet.webapi.client.nuspec"
-      ]
-    },
-    "Microsoft.AspNet.WebPages/3.2.9": {
-      "sha512": "yByb721lwv8YFsx1oKA5CLKXa89XVbVMkPafS4bg/bPelBEgChq/coFBQEkA4kwcabG7AR56w3vapnoZUfr2Cw==",
-      "type": "package",
-      "path": "microsoft.aspnet.webpages/3.2.9",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Content/Web.config.install.xdt",
-        "Content/Web.config.uninstall.xdt",
-        "NET.icon.png",
-        "NET_Library_EULA_ENU.txt",
-        "lib/net45/System.Web.Helpers.dll",
-        "lib/net45/System.Web.Helpers.xml",
-        "lib/net45/System.Web.WebPages.Deployment.dll",
-        "lib/net45/System.Web.WebPages.Deployment.xml",
-        "lib/net45/System.Web.WebPages.Razor.dll",
-        "lib/net45/System.Web.WebPages.Razor.xml",
-        "lib/net45/System.Web.WebPages.dll",
-        "lib/net45/System.Web.WebPages.xml",
-        "microsoft.aspnet.webpages.3.2.9.nupkg.sha512",
-        "microsoft.aspnet.webpages.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Antiforgery/2.2.0": {
@@ -3763,16 +3592,16 @@
         "microsoft.aspnetcore.mvc.abstractions.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Mvc.Core/2.2.5": {
-      "sha512": "/8sr8ixIUD57UFwUntha9bOwex7/AkZfdk1f9oNJG1Ek7p/uuKVa7fuHmYZpQOf35Oxrt+2Ku4WPwMSbNxOuWg==",
+    "Microsoft.AspNetCore.Mvc.Core/2.2.0": {
+      "sha512": "ALiY4a6BYsghw8PT5+VU593Kqp911U3w9f/dH9/ZoI3ezDsDAGiObqPu/HP1oXK80Ceu0XdQ3F0bx5AXBeuN/Q==",
       "type": "package",
-      "path": "microsoft.aspnetcore.mvc.core/2.2.5",
+      "path": "microsoft.aspnetcore.mvc.core/2.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/netstandard2.0/Microsoft.AspNetCore.Mvc.Core.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.Mvc.Core.xml",
-        "microsoft.aspnetcore.mvc.core.2.2.5.nupkg.sha512",
+        "microsoft.aspnetcore.mvc.core.2.2.0.nupkg.sha512",
         "microsoft.aspnetcore.mvc.core.nuspec"
       ]
     },
@@ -4216,26 +4045,6 @@
         "version.txt"
       ]
     },
-    "Microsoft.Extensions.Configuration.Binder/5.0.0": {
-      "sha512": "Of1Irt1+NzWO+yEYkuDh5TpT4On7LKl98Q9iLqCdOZps6XXEWDj3AKtmyvzJPVXZe4apmkJJIiDL7rR1yC+hjQ==",
-      "type": "package",
-      "path": "microsoft.extensions.configuration.binder/5.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "LICENSE.TXT",
-        "THIRD-PARTY-NOTICES.TXT",
-        "lib/net461/Microsoft.Extensions.Configuration.Binder.dll",
-        "lib/net461/Microsoft.Extensions.Configuration.Binder.xml",
-        "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.dll",
-        "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.xml",
-        "microsoft.extensions.configuration.binder.5.0.0.nupkg.sha512",
-        "microsoft.extensions.configuration.binder.nuspec",
-        "useSharedDesignerContext.txt",
-        "version.txt"
-      ]
-    },
     "Microsoft.Extensions.DependencyInjection/5.0.2": {
       "sha512": "xzFW00AZEvOXM1OX+0+AYH5op/Hf3u//e6wszBd/rK72sypD+jx5CtsHxM4BVuFBEs8SajfO4QzSJtrQaHDr4A==",
       "type": "package",
@@ -4296,46 +4105,30 @@
         "microsoft.extensions.dependencymodel.nuspec"
       ]
     },
-    "Microsoft.Extensions.FileProviders.Abstractions/5.0.0": {
-      "sha512": "iuZIiZ3mteEb+nsUqpGXKx2cGF+cv6gWPd5jqQI4hzqdiJ6I94ddLjKhQOuRW1lueHwocIw30xbSHGhQj0zjdQ==",
+    "Microsoft.Extensions.FileProviders.Abstractions/2.2.0": {
+      "sha512": "EcnaSsPTqx2MGnHrmWOD0ugbuuqVT8iICqSqPzi45V5/MA1LjUNb0kwgcxBGqizV1R+WeBK7/Gw25Jzkyk9bIw==",
       "type": "package",
-      "path": "microsoft.extensions.fileproviders.abstractions/5.0.0",
+      "path": "microsoft.extensions.fileproviders.abstractions/2.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "Icon.png",
-        "LICENSE.TXT",
-        "THIRD-PARTY-NOTICES.TXT",
-        "lib/net461/Microsoft.Extensions.FileProviders.Abstractions.dll",
-        "lib/net461/Microsoft.Extensions.FileProviders.Abstractions.xml",
         "lib/netstandard2.0/Microsoft.Extensions.FileProviders.Abstractions.dll",
         "lib/netstandard2.0/Microsoft.Extensions.FileProviders.Abstractions.xml",
-        "microsoft.extensions.fileproviders.abstractions.5.0.0.nupkg.sha512",
-        "microsoft.extensions.fileproviders.abstractions.nuspec",
-        "useSharedDesignerContext.txt",
-        "version.txt"
+        "microsoft.extensions.fileproviders.abstractions.2.2.0.nupkg.sha512",
+        "microsoft.extensions.fileproviders.abstractions.nuspec"
       ]
     },
-    "Microsoft.Extensions.Hosting.Abstractions/5.0.0": {
-      "sha512": "cbUOCePYBl1UhM+N2zmDSUyJ6cODulbtUd9gEzMFIK3RQDtP/gJsE08oLcBSXH3Q1RAQ0ex7OAB3HeTKB9bXpg==",
+    "Microsoft.Extensions.Hosting.Abstractions/2.2.0": {
+      "sha512": "+k4AEn68HOJat5gj1TWa6X28WlirNQO9sPIIeQbia+91n03esEtMSSoekSTpMjUzjqtJWQN3McVx0GvSPFHF/Q==",
       "type": "package",
-      "path": "microsoft.extensions.hosting.abstractions/5.0.0",
+      "path": "microsoft.extensions.hosting.abstractions/2.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "Icon.png",
-        "LICENSE.TXT",
-        "THIRD-PARTY-NOTICES.TXT",
-        "lib/net461/Microsoft.Extensions.Hosting.Abstractions.dll",
-        "lib/net461/Microsoft.Extensions.Hosting.Abstractions.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Hosting.Abstractions.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Hosting.Abstractions.xml",
-        "lib/netstandard2.1/Microsoft.Extensions.Hosting.Abstractions.dll",
-        "lib/netstandard2.1/Microsoft.Extensions.Hosting.Abstractions.xml",
-        "microsoft.extensions.hosting.abstractions.5.0.0.nupkg.sha512",
-        "microsoft.extensions.hosting.abstractions.nuspec",
-        "useSharedDesignerContext.txt",
-        "version.txt"
+        "microsoft.extensions.hosting.abstractions.2.2.0.nupkg.sha512",
+        "microsoft.extensions.hosting.abstractions.nuspec"
       ]
     },
     "Microsoft.Extensions.Identity.Core/5.0.17": {
@@ -4475,26 +4268,6 @@
         "lib/netstandard2.0/Microsoft.Extensions.Options.xml",
         "microsoft.extensions.options.5.0.0.nupkg.sha512",
         "microsoft.extensions.options.nuspec",
-        "useSharedDesignerContext.txt",
-        "version.txt"
-      ]
-    },
-    "Microsoft.Extensions.Options.ConfigurationExtensions/5.0.0": {
-      "sha512": "280RxNJqOeQqq47aJLy5D9LN61CAWeuRA83gPToQ8B9jl9SNdQ5EXjlfvF66zQI5AXMl+C/3hGnbtIEN+X3mqA==",
-      "type": "package",
-      "path": "microsoft.extensions.options.configurationextensions/5.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "LICENSE.TXT",
-        "THIRD-PARTY-NOTICES.TXT",
-        "lib/net461/Microsoft.Extensions.Options.ConfigurationExtensions.dll",
-        "lib/net461/Microsoft.Extensions.Options.ConfigurationExtensions.xml",
-        "lib/netstandard2.0/Microsoft.Extensions.Options.ConfigurationExtensions.dll",
-        "lib/netstandard2.0/Microsoft.Extensions.Options.ConfigurationExtensions.xml",
-        "microsoft.extensions.options.configurationextensions.5.0.0.nupkg.sha512",
-        "microsoft.extensions.options.configurationextensions.nuspec",
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
@@ -4702,18 +4475,6 @@
         "microsoft.netcore.targets.1.1.3.nupkg.sha512",
         "microsoft.netcore.targets.nuspec",
         "runtime.json"
-      ]
-    },
-    "Microsoft.Web.Infrastructure/1.0.0": {
-      "sha512": "FNmvLn5m2LTU/Rs2KWVo0SIIh9Ek+U0ojex7xeDaSHw/zgEP77A8vY5cVWgUtBGS8MJfDGNn8rpXJWEIQaPwTg==",
-      "type": "package",
-      "path": "microsoft.web.infrastructure/1.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net40/Microsoft.Web.Infrastructure.dll",
-        "microsoft.web.infrastructure.1.0.0.nupkg.sha512",
-        "microsoft.web.infrastructure.nuspec"
       ]
     },
     "Microsoft.Win32.Primitives/4.3.0": {
@@ -9391,15 +9152,8 @@
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 5.0.17",
       "Microsoft.AspNetCore.Identity >= 2.2.0",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 5.0.17",
-      "Microsoft.EntityFrameworkCore >= 5.0.17",
-      "Microsoft.EntityFrameworkCore.Design >= 5.0.17",
-      "Microsoft.EntityFrameworkCore.Relational >= 5.0.17",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.17",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.17",
-      "Microsoft.Extensions.Configuration.Abstractions >= 5.0.0",
-      "Microsoft.Extensions.Hosting.Abstractions >= 5.0.0",
-      "Microsoft.Extensions.Options >= 5.0.0",
-      "Microsoft.Extensions.Options.ConfigurationExtensions >= 5.0.0",
       "Pet_Store.Application >= 1.0.0",
       "Pet_Store.Domains >= 1.0.0"
     ]
@@ -9411,9 +9165,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Vale2920\\Desktop\\University\\7 quarter\\Programacion Avanzada en Web\\PrograAvanzadaWeb\\PROYECTO\\Pet_Store.API\\Pet_Store.DataAcess\\Pet_Store.DataAcess.csproj",
-      "projectName": "Pet_Store.DataAcess",
-      "projectPath": "C:\\Users\\Vale2920\\Desktop\\University\\7 quarter\\Programacion Avanzada en Web\\PrograAvanzadaWeb\\PROYECTO\\Pet_Store.API\\Pet_Store.DataAcess\\Pet_Store.DataAcess.csproj",
+      "projectUniqueName": "C:\\Users\\Vale2920\\Desktop\\University\\7 quarter\\Programacion Avanzada en Web\\PrograAvanzadaWeb\\PROYECTO\\Pet_Store.API\\Pet_Store.DataAcess\\Pet_Store.Infraestructure.csproj",
+      "projectName": "Pet_Store.Infraestructure",
+      "projectPath": "C:\\Users\\Vale2920\\Desktop\\University\\7 quarter\\Programacion Avanzada en Web\\PrograAvanzadaWeb\\PROYECTO\\Pet_Store.API\\Pet_Store.DataAcess\\Pet_Store.Infraestructure.csproj",
       "packagesPath": "C:\\Users\\Vale2920\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Vale2920\\Desktop\\University\\7 quarter\\Programacion Avanzada en Web\\PrograAvanzadaWeb\\PROYECTO\\Pet_Store.API\\Pet_Store.DataAcess\\obj\\",
       "projectStyle": "PackageReference",
@@ -9467,20 +9221,6 @@
             "target": "Package",
             "version": "[5.0.17, )"
           },
-          "Microsoft.EntityFrameworkCore": {
-            "target": "Package",
-            "version": "[5.0.17, )"
-          },
-          "Microsoft.EntityFrameworkCore.Design": {
-            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-            "suppressParent": "All",
-            "target": "Package",
-            "version": "[5.0.17, )"
-          },
-          "Microsoft.EntityFrameworkCore.Relational": {
-            "target": "Package",
-            "version": "[5.0.17, )"
-          },
           "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
             "version": "[5.0.17, )"
@@ -9490,22 +9230,6 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[5.0.17, )"
-          },
-          "Microsoft.Extensions.Configuration.Abstractions": {
-            "target": "Package",
-            "version": "[5.0.0, )"
-          },
-          "Microsoft.Extensions.Hosting.Abstractions": {
-            "target": "Package",
-            "version": "[5.0.0, )"
-          },
-          "Microsoft.Extensions.Options": {
-            "target": "Package",
-            "version": "[5.0.0, )"
-          },
-          "Microsoft.Extensions.Options.ConfigurationExtensions": {
-            "target": "Package",
-            "version": "[5.0.0, )"
           }
         },
         "imports": [
@@ -9527,47 +9251,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.AspNet.Mvc 5.2.9' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.AspNet.Mvc",
-      "targetGraphs": [
-        "net5.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.AspNet.Razor 3.2.9' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.AspNet.Razor",
-      "targetGraphs": [
-        "net5.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.AspNet.WebPages 3.2.9' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.AspNet.WebPages",
-      "targetGraphs": [
-        "net5.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.Web.Infrastructure 1.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.Web.Infrastructure",
-      "targetGraphs": [
-        "net5.0"
-      ]
-    }
-  ]
+  }
 }

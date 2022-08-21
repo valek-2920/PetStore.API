@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pet_Store.API", "Pet_Store.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pet_Store.Domains", "Pet_Store.Domains\Pet_Store.Domains.csproj", "{99A553F8-08AB-4AEF-AFD0-A3BC1E46DF25}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pet_Store.DataAcess", "Pet_Store.DataAcess\Pet_Store.DataAcess.csproj", "{080E5491-2D03-48F9-AE43-33A10EC5FE65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pet_Store.Infraestructure", "Pet_Store.DataAcess\Pet_Store.Infraestructure.csproj", "{080E5491-2D03-48F9-AE43-33A10EC5FE65}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pet_Store.Responsive", "Pet_Store.Responsive\Pet_Store.Responsive.csproj", "{64D8B571-9B9D-4283-BF9F-6FA0EE7EF2F5}"
 EndProject

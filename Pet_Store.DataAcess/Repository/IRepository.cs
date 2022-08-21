@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pet_Store.DataAcess.Repository
+namespace PetStore.Infraestructure.Repository
 {
     public interface IRepository<TEntity>
         where TEntity : class

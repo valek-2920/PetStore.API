@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Pet_Store.DataAcess.Data;
+using Pet_Store.Infraestructure.Data;
 
-namespace Pet_Store.DataAcess.Migrations
+namespace PetStore.Infraestructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220821130720_addModelsToDb")]
+    [Migration("20220821144548_addModelsToDb")]
     partial class addModelsToDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

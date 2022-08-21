@@ -1,15 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Pet_Store.Domains.Models.DataModels;
-using Pet_Store.Domains.Models.InputModels;
-using Pet_Store.DataAcess.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Pet_Store.DataAcess.Repository;
+﻿using Pet_Store.Domains.Models.DataModels;
+using Pet_Store.Infraestructure.Data;
 
-namespace PetStore.DataAccess.Repository
+namespace PetStore.Infraestructure.Repository
 {
     public class ProductsRepository : Repository<Products>, IRepository<Products>
     {

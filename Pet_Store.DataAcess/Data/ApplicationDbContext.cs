@@ -2,16 +2,12 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Pet_Store.Domains.Models.DataModels;
-using Pet_Store.DataAcess.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using PetStore.Infraestructure.Data;
 
-namespace Pet_Store.DataAcess.Data
+
+namespace Pet_Store.Infraestructure.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<IdentityUser>, IApplicationDbContext
+    public class ApplicationDbContext : IdentityDbContext, IApplicationDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

@@ -2,13 +2,13 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Pet_Store.DataAcess.Data;
-using Pet_Store.DataAcess.Repository.UnitOfWork;
+using Pet_Store.Infraestructure.Data;
 using Pet_Store.Domains.Models.DataModels;
-using PetStore.DataAccess.Repository;
+using PetStore.Infraestructure.Repository.UnitOfWork;
+using PetStore.Infraestructure.Repository;
+using PetStore.Infraestructure.Data;
 
-
-namespace Pet_Store.DataAcess
+namespace PetStore.Infraestructure
 {
     public static class Injection
     {
@@ -16,17 +16,18 @@ namespace Pet_Store.DataAcess
             (this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<ApplicationDbContext>
-              (options => options.UseSqlServer(configuration.GetConnectionString("Default")))
-                  .AddUnitOfWork<ApplicationDbContext>()
-                    .AddRepository<Category, CategoryRepository>()
-                    .AddRepository<OrderDetails, OrderDetailsRepository>()
-                    .AddRepository<OrderHeader, OrderHeaderRepository>()
-                    .AddRepository<Products, ProductsRepository>()
-                    .AddRepository<ShoppingCart, ShoppingCartRepository>()
-                    .AddRepository<Users, UsersRepository>();
+         (options => options.UseSqlServer(configuration.GetConnectionString("ConnectionString")))
+             .AddUnitOfWork<ApplicationDbContext>()
+               .AddRepository<Category, CategoryRepository>()
+               .AddRepository<OrderDetails, OrderDetailsRepository>()
+               .AddRepository<OrderHeader, OrderHeaderRepository>()
+               .AddRepository<Products, ProductsRepository>()
+               .AddRepository<ShoppingCart, ShoppingCartRepository>()
+               .AddRepository<Users, UsersRepository>();
+
 
             services.AddScoped<IApplicationDbContext>
-                (options => options.GetService<ApplicationDbContext>());
+             (options => options.GetService<ApplicationDbContext>());
 
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()

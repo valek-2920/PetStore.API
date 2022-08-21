@@ -23,11 +23,12 @@ namespace Pet_Store.Application
             (this IServiceCollection services, IConfiguration configuration)
         {
             JwtConfiguration
-                jwtConfiguration =
-                    configuration.GetSection("JwtConfiguration")
-                        .Get<JwtConfiguration>();
+                 jwtConfiguration =
+                     configuration.GetSection("JwtConfiguration")
+                         .Get<JwtConfiguration>();
 
             services.Configure<JwtConfiguration>(configuration.GetSection("JwtConfiguration"));
+
             services.AddSingleton<IJwtManager, JwtManager>();
 
             services.AddAuthentication
@@ -59,28 +60,28 @@ namespace Pet_Store.Application
                         }
                     );
 
-            services.AddAuthorization(
-                    options =>
+            services.AddAuthorization
+              (
+                options =>
+                {
+                    foreach (var value in Enum.GetValues(typeof(PermissionTypes)))
                     {
-                        foreach (var value in Enum.GetValues(typeof(PermissionTypes)))
-                        {
-                            PermissionTypes permissionType = (PermissionTypes)value;
-                            var description = permissionType.GetDescription().Split(':');
-                            var claim = new Claim(description.FirstOrDefault(), description.LastOrDefault());
-
-                            options.AddPolicy
-                            (
-                                String.Join(":", description),
-                                policy =>
-                                {
-                                    policy.Requirements.Add
-                                         (new PermissionRequirement(permissionType));
-                                }
-                             );
-                        }
+                        PermissionTypes permissionType = (PermissionTypes)value;
+                        var description = permissionType.GetDescription().Split(':');
+                        var claim =
+                    new Claim(description.FirstOrDefault(), description.LastOrDefault());
+                        options.AddPolicy
+                    (
+                      string.Join(":", description),
+                      policy =>
+                      {
+                          policy.Requirements.Add
+                            (new PermissionRequirement(permissionType));
+                      }
+                    );
                     }
-                 );
-
+                }
+              );
             services.AddScoped<IAuthorizationHandler, PermissionHandler>();
 
             return services;

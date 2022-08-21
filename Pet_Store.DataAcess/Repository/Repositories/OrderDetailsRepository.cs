@@ -1,11 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Pet_Store.Domains.Models.DataModels;
-using Pet_Store.DataAcess.Data;
+using Pet_Store.Infraestructure.Data;
 using System.Collections.Generic;
 using System.Linq;
-using Pet_Store.DataAcess.Repository;
 
-namespace PetStore.DataAccess.Repository
+namespace PetStore.Infraestructure.Repository
 {
     public class OrderDetailsRepository : Repository<OrderDetails>, IRepository<OrderDetails>
     {

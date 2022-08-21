@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Pet_Store.DataAcess.Migrations
+namespace PetStore.Infraestructure.Migrations
 {
     public partial class addModelsToDb : Migration
     {

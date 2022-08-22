@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Pet_Store.Domains.Models.DataModels;
 using Pet_Store.Domains.Models.InputModels;
-using PetStore.DataAccess.Repository.UnityOfWork;
-using Project_PetStore.API.DataAccess;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using PetStore.Infraestructure.Repository;
+using Pet_Store.Infraestructure.Data;
+using PetStore.Infraestructure.Repository.UnitOfWork;
 
 namespace Pet_Store.API.Controllers
 {
@@ -11,13 +14,23 @@ namespace Pet_Store.API.Controllers
     [ApiController]
     public class ShoppingCartController : ControllerBase
     {
-        IApplicationDbContext Context;
-        private readonly IUnityOfWork _unityOfWork;
-        public ShoppingCartController(IUnityOfWork unityOfWork, IApplicationDbContext context)
+        readonly IUnitOfWork<ApplicationDbContext> _unitOfWork;
+        readonly IRepository<Category> _categoryRepository;
+        readonly IRepository<Products> _productsRepository;
+        readonly IRepository<Users> _usersRepository;
+        readonly IRepository<ShoppingCart> _shoppingCartRepository;
+        readonly ApplicationDbContext _context;
+
+
+        public ShoppingCartController(IUnitOfWork<ApplicationDbContext> unitOfWork, ApplicationDbContext context)
         {
-            _unityOfWork = unityOfWork;
-            Context = context;
+            _unitOfWork = unitOfWork;
+            _productsRepository = _unitOfWork.Repository<Products>();
+            _usersRepository = _unitOfWork.Repository<Users>();
+            _shoppingCartRepository = _unitOfWork.Repository<ShoppingCart>();
+            _context = context;
         }
+
 
         [HttpPost]
         [Route("add-products")]
@@ -25,24 +38,24 @@ namespace Pet_Store.API.Controllers
         {
             if (ModelState.IsValid)
             {
-                var getUser = _unityOfWork.UsersRepository.GetFirstOrDefault(x => x.UserId == model.UserId);
-                var getProduct = _unityOfWork.ProductsRepository.GetFirstOrDefault(x => x.Name == model.Product);
+                var getUser = _usersRepository.GetFirstOrDefault(x => x.Id == model.UserId);
+                var getProduct = _productsRepository.GetFirstOrDefault(x => x.Name == model.Product);
                 ShoppingCart shoppingCart = new ShoppingCart();
 
                 if (getUser != null && getProduct != null)
                 {
 
-                    var CartExist = _unityOfWork.ShoppingCartRepository.GetFirstOrDefault(x => x.User.UserId == model.UserId);
-                    var products = _unityOfWork.ShoppingCartRepository.getProductsName(model.UserId);
+                    var CartExist = _shoppingCartRepository.GetFirstOrDefault(x => x.User.Id == model.UserId);
+                    var products = (from x in _context.ShoppingCarts where x.User.Id == model.UserId select x.Product.Name).ToList();
 
-                    if (CartExist != null && products.Contains(model.Product))
+                    if (CartExist != null && products != null && products.Contains(model.Product))
                     {
                         //actualizar producto existente con nuevos datos
                         CartExist.Count += model.Count;
                         CartExist.Subtotal = CartExist.Count * getProduct.Price;
 
-                        _unityOfWork.ShoppingCartRepository.Update(CartExist);
-                        _unityOfWork.Save();
+                        _shoppingCartRepository.Update(CartExist);
+                        _unitOfWork.Save();
                         return Ok(CartExist);
                     }
                     //crear carrito al usuario
@@ -54,8 +67,8 @@ namespace Pet_Store.API.Controllers
                         Subtotal = (model.Count * getProduct.Price),
                     };
 
-                    _unityOfWork.ShoppingCartRepository.Add(shoppingCart);
-                    _unityOfWork.Save();
+                    _shoppingCartRepository.Add(shoppingCart);
+                    _unitOfWork.Save();
                     return Ok(shoppingCart);
                 }
                 return BadRequest("Producto o usuario no existe");
@@ -66,12 +79,18 @@ namespace Pet_Store.API.Controllers
 
         [HttpDelete]
         [Route("remove-product")]
-        public IActionResult DeleteItem(int Userid, int count, int ProductoID)
+        public IActionResult DeleteItem(string Userid, int count, int ProductoID)
         {
-            var CartExist = _unityOfWork.ShoppingCartRepository.GetFirstOrDefault(x => x.User.UserId == Userid);
-            var products = _unityOfWork.ShoppingCartRepository.getProducts(Userid);
-            var product = _unityOfWork.ShoppingCartRepository.GetFirstOrDefault(x => x.Product.ProductId == ProductoID);
-            var getProduct = _unityOfWork.ProductsRepository.GetFirstOrDefault(x => x.Name == product.Product.Name);
+            var CartExist = _shoppingCartRepository.GetFirstOrDefault(x => x.User.Id == Userid);
+
+            var products = (from x in _context.ShoppingCarts
+                          .Include(x => x.User)
+                          .Include(x => x.Product)
+                            where x.User.Id == Userid
+                            select x).ToList();
+
+            var product = _shoppingCartRepository.GetFirstOrDefault(x => x.Product.ProductId == ProductoID);
+            var getProduct = _productsRepository.GetFirstOrDefault(x => x.Name == product.Product.Name);
 
             if (product != null && CartExist != null)
             {
@@ -86,13 +105,13 @@ namespace Pet_Store.API.Controllers
 
                         if (CartExist.Count <= 0)
                         {
-                            _unityOfWork.ShoppingCartRepository.Remove(product);
-                            _unityOfWork.Save();
+                            _shoppingCartRepository.Remove(product);
+                            _unitOfWork.Save();
                             return Ok($"El producto ha sido eliminado del carrito ");
                         }
 
-                        _unityOfWork.ShoppingCartRepository.Update(CartExist);
-                        _unityOfWork.Save();
+                        _shoppingCartRepository.Update(CartExist);
+                        _unitOfWork.Save();
                         return Ok(CartExist);
                     }
 
@@ -103,8 +122,8 @@ namespace Pet_Store.API.Controllers
             else if (CartExist.Product == null)
             {
 
-                _unityOfWork.ShoppingCartRepository.Remove(CartExist);
-                _unityOfWork.Save();
+                _shoppingCartRepository.Remove(CartExist);
+                _unitOfWork.Save();
                 return Ok($"Se elimino el carrito ");
             }
             else if (product == null)
@@ -119,10 +138,13 @@ namespace Pet_Store.API.Controllers
 
         [HttpGet]
         [Route("GetAll-Products")]
-        public IActionResult GetProducts(int userId)
+        public IActionResult GetProducts(string userId)
         {
-            List<ShoppingCart> allProductosShoppinCart = _unityOfWork.ShoppingCartRepository.GetShoppingcartByUser(userId);
-            _unityOfWork.Save();
+            List<ShoppingCart> allProductosShoppinCart = (from x in _context.ShoppingCarts
+                          .Include(x => x.User)
+                          .Include(x => x.Product)
+                          where x.User.Id == userId
+                          select x).ToList();
 
             if (allProductosShoppinCart != null)
             {

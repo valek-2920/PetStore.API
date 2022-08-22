@@ -154,8 +154,7 @@ namespace Pet_Store.Responsive.Controllers
         [HttpDelete]
         public async Task<IActionResult> EliminarCategorias(int id)
         {
-            var response = await _services.deleteCategoryById(id);
-            ViewBag.response = response;
+            await _services.deleteCategoryById(id);
             return RedirectToAction("Categorias");
 
         }

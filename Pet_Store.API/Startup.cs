@@ -39,7 +39,7 @@ namespace Pet_Store.API
             services.AddScoped<IApplicationDbContext>
                 (options => options.GetService<ApplicationDbContext>());
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Pet_Store.API", Version = "v1" });

@@ -177,13 +177,17 @@ namespace PetStore.Infraestructure.Migrations
                 {
                     OrderId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+<<<<<<<< HEAD:Pet_Store.DataAcess/Migrations/20220821144548_addModelsToDb.cs
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+========
+                    UserId = table.Column<int>(type: "int", nullable: false),
+>>>>>>>> main:Pet_Store.DataAcess/Migrations/20220822124116_AddModelsToDb.cs
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ShippingDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PhoneNumber = table.Column<int>(type: "int", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Country = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Country = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -191,9 +195,40 @@ namespace PetStore.Infraestructure.Migrations
                     table.ForeignKey(
                         name: "FK_OrderHeaders_AspNetUsers_UserId",
                         column: x => x.UserId,
+<<<<<<<< HEAD:Pet_Store.DataAcess/Migrations/20220821144548_addModelsToDb.cs
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+========
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Payments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    firstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    lastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    zipCode = table.Column<int>(type: "int", nullable: false),
+                    cardNumber = table.Column<long>(type: "bigint", nullable: false),
+                    expirationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CVV = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Payments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Payments_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+>>>>>>>> main:Pet_Store.DataAcess/Migrations/20220822124116_AddModelsToDb.cs
                 });
 
             migrationBuilder.CreateTable(
@@ -226,8 +261,13 @@ namespace PetStore.Infraestructure.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<double>(type: "float", nullable: false),
+<<<<<<<< HEAD:Pet_Store.DataAcess/Migrations/20220821144548_addModelsToDb.cs
                     CategoryId = table.Column<int>(type: "int", nullable: true),
                     Files = table.Column<string>(type: "nvarchar(max)", nullable: false),
+========
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
+                    Files = table.Column<string>(type: "nvarchar(max)", nullable: true),
+>>>>>>>> main:Pet_Store.DataAcess/Migrations/20220822124116_AddModelsToDb.cs
                     OrderDetailsId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -238,7 +278,7 @@ namespace PetStore.Infraestructure.Migrations
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "CategoryId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Products_OrderDetails_OrderDetailsId",
                         column: x => x.OrderDetailsId,
@@ -254,8 +294,13 @@ namespace PetStore.Infraestructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Count = table.Column<int>(type: "int", nullable: false),
+<<<<<<<< HEAD:Pet_Store.DataAcess/Migrations/20220821144548_addModelsToDb.cs
                     ProductId = table.Column<int>(type: "int", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+========
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+>>>>>>>> main:Pet_Store.DataAcess/Migrations/20220822124116_AddModelsToDb.cs
                     Subtotal = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
@@ -272,7 +317,17 @@ namespace PetStore.Infraestructure.Migrations
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "ProductId",
+<<<<<<<< HEAD:Pet_Store.DataAcess/Migrations/20220821144548_addModelsToDb.cs
                         onDelete: ReferentialAction.Restrict);
+========
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ShoppingCarts_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+>>>>>>>> main:Pet_Store.DataAcess/Migrations/20220822124116_AddModelsToDb.cs
                 });
 
             migrationBuilder.CreateIndex(
@@ -325,6 +380,11 @@ namespace PetStore.Infraestructure.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Payments_UserId",
+                table: "Payments",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Products_CategoryId",
                 table: "Products",
                 column: "CategoryId");
@@ -361,6 +421,9 @@ namespace PetStore.Infraestructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Payments");
 
             migrationBuilder.DropTable(
                 name: "ShoppingCarts");

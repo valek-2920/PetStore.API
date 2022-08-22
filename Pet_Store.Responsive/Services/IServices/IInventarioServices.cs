@@ -1,4 +1,5 @@
 ﻿using Pet_Store.Domains.Models.DataModels;
+using Pet_Store.Domains.Models.InputModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -14,7 +15,6 @@ namespace Pet_Store.Responsive.Services.IServices
 
         Task<IEnumerable<Category>> GetCategoriesAsync();
         Task<Category> getCategoryById(int id);
-        Task<Category> updateCategoryById(Category category);
         Task<Category> AddCategoryAsync(Category category);
         Task<string> deleteCategoryById(int id);
     }

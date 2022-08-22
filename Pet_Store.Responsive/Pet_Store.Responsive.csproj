@@ -21,4 +21,8 @@
     <ProjectReference Include="..\Pet_Store.Domains\Pet_Store.Domains.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\img\productos\" />
+  </ItemGroup>
+
 </Project>

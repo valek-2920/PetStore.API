@@ -11,6 +11,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Pet_Store.Application.Handlers;
 
 namespace Pet_Store.Responsive.Controllers
 {
@@ -33,6 +35,7 @@ namespace Pet_Store.Responsive.Controllers
             _hostEnvironment = hostEnvironment;
         }
 
+        [Authorize(Policy = PermissionTypeNames.MANAGEROLES)]
         public async Task<IActionResult> Inventario()
         {
             var products = await _services.getProductsAsync();
@@ -41,6 +44,7 @@ namespace Pet_Store.Responsive.Controllers
 
         }
 
+        [Authorize(Policy = PermissionTypeNames.MANAGEROLES)]
         public async Task<IActionResult> Upsert(int? id)
         {
             var categories = await _services.GetCategoriesAsync();
@@ -72,6 +76,7 @@ namespace Pet_Store.Responsive.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = PermissionTypeNames.MANAGEROLES)]
         public async Task<IActionResult> Upsert([FromForm] ProductsViewModel model, IFormFile? file)
         {
 
@@ -117,6 +122,7 @@ namespace Pet_Store.Responsive.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = PermissionTypeNames.MANAGEROLES)]
         public async Task<IActionResult> EliminarProductos(int id)
         {
             var response = await _services.deleteProductById(id);
@@ -125,6 +131,7 @@ namespace Pet_Store.Responsive.Controllers
         }
 
         [HttpGet]
+        [Authorize(Policy = PermissionTypeNames.MANAGEROLES)]
         public async Task<IActionResult> Categorias()
         {
             var categories = await _services.GetCategoriesAsync();
@@ -137,6 +144,7 @@ namespace Pet_Store.Responsive.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = PermissionTypeNames.MANAGEROLES)]
         public async Task<IActionResult> AgregarCategorias(Category category)
         {
             await _services.AddCategoryAsync(category);
@@ -144,11 +152,19 @@ namespace Pet_Store.Responsive.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = PermissionTypeNames.MANAGEROLES)]
         public async Task<IActionResult> EliminarCategorias(int id)
         {
                var response = await _services.deleteCategoryById(id);
                 return RedirectToAction("Categorias");
 
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult AccessDenied()
+        {
+            return View();
         }
 
     }

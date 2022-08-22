@@ -33,6 +33,8 @@ namespace Pet_Store.Application.Handlers
                       (s => s.Type.EndsWith
                           ("emailaddress", StringComparison.OrdinalIgnoreCase)).Value);
 
+           
+
             List<Claim> claims = new List<Claim>();
             foreach (var role in _roleManager.Roles)
             {

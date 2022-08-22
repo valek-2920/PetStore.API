@@ -27,7 +27,7 @@ namespace Pet_Store.Domains.Models.InputModels
 
         [Required]
         [EmailAddress]
-        [Remote(action: "checkemail", controller: "accounts", ErrorMessage = "Email already exists! Please try again with a different email")]
+        [Remote(action: "checkemail", controller: "home", ErrorMessage = "Este correo ya esta en uso, por favor intente con otro correo diferente")]
         public string Email { get; set; }
 
         [Required]

@@ -117,9 +117,6 @@ namespace Pet_Store.API.Controllers
         }
 
 
-
-
-
         [HttpGet]
         [Route("GetAll-Products")]
         public IActionResult GetProducts(int userId)

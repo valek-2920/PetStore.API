@@ -29,6 +29,7 @@ namespace Pet_Store.Responsive
             services.AddControllersWithViews();
             services.AddScoped<IInventarioServices, InventarioServices>();
             services.AddScoped<IUserServices, UsersServices>();
+            services.AddScoped<ICheckoutServices, CheckoutServices>();
 
         }
 

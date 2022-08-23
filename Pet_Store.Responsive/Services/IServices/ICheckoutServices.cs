@@ -8,8 +8,8 @@ namespace Pet_Store.Responsive.Services.IServices
     {
         Task<OrderDetails> addProductAsync(OrderHeader product);
         Task<Payments> addPaymentAsync(Payments payments);
-        Task<OrderDetails> getOrderByUserAsync(int userId);
-        Task<List<Products>> getOrderProductsAsync(int userId);
+        Task<OrderDetails> getOrderByUserAsync(string userId);
+        Task<List<Products>> getOrderProductsAsync(string userId);
 
 
     }

@@ -42,7 +42,7 @@ namespace Pet_Store.Responsive.Services
             return postOrder;
         }
 
-        public async Task<OrderDetails> getOrderByUserAsync(int userId)
+        public async Task<OrderDetails> getOrderByUserAsync(string userId)
         {
             OrderDetails orders = new OrderDetails();
 
@@ -61,7 +61,7 @@ namespace Pet_Store.Responsive.Services
             return orders;
         }
 
-        public async Task<List<Products>> getOrderProductsAsync(int userId)
+        public async Task<List<Products>> getOrderProductsAsync(string userId)
         {
             List<Products> products = new List<Products>();
 

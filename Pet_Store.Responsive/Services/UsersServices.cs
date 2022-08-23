@@ -10,12 +10,12 @@ namespace Pet_Store.Responsive.Services
 {
     public class UsersServices : IUserServices
     {
-        public Task<Users> addUserAsync(Users product)
+        public Task<Users> addUserAsync(Users user)
         {
             throw new System.NotImplementedException();
         }
 
-        public async Task<string> deleteUserById(int id)
+        public async Task<string> deleteUserById(string id)
         {
             string apiResponse = "";
             using (var httpClient = new HttpClient())
@@ -32,7 +32,7 @@ namespace Pet_Store.Responsive.Services
             return apiResponse;
         }
 
-        public async Task<Users> getUserById(int id)
+        public async Task<Users> getUserById(string id)
         {
             Users user = new Users();
 
@@ -69,13 +69,13 @@ namespace Pet_Store.Responsive.Services
             return users;
         }
 
-        public async Task<Users> updateUserById(Users product)
+        public async Task<Users> updateUserById(Users user)
         {
             Users putUser = new Users();
 
             using (var httpClient = new HttpClient())
             {
-                StringContent content = new StringContent(JsonConvert.SerializeObject(product), Encoding.UTF8, "application/json");
+                StringContent content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
 
                 using (var response = await httpClient.PutAsync("https://localhost:44316/api/Users/user", content))
                 {

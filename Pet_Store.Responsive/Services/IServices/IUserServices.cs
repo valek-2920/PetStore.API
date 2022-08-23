@@ -7,9 +7,9 @@ namespace Pet_Store.Responsive.Services.IServices
     public interface IUserServices
     {
         Task<IEnumerable<Users>> getUsersAsync();
-        Task<Users> getUserById(int id);
-        Task<Users> updateUserById(Users product);
-        Task<Users> addUserAsync(Users product);
-        Task<string> deleteUserById(int id);
+        Task<Users> getUserById(string id);
+        Task<Users> updateUserById(Users user);
+        Task<Users> addUserAsync(Users user);
+        Task<string> deleteUserById(string id);
     }
 }

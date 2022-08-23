@@ -7,6 +7,7 @@ using Pet_Store.Domains.Models.DataModels;
 using PetStore.Infraestructure.Repository.UnitOfWork;
 using PetStore.Infraestructure.Repository;
 using PetStore.Infraestructure.Data;
+using PetStore.Infraestructure.Repository.Repositories;
 
 namespace PetStore.Infraestructure
 {

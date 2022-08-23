@@ -75,7 +75,5 @@ namespace Pet_Store.Infraestructure.Data
         public DbSet<OrderDetails> OrderDetails { get; set; }
         public DbSet<Payments> Payments { get; set; }
 
-        public DbSet<Payments> Payments { get; set; }
-
     }
 }

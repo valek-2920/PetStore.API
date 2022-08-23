@@ -37,7 +37,6 @@ namespace Pet_Store.API
                    .AddRepository<Users, UsersRepository>()
                    .AddRepository<Payments, PaymentsRepository>();
 
-
             services.AddScoped<IApplicationDbContext>
                 (options => options.GetService<ApplicationDbContext>());
 

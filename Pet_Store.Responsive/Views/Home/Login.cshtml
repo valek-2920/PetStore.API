@@ -1,4 +1,5 @@
-﻿
+﻿@model LoginInputModel
+
 @{
     ViewBag.Title = "Login";
 }
@@ -20,17 +21,37 @@
 <div class="row justify-content-md-center">
     <div class="col-md-4">
         <div class="login-form text-center pb-80">
-            <form type="POST" onSubmit="">
-                <p style="width: 100%">
-                    <label>Correo Electrónico</label>
-                    <input type="email" placeholder="Correo Electrónico" name="email" id="email">
-                </p>
-                <p>
-                    <label>Contraseña</label>
-                    <input type="text" name="password" placeholder="Contraseña"/>
-                </p>
-                <p><input type="submit" value="Iniciar Sesión"></p>
-            </form> 
+            <form method="post">
+
+                <div class="form-group inputs">
+                    <label asp-for="Email"> Correo Electrónico</label>
+                    <input asp-for="Email"  style="width: 100%" class="form-control" placeholder="Correo Electrónico" autofocus />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+
+                    <label asp-for="Password">Contraseña</label>
+                    <input asp-for="Password" style="width: 100%" class="form-control" placeholder="Contraseña" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <div class="form-group inputs">
+                    <button id="submit" type="submit" class="btn btn-outline-primary">Ingresar</button>
+                    <br />
+                    <a asp-action="forgetpassword">Olvido su contraseña?</a>
+                </div>
+
+            </form>
+
+            @*<form type="POST" onSubmit="">
+            <p style="width: 100%">
+                <label>Correo Electrónico</label>
+                <input type="email" placeholder="Correo Electrónico" name="email" id="email">
+            </p>
+            <p>
+                <label>Contraseña</label>
+                <input type="text" name="password" placeholder="Contraseña"/>
+            </p>
+            <p><input type="submit" value="Iniciar Sesión"></p>
+        </form>*@
         </div>
     </div>
 </div>

@@ -20,16 +20,14 @@ namespace Pet_Store.API.Controllers
             _unitOfWork = unitOfWork;
             _paymentsRepository = _unitOfWork.Repository<Payments>();
             _userRepository = _unitOfWork.Repository<Users>();
-
+            
         }
-
         [HttpPost]
         [Route("payment")]
         public IActionResult CreatePayment([FromBody] newPayment model)
         {
             if (ModelState.IsValid)
             {
-
                 var getUser = _userRepository.GetFirstOrDefault(x => x.Id == model.userId);
 
                 if (getUser != null)
@@ -44,23 +42,19 @@ namespace Pet_Store.API.Controllers
                         expirationDate = model.expirationDate,
                         User = getUser
                     };
-
                     _paymentsRepository.Add(newPayment);
                     _unitOfWork.Save();
                     return Ok(model);
                 }
-
                 return BadRequest("usuario no existe");
             }
             return BadRequest("Error al crear pago");
         }
-
         [HttpGet]
         [Route("payment")]
         public IActionResult GetUserPayment(string id)
         {
             var payment = _paymentsRepository.GetFirstOrDefault(x => x.User.Id == id);
-            _unitOfWork.Save();
 
             if (payment != null)
             {
@@ -68,7 +62,6 @@ namespace Pet_Store.API.Controllers
             }
             return BadRequest("Usuario no posee metodo de pago");
         }
-
         [HttpPut]
         [Route("payment")]
         public IActionResult UpdatePaymentMethod([FromBody] Payments model)
@@ -78,7 +71,7 @@ namespace Pet_Store.API.Controllers
             if (ModelState.IsValid)
             {
                 var getUser = _userRepository.GetFirstOrDefault(x => x.Id == model.User.Id);
-
+                
                 oldPayment.firstName = model.firstName;
                 oldPayment.lastName = model.lastName;
                 oldPayment.zipCode = model.zipCode;
@@ -94,7 +87,6 @@ namespace Pet_Store.API.Controllers
             }
             return BadRequest("Error al actualizar metodo de pago");
         }
-
         [HttpDelete]
         [Route("category")]
         public IActionResult Deletepayment(int id)

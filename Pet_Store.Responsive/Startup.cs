@@ -10,9 +10,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Pet_Store.Application;
 using Pet_Store.Domains.Models.MailModels;
+using Pet_Store.Infraestructure;
 using Pet_Store.Responsive.Services;
 using Pet_Store.Responsive.Services.IServices;
-using PetStore.Infraestructure;
 
 namespace Pet_Store.Responsive
 {

@@ -5,11 +5,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Pet_Store.Application.Contracts.Data;
 using Pet_Store.Domains.Models.DataModels;
 using Pet_Store.Infraestructure.Data;
-using PetStore.Infraestructure.Data;
-using PetStore.Infraestructure.Repository;
-using PetStore.Infraestructure.Repository.UnitOfWork;
+using Pet_Store.Infraestructure.Repository.Repositories;
+using Pet_Store.Infraestructure.Repository.UnitOfWork;
 using System.Linq;
 
 namespace Pet_Store.API

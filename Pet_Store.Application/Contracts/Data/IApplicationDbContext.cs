@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Pet_Store.Domains.Models.DataModels;
 
-namespace PetStore.Infraestructure.Data
+namespace Pet_Store.Application.Contracts.Data
 {
     public interface IApplicationDbContext
     {

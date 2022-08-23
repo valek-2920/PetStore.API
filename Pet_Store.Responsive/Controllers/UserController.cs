@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Pet_Store.Application.Handlers;
+using Pet_Store.Domains.Models.DataModels;
 using Pet_Store.Domains.Models.Entities;
 using Pet_Store.Domains.Models.ViewModels;
+using Pet_Store.Responsive.Services.IServices;
 using PetStore.Infraestructure.Data;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,23 +18,26 @@ namespace Pet_Store.Responsive.Controllers
             (
                 RoleManager<IdentityRole> roleManager,
                 UserManager<IdentityUser> userManager,
-                IApplicationDbContext context
+                IApplicationDbContext context,
+                IUserServices services
+                
             )
         {
             _roleManager = roleManager;
             _userManager = userManager;
             _context = context;
+            _services = services;
         }
 
         readonly RoleManager<IdentityRole> _roleManager;
         readonly UserManager<IdentityUser> _userManager;
         IApplicationDbContext _context;
+        IUserServices _services;
 
         [Authorize(Policy = PermissionTypeNames.MANAGEROLES)]
         public IActionResult Clientes()
         {
-            _configuration = configuration;
-            _services = services;
+            return View();
         }
 
         public async Task<IActionResult> Users()
@@ -67,7 +72,7 @@ namespace Pet_Store.Responsive.Controllers
             if (ModelState.IsValid)
             {
 
-                if (model.UserId == 0)
+                if (model.Id == null)
                 {
                     //add
                     await _services.addUserAsync(model);

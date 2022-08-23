@@ -37,7 +37,7 @@ namespace Pet_Store.Domains.Models.DataModels
 
         [ForeignKey("UserId")]
         [ValidateNever]
-        public Users user { get; set; }
+        public Users User { get; set; }
 
     }
 }

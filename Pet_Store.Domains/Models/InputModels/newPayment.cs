@@ -11,7 +11,7 @@ namespace Pet_Store.Domains.Models.InputModels
     public class newPayment
     {
         [Required]
-        public int userId { get; set; }
+        public string userId { get; set; }
 
         [Required]
         public string firstName { get; set; }

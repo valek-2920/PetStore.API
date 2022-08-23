@@ -7,7 +7,6 @@ namespace PetStore.Infraestructure.Data
 {
     public interface IApplicationDbContext
     {
-        //public DbSet<Users> Users { get; set; }
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Products> Products { get; set; }
@@ -16,6 +15,8 @@ namespace PetStore.Infraestructure.Data
 
         public DbSet<OrderHeader> OrderHeaders { get; set; }
         public DbSet<OrderDetails> OrderDetails { get; set; }
+
+        public DbSet<Payments> Payments { get; set; }
     }
 
 }

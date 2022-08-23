@@ -21,7 +21,9 @@ namespace Pet_Store.Responsive.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        readonly IInventarioServices _services;
+        readonly IInventarioServices _inventarioServices;
+        readonly IUserServices _userServices;
+        readonly ICheckoutServices _checkoutServices;
         ICartero Cartero;
         readonly UserManager<IdentityUser> _userManager;
         readonly SignInManager<IdentityUser> _sessionManager;
@@ -30,7 +32,7 @@ namespace Pet_Store.Responsive.Controllers
         public HomeController
             (
                 ILogger<HomeController> logger,  
-                IInventarioServices services,
+                IInventarioServices inventarioServices, IUserServices userServices, ICheckoutServices checkoutServices,
                 UserManager<IdentityUser> userManager,
                 SignInManager<IdentityUser> sessionManager,
                 RoleManager<IdentityRole> roleManager,
@@ -38,7 +40,9 @@ namespace Pet_Store.Responsive.Controllers
             )
         {
             _logger = logger;
-            _services = services;
+            _inventarioServices = inventarioServices;
+            _checkoutServices = checkoutServices;
+            _userServices = userServices;
             _userManager = userManager;
             _sessionManager = sessionManager;
             _roleManager = roleManager;

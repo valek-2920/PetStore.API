@@ -79,5 +79,7 @@ namespace Pet_Store.Infraestructure.Data
         public DbSet<OrderHeader> OrderHeaders { get; set; }
         public DbSet<OrderDetails> OrderDetails { get; set; }
 
+        public DbSet<Payments> Payments { get; set; }
+
     }
 }

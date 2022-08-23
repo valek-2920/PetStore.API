@@ -22,7 +22,7 @@ namespace Pet_Store.Domains.Models.DataModels
         public Products Product { get; set; }
 
         [Required]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
         [ForeignKey("UserId")]
         [ValidateNever]

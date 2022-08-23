@@ -5,6 +5,7 @@ using Pet_Store.Domains.Models.InputModels;
 using Pet_Store.Infraestructure.Data;
 using PetStore.Infraestructure.Repository;
 using PetStore.Infraestructure.Repository.UnitOfWork;
+using System;
 using System.Collections.Generic;
 
 namespace Pet_Store.API.Controllers
@@ -31,7 +32,7 @@ namespace Pet_Store.API.Controllers
         {
             try
             {
-                var GetCategory = _categoryRepository.GetFirstOrDefault(x => x.CategoryId == model.Category);
+                var GetCategory = _categoryRepository.GetFirstOrDefault(x => x.CategoryId == model.CategoryId);
 
                 if (ModelState.IsValid)
                 {

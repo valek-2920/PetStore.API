@@ -34,7 +34,9 @@ namespace Pet_Store.API
                    .AddRepository<OrderHeader, OrderHeaderRepository>()
                    .AddRepository<Products, ProductsRepository>()
                    .AddRepository<ShoppingCart, ShoppingCartRepository>()
-                   .AddRepository<Users, UsersRepository>();
+                   .AddRepository<Users, UsersRepository>()
+                   .AddRepository<Payments, PaymentsRepository>();
+
 
             services.AddScoped<IApplicationDbContext>
                 (options => options.GetService<ApplicationDbContext>());

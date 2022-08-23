@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace PetStore.Infraestructure.Migrations
+namespace Pet_Store.Infraestructure.Migrations
 {
-    public partial class addModelsToDb : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -177,11 +177,7 @@ namespace PetStore.Infraestructure.Migrations
                 {
                     OrderId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-<<<<<<<< HEAD:Pet_Store.DataAcess/Migrations/20220821144548_addModelsToDb.cs
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-========
-                    UserId = table.Column<int>(type: "int", nullable: false),
->>>>>>>> main:Pet_Store.DataAcess/Migrations/20220822124116_AddModelsToDb.cs
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ShippingDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PhoneNumber = table.Column<int>(type: "int", nullable: false),
@@ -195,13 +191,8 @@ namespace PetStore.Infraestructure.Migrations
                     table.ForeignKey(
                         name: "FK_OrderHeaders_AspNetUsers_UserId",
                         column: x => x.UserId,
-<<<<<<<< HEAD:Pet_Store.DataAcess/Migrations/20220821144548_addModelsToDb.cs
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-========
-                        principalTable: "Users",
-                        principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -217,18 +208,17 @@ namespace PetStore.Infraestructure.Migrations
                     cardNumber = table.Column<long>(type: "bigint", nullable: false),
                     expirationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CVV = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Payments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Payments_Users_UserId",
+                        name: "FK_Payments_AspNetUsers_UserId",
                         column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "UserId",
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
->>>>>>>> main:Pet_Store.DataAcess/Migrations/20220822124116_AddModelsToDb.cs
                 });
 
             migrationBuilder.CreateTable(
@@ -261,13 +251,8 @@ namespace PetStore.Infraestructure.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<double>(type: "float", nullable: false),
-<<<<<<<< HEAD:Pet_Store.DataAcess/Migrations/20220821144548_addModelsToDb.cs
-                    CategoryId = table.Column<int>(type: "int", nullable: true),
-                    Files = table.Column<string>(type: "nvarchar(max)", nullable: false),
-========
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     Files = table.Column<string>(type: "nvarchar(max)", nullable: true),
->>>>>>>> main:Pet_Store.DataAcess/Migrations/20220822124116_AddModelsToDb.cs
                     OrderDetailsId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -294,13 +279,8 @@ namespace PetStore.Infraestructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Count = table.Column<int>(type: "int", nullable: false),
-<<<<<<<< HEAD:Pet_Store.DataAcess/Migrations/20220821144548_addModelsToDb.cs
-                    ProductId = table.Column<int>(type: "int", nullable: true),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-========
                     ProductId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
->>>>>>>> main:Pet_Store.DataAcess/Migrations/20220822124116_AddModelsToDb.cs
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Subtotal = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
@@ -311,24 +291,44 @@ namespace PetStore.Infraestructure.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ShoppingCarts_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "ProductId",
-<<<<<<<< HEAD:Pet_Store.DataAcess/Migrations/20220821144548_addModelsToDb.cs
-                        onDelete: ReferentialAction.Restrict);
-========
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ShoppingCarts_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
->>>>>>>> main:Pet_Store.DataAcess/Migrations/20220822124116_AddModelsToDb.cs
                 });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "ca2f3294-c463-4e37-af70-a57fe2b30d36", "f14e68d6-91db-42e9-b3c5-e0ff68c5a3a0", "Administrador", "ADMINISTRADOR" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "72251981-78ae-4fa3-b76c-a80b286ee749", "d8661340-9f2b-4da6-b0ae-6992cf41f8d4", "Cliente", "CLIENTE" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "2577ec7c-cf49-4188-aa19-ead2263c33eb", 0, "afac18e9-95d7-4f9a-9708-996e3d347a92", "IdentityUser", "superuser@gmail.com", false, true, null, "SUPERUSER@GMAIL.COM", "SUPERUSER@GMAIL.COM", "AQAAAAEAACcQAAAAEJrQGBOpXrZcVpp3A3IRTWsHlyn9Y5JM/UWfefDstFBiqYFZyCeOa4EQk2McrTMPEA==", null, false, "ANUB6IG6WSDYCO6I3H6AMGCSYD53RDHJ", false, "superuser@gmail.com" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoleClaims",
+                columns: new[] { "Id", "ClaimType", "ClaimValue", "RoleId" },
+                values: new object[] { 2, "Roles", "CRUD", "ca2f3294-c463-4e37-af70-a57fe2b30d36" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoleClaims",
+                columns: new[] { "Id", "ClaimType", "ClaimValue", "RoleId" },
+                values: new object[] { 1, "Roles", "R", "72251981-78ae-4fa3-b76c-a80b286ee749" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { "ca2f3294-c463-4e37-af70-a57fe2b30d36", "2577ec7c-cf49-4188-aa19-ead2263c33eb" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

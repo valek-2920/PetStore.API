@@ -50,7 +50,7 @@ namespace Pet_Store.Responsive.Controllers
             if (ModelState.IsValid)
             {
 
-                if (model.UserId == 0)
+                if (model.Id == null)
                 {
                     //add
                     await _services.addUserAsync(model);

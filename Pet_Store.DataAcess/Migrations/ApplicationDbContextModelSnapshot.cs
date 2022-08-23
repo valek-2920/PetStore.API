@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Pet_Store.Infraestructure.Data;
 
-namespace PetStore.Infraestructure.Migrations
+namespace Pet_Store.Infraestructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -44,6 +44,22 @@ namespace PetStore.Infraestructure.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "ca2f3294-c463-4e37-af70-a57fe2b30d36",
+                            ConcurrencyStamp = "f14e68d6-91db-42e9-b3c5-e0ff68c5a3a0",
+                            Name = "Administrador",
+                            NormalizedName = "ADMINISTRADOR"
+                        },
+                        new
+                        {
+                            Id = "72251981-78ae-4fa3-b76c-a80b286ee749",
+                            ConcurrencyStamp = "d8661340-9f2b-4da6-b0ae-6992cf41f8d4",
+                            Name = "Cliente",
+                            NormalizedName = "CLIENTE"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -68,6 +84,22 @@ namespace PetStore.Infraestructure.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetRoleClaims");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ClaimType = "Roles",
+                            ClaimValue = "R",
+                            RoleId = "72251981-78ae-4fa3-b76c-a80b286ee749"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ClaimType = "Roles",
+                            ClaimValue = "CRUD",
+                            RoleId = "ca2f3294-c463-4e37-af70-a57fe2b30d36"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
@@ -139,6 +171,24 @@ namespace PetStore.Infraestructure.Migrations
                     b.ToTable("AspNetUsers");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "2577ec7c-cf49-4188-aa19-ead2263c33eb",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "afac18e9-95d7-4f9a-9708-996e3d347a92",
+                            Email = "superuser@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = true,
+                            NormalizedEmail = "SUPERUSER@GMAIL.COM",
+                            NormalizedUserName = "SUPERUSER@GMAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJrQGBOpXrZcVpp3A3IRTWsHlyn9Y5JM/UWfefDstFBiqYFZyCeOa4EQk2McrTMPEA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "ANUB6IG6WSDYCO6I3H6AMGCSYD53RDHJ",
+                            TwoFactorEnabled = false,
+                            UserName = "superuser@gmail.com"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -200,6 +250,13 @@ namespace PetStore.Infraestructure.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "2577ec7c-cf49-4188-aa19-ead2263c33eb",
+                            RoleId = "ca2f3294-c463-4e37-af70-a57fe2b30d36"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -268,7 +325,6 @@ namespace PetStore.Infraestructure.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("City")
@@ -289,6 +345,7 @@ namespace PetStore.Infraestructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("OrderId");
@@ -298,6 +355,44 @@ namespace PetStore.Infraestructure.Migrations
                     b.ToTable("OrderHeaders");
                 });
 
+            modelBuilder.Entity("Pet_Store.Domains.Models.DataModels.Payments", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CVV")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<long>("cardNumber")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("expirationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("firstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("lastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("zipCode")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Payments");
+                });
+
             modelBuilder.Entity("Pet_Store.Domains.Models.DataModels.Products", b =>
                 {
                     b.Property<int>("ProductId")
@@ -305,7 +400,7 @@ namespace PetStore.Infraestructure.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CategoryId")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -313,7 +408,6 @@ namespace PetStore.Infraestructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Files")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -345,13 +439,14 @@ namespace PetStore.Infraestructure.Migrations
                     b.Property<int>("Count")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProductId")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
                     b.Property<double>("Subtotal")
                         .HasColumnType("float");
 
                     b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
@@ -452,7 +547,20 @@ namespace PetStore.Infraestructure.Migrations
                 {
                     b.HasOne("Pet_Store.Domains.Models.DataModels.Users", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Pet_Store.Domains.Models.DataModels.Payments", b =>
+                {
+                    b.HasOne("Pet_Store.Domains.Models.DataModels.Users", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -461,7 +569,9 @@ namespace PetStore.Infraestructure.Migrations
                 {
                     b.HasOne("Pet_Store.Domains.Models.DataModels.Category", "Category")
                         .WithMany()
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Pet_Store.Domains.Models.DataModels.OrderDetails", null)
                         .WithMany("Product")
@@ -474,11 +584,15 @@ namespace PetStore.Infraestructure.Migrations
                 {
                     b.HasOne("Pet_Store.Domains.Models.DataModels.Products", "Product")
                         .WithMany()
-                        .HasForeignKey("ProductId");
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Pet_Store.Domains.Models.DataModels.Users", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Product");
 

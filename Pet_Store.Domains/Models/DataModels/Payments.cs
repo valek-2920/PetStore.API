@@ -33,11 +33,11 @@ namespace Pet_Store.Domains.Models.DataModels
         public int CVV { get; set; }
 
         [Required]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
         [ForeignKey("UserId")]
         [ValidateNever]
-        public Users user { get; set; }
+        public Users User { get; set; }
 
     }
 }

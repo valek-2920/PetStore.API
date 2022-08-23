@@ -18,7 +18,7 @@ namespace Pet_Store.Domains.Models.DataModels
         public int OrderId { get; set; }
 
         [Required]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
         [ForeignKey("UserId")]
         [ValidateNever]

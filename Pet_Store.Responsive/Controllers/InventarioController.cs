@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Pet_Store.Domains.Models.DataModels;
@@ -25,8 +24,8 @@ namespace Pet_Store.Responsive.Controllers
 
         public InventarioController
             (
-            IConfiguration configuration, 
-            IInventarioServices services, 
+            IConfiguration configuration,
+            IInventarioServices services,
             IWebHostEnvironment hostEnvironment
             )
         {
@@ -44,7 +43,9 @@ namespace Pet_Store.Responsive.Controllers
 
         }
 
-        [Authorize(Policy = PermissionTypeNames.MANAGEROLES)]
+       
+        [HttpGet]
+         [Authorize(Policy = PermissionTypeNames.MANAGEROLES)]
         public async Task<IActionResult> Upsert(int? id)
         {
             var categories = await _services.GetCategoriesAsync();
@@ -52,7 +53,6 @@ namespace Pet_Store.Responsive.Controllers
             ProductsViewModel viewModel = new()
             {
                 Product = new(),
-
 
                 CategoryList = categories.Select(i => new SelectListItem
                 {
@@ -66,7 +66,7 @@ namespace Pet_Store.Responsive.Controllers
                 //insert new product
                 return View(viewModel);
             }
-            else
+            else 
             {
                 //update existing product
                 viewModel.Product = await _services.getProductById( (int) id);
@@ -102,32 +102,41 @@ namespace Pet_Store.Responsive.Controllers
                     {
                         file.CopyTo(fileStreams);
                     }
-                    model.Product.Files = @"\images\products\" + fileName + extension;
+                    model.Product.Files = @"\img\productos\" + fileName + extension;
 
                 }
                 if (model.Product.ProductId == 0)
                 {
-                   //add
-                   await _services.addProductAsync(model.Product);
+                    //add
+                    await _services.addProductAsync(model.Product);
                 }
                 else
                 {
-                   //update
-                  await _services.updateProductById(model.Product);
+                    //update
+                    await _services.updateProductById(model.Product);
 
                 }
-                return RedirectToAction("Index");
+              return RedirectToAction("Inventario");
+
             }
             return View(model);
         }
 
-        [HttpPost]
+        [HttpDelete]
         [Authorize(Policy = PermissionTypeNames.MANAGEROLES)]
         public async Task<IActionResult> EliminarProductos(int id)
         {
-            var response = await _services.deleteProductById(id);
-            return RedirectToAction("Inventario");
 
+            var model = await _services.getProductById(id);
+
+                var oldImagePath = Path.Combine(_hostEnvironment.WebRootPath, model.Files.TrimStart('\\'));
+                if (System.IO.File.Exists(oldImagePath))
+                {
+                    System.IO.File.Delete(oldImagePath);
+                }
+
+                await _services.deleteProductById(id);
+                return RedirectToAction("Inventario");
         }
 
         [HttpGet]
@@ -151,12 +160,12 @@ namespace Pet_Store.Responsive.Controllers
             return RedirectToAction("Categorias");
         }
 
-        [HttpPost]
+        [HttpDelete]
         [Authorize(Policy = PermissionTypeNames.MANAGEROLES)]
         public async Task<IActionResult> EliminarCategorias(int id)
         {
-               var response = await _services.deleteCategoryById(id);
-                return RedirectToAction("Categorias");
+            await _services.deleteCategoryById(id);
+            return RedirectToAction("Categorias");
 
         }
 

@@ -12,6 +12,7 @@ namespace Pet_Store.Infraestructure.Migrations
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20220822030114_initTablesWithSeededRoles")]
     partial class initTablesWithSeededRoles
+
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -327,7 +328,6 @@ namespace Pet_Store.Infraestructure.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("City")
@@ -357,6 +357,43 @@ namespace Pet_Store.Infraestructure.Migrations
                     b.ToTable("OrderHeaders");
                 });
 
+            modelBuilder.Entity("Pet_Store.Domains.Models.DataModels.Payments", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CVV")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<long>("cardNumber")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("expirationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("firstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("lastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("zipCode")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Payments");
+                });
+
             modelBuilder.Entity("Pet_Store.Domains.Models.DataModels.Products", b =>
                 {
                     b.Property<int>("ProductId")
@@ -364,7 +401,7 @@ namespace Pet_Store.Infraestructure.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CategoryId")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -372,7 +409,6 @@ namespace Pet_Store.Infraestructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Files")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -404,7 +440,7 @@ namespace Pet_Store.Infraestructure.Migrations
                     b.Property<int>("Count")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProductId")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
                     b.Property<double>("Subtotal")
@@ -511,16 +547,31 @@ namespace Pet_Store.Infraestructure.Migrations
                 {
                     b.HasOne("Pet_Store.Domains.Models.DataModels.Users", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Pet_Store.Domains.Models.DataModels.Payments", b =>
+                {
+                    b.HasOne("Pet_Store.Domains.Models.DataModels.Users", "user")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("user");
                 });
 
             modelBuilder.Entity("Pet_Store.Domains.Models.DataModels.Products", b =>
                 {
                     b.HasOne("Pet_Store.Domains.Models.DataModels.Category", "Category")
                         .WithMany()
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Pet_Store.Domains.Models.DataModels.OrderDetails", null)
                         .WithMany("Product")
@@ -533,11 +584,15 @@ namespace Pet_Store.Infraestructure.Migrations
                 {
                     b.HasOne("Pet_Store.Domains.Models.DataModels.Products", "Product")
                         .WithMany()
-                        .HasForeignKey("ProductId");
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Pet_Store.Domains.Models.DataModels.Users", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Product");
 

@@ -4,93 +4,6 @@
     "C:\\Users\\Vale2920\\Desktop\\University\\7 quarter\\Programacion Avanzada en Web\\PrograAvanzadaWeb\\PROYECTO\\Pet_Store.API\\Pet_Store.DataAcess\\Pet_Store.DataAcess.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Vale2920\\Desktop\\University\\7 quarter\\Programacion Avanzada en Web\\PrograAvanzadaWeb\\PROYECTO\\Pet_Store.API\\Pet_Store.Application\\Pet_Store.Application.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\Vale2920\\Desktop\\University\\7 quarter\\Programacion Avanzada en Web\\PrograAvanzadaWeb\\PROYECTO\\Pet_Store.API\\Pet_Store.Application\\Pet_Store.Application.csproj",
-        "projectName": "Pet_Store.Application",
-        "projectPath": "C:\\Users\\Vale2920\\Desktop\\University\\7 quarter\\Programacion Avanzada en Web\\PrograAvanzadaWeb\\PROYECTO\\Pet_Store.API\\Pet_Store.Application\\Pet_Store.Application.csproj",
-        "packagesPath": "C:\\Users\\Vale2920\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Vale2920\\Desktop\\University\\7 quarter\\Programacion Avanzada en Web\\PrograAvanzadaWeb\\PROYECTO\\Pet_Store.API\\Pet_Store.Application\\obj\\",
-        "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
-        "configFilePaths": [
-          "C:\\Users\\Vale2920\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "net5.0"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
-            "projectReferences": {
-              "C:\\Users\\Vale2920\\Desktop\\University\\7 quarter\\Programacion Avanzada en Web\\PrograAvanzadaWeb\\PROYECTO\\Pet_Store.API\\Pet_Store.Domains\\Pet_Store.Domains.csproj": {
-                "projectPath": "C:\\Users\\Vale2920\\Desktop\\University\\7 quarter\\Programacion Avanzada en Web\\PrograAvanzadaWeb\\PROYECTO\\Pet_Store.API\\Pet_Store.Domains\\Pet_Store.Domains.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
-          "dependencies": {
-            "Microsoft.AspNetCore.Authentication.JwtBearer": {
-              "target": "Package",
-              "version": "[5.0.17, )"
-            },
-            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[5.0.17, )"
-            },
-            "Microsoft.AspNetCore.Mvc.WebApiCompatShim": {
-              "target": "Package",
-              "version": "[2.2.0, )"
-            },
-            "Microsoft.EntityFrameworkCore.SqlServer": {
-              "target": "Package",
-              "version": "[5.0.17, )"
-            },
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[5.0.17, )"
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
     "C:\\Users\\Vale2920\\Desktop\\University\\7 quarter\\Programacion Avanzada en Web\\PrograAvanzadaWeb\\PROYECTO\\Pet_Store.API\\Pet_Store.DataAcess\\Pet_Store.DataAcess.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -119,9 +32,6 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\Vale2920\\Desktop\\University\\7 quarter\\Programacion Avanzada en Web\\PrograAvanzadaWeb\\PROYECTO\\Pet_Store.API\\Pet_Store.Application\\Pet_Store.Application.csproj": {
-                "projectPath": "C:\\Users\\Vale2920\\Desktop\\University\\7 quarter\\Programacion Avanzada en Web\\PrograAvanzadaWeb\\PROYECTO\\Pet_Store.API\\Pet_Store.Application\\Pet_Store.Application.csproj"
-              },
               "C:\\Users\\Vale2920\\Desktop\\University\\7 quarter\\Programacion Avanzada en Web\\PrograAvanzadaWeb\\PROYECTO\\Pet_Store.API\\Pet_Store.Domains\\Pet_Store.Domains.csproj": {
                 "projectPath": "C:\\Users\\Vale2920\\Desktop\\University\\7 quarter\\Programacion Avanzada en Web\\PrograAvanzadaWeb\\PROYECTO\\Pet_Store.API\\Pet_Store.Domains\\Pet_Store.Domains.csproj"
               }
@@ -138,15 +48,21 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
-            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.17, )"
             },
-            "Microsoft.AspNetCore.Identity": {
+            "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[2.2.0, )"
+              "version": "[5.0.17, )"
             },
-            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
               "version": "[5.0.17, )"
             },
@@ -154,11 +70,9 @@
               "target": "Package",
               "version": "[5.0.17, )"
             },
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
+            "Microsoft.Extensions.Hosting.Abstractions": {
               "target": "Package",
-              "version": "[5.0.17, )"
+              "version": "[5.0.0, )"
             }
           },
           "imports": [
@@ -221,21 +135,33 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
-            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+            "Microsoft.AspNet.Mvc": {
               "target": "Package",
-              "version": "[5.0.17, )"
+              "version": "[5.2.9, )"
+            },
+            "Microsoft.AspNetCore.Http.Features": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Core": {
+              "target": "Package",
+              "version": "[2.2.5, )"
             },
             "Microsoft.AspNetCore.Mvc.ViewFeatures": {
               "target": "Package",
               "version": "[2.2.0, )"
             },
-            "Microsoft.EntityFrameworkCore.SqlServer": {
+            "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.17, )"
             },
-            "Microsoft.EntityFrameworkCore.Tools": {
+            "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
               "version": "[5.0.17, )"
             }

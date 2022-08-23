@@ -1,0 +1,73 @@
+﻿@model List<Users>
+
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Administración</p>
+                    <h1>Usuarios Clientes</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Tabla de productos -->
+
+<div class="product-section mt-150 mb-150">
+    <div class="container-fluid">
+        <div class="dt-responsive table-responsive">
+            <table id="footer-search" class="table table-striped table-bordered nowrap">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Fecha de Nacimiento</th>
+                        <th>Teléfono</th>
+                        <th>Email</th>
+                        <th>Dirección</th>
+                        <th>Rol</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                     @foreach (var item in Model)
+                    {
+                         <tr>
+                             <input asp-for="@item.UserId" hiden />
+                                <td>@item.Name</td>
+                                <td>@item.LastName</td>
+                                <td>@item.BirthDate</td>
+                                <td>@item.Phone</td>
+                                <td>@item.Address</td>
+                                <td>@item.Role.RolName</td>
+                                <td style="text-align:center">
+                                    <button asp-action="Upsert" asp-route-id="@item.UserId" class="btn btn-primary">
+                                        Editar
+                                    </button>
+                                    <button  asp-action="EliminarUsuarios" asp-route-id="@item.UserId" class="btn btn-danger">
+                                        Eliminar
+                                    </button>
+                                </td>
+                        </tr>
+                    }
+                     
+                </tbody>
+                @*<tfoot>
+                    <tr>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Fecha de Nacimiento</th>
+                        <th>Teléfono</th>
+                        <th>Email</th>
+                        <th>Dirección</th>
+                        <th>Rol</th>
+                        <th>Acciones</th>
+                    </tr>
+                </tfoot>*@
+            </table>
+        </div>
+    </div>
+</div>

@@ -77,210 +77,208 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="product-filters">
-                     <ul>
+                    <ul>
                         <li class="active" data-filter="*">Todo</li>
                         @foreach (var item in Model)
                         {
-                               <li data-filter=".@item.Category.Description">@item.Category.Description</li>
+                            <li data-filter=".@item.Category.Description">@item.Category.Description</li>
                         }
                     </ul>
                 </div>
             </div>
         </div>
-      <div class="row product-lists">
+
+        <div class="row product-lists">
             @foreach (var item in Model)
             {
-                <div class="col-lg-4 col-md-6 text-center @item.Category.Description">
-                    <div class="single-product-item">
-                        <div class="product-image">
-                            <a @*href="single-product.html"*@><img src="@item.Files" alt=""></a>
+                <form asp-action="addProductsToCart" method="post">
+
+                    <div class="col-lg-4 col-md-6 text-center @item.Category.Description">
+                        <div class="single-product-item">
+                            <div class="product-image">
+                                <a @*href="single-product.html"*@><img src="@item.Files" alt=""></a>
+                            </div>
+                            <h3>@item.Name</h3>
+                            <p class="product-price"><span>Unidad</span> ₡@item.Price</p>
+
+                            <button asp-action="addProductsToCart" asp-route-UserId="1" asp-route-ProductId="@item.ProductId" class="btn btn-primary">
+                                <i class="fa-solid fa-circle-xmark"></i> Agregar al Carrito
+                            </button>
                         </div>
-                        <h3>@item.Name</h3>
-                        <p class="product-price"><span>Unidad</span> ₡@item.Price</p>
-                        @*<a class="cart-btn" href="@Url.Action("Cart", "Home")">*@
-                    <button class="btn btn-warning"
-                            asp-action="UpsertShopping"
-                             asp-route-UserId="2"
-                            asp-route-product="@item.Name">
-                        <i class="fa-solid fa-circle-xmark"></i> Agregar al Carrito
-                    </button>
-                        @*<a class="cart-btn" asp-action="UpsertShopping" asp-route-id="@item.ProductId">
-            <i class="fas fa-shopping-cart"></i>Agregar al Carrito
-        </a>*@
                     </div>
-                </div>
+                </form>
             }
         </div>
-    <div class="row">
-        <div class="col-lg-12 text-center">
-            <div class="pagination-wrap">
-                <ul>
-                    <li><a href="#">Anterior</a></li>
-                    <li><a class="active" href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">Siguiente</a></li>
-                </ul>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="pagination-wrap">
+                    <ul>
+                        <li><a href="#">Anterior</a></li>
+                        <li><a class="active" href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">Siguiente</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-@*<!-- Oferta Seccion Banner -->
-<section class="cart-banner pt-100 pb-100">
+    @*<!-- Oferta Seccion Banner -->
+    <section class="cart-banner pt-100 pb-100">
     <div class="container">
-        <div class="row clearfix">
-            <!--Columna con imagen-->
-            <div class="image-column col-lg-6">
-                <div class="image">
-                    <div class="price-box">
-                        <div class="inner-price">
-                            <span class="price">
-                                <strong>30%</strong> <br> menos por unidad
-                            </span>
-                        </div>
-                    </div>
-                    <img src="~/img/promo.webp" alt="">
-                </div>
-            </div>
-            <!--Contenido de la columna-->
-            <div class="content-column col-lg-6">
-                <h3><span class="orange-text">Oferta</span> del mes</h3>
-                <h4>Alimento Purina</h4>
-                <div class="text">Adquirí cualquiera de los aliementos Purina seleccionados con un 30% de descuento solo por este mes.</div>
-                <!--Cuenta regresiva-->
-                <div class="time-counter"><div class="time-countdown clearfix" data-countdown="2022/8/31"><div class="counter-column"><div class="inner"><span class="count">00</span>Días</div></div> <div class="counter-column"><div class="inner"><span class="count">00</span>Horas</div></div>  <div class="counter-column"><div class="inner"><span class="count">00</span>Min</div></div>  <div class="counter-column"><div class="inner"><span class="count">00</span>Seg</div></div></div></div>
-                <a class="cart-btn mt-3" href="@Url.Action("Cart", "Home")">
-                    <i class="fas fa-shopping-cart"></i> Agregar al Carrito
-                </a>
-            </div>
-        </div>
+    <div class="row clearfix">
+    <!--Columna con imagen-->
+    <div class="image-column col-lg-6">
+    <div class="image">
+    <div class="price-box">
+    <div class="inner-price">
+    <span class="price">
+    <strong>30%</strong> <br> menos por unidad
+    </span>
     </div>
-</section>
-<!-- fin Oferta Seccion Banner -->*@
-<!-- Seccion Testimonios -->
-<div class="testimonail-section mt-150 mb-150">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-10 offset-lg-1 text-center">
-                <div class="testimonial-sliders">
-                    <div class="single-testimonial-slider">
-                        <div class="client-avater">
-                            <img src="~/img/avaters/avatar1.png" alt="">
-                        </div>
-                        <div class="client-meta">
-                            <h3>Jurgen Solano<span>Cliente</span></h3>
-                            <p class="testimonial-body">
-                                " Muy surtido la variedad de productos para las mascotas en general y la atencion muy profesional.  . . "
-                            </p>
-                            <div class="last-icon">
-                                <i class="fas fa-quote-right"></i>
+    </div>
+    <img src="~/img/promo.webp" alt="">
+    </div>
+    </div>
+    <!--Contenido de la columna-->
+    <div class="content-column col-lg-6">
+    <h3><span class="orange-text">Oferta</span> del mes</h3>
+    <h4>Alimento Purina</h4>
+    <div class="text">Adquirí cualquiera de los aliementos Purina seleccionados con un 30% de descuento solo por este mes.</div>
+    <!--Cuenta regresiva-->
+    <div class="time-counter"><div class="time-countdown clearfix" data-countdown="2022/8/31"><div class="counter-column"><div class="inner"><span class="count">00</span>Días</div></div> <div class="counter-column"><div class="inner"><span class="count">00</span>Horas</div></div>  <div class="counter-column"><div class="inner"><span class="count">00</span>Min</div></div>  <div class="counter-column"><div class="inner"><span class="count">00</span>Seg</div></div></div></div>
+    <a class="cart-btn mt-3" href="@Url.Action("Cart", "Home")">
+    <i class="fas fa-shopping-cart"></i> Agregar al Carrito
+    </a>
+    </div>
+    </div>
+    </div>
+    </section>
+    <!-- fin Oferta Seccion Banner -->*@
+    <!-- Seccion Testimonios -->
+    <div class="testimonail-section mt-150 mb-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1 text-center">
+                    <div class="testimonial-sliders">
+                        <div class="single-testimonial-slider">
+                            <div class="client-avater">
+                                <img src="~/img/avaters/avatar1.png" alt="">
+                            </div>
+                            <div class="client-meta">
+                                <h3>Jurgen Solano<span>Cliente</span></h3>
+                                <p class="testimonial-body">
+                                    " Muy surtido la variedad de productos para las mascotas en general y la atencion muy profesional.  . . "
+                                </p>
+                                <div class="last-icon">
+                                    <i class="fas fa-quote-right"></i>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="single-testimonial-slider">
-                        <div class="client-avater">
-                            <img src="~/img/avaters/avatar2.png" alt="">
-                        </div>
-                        <div class="client-meta">
-                            <h3>Valeria Morales <span>Cliente</span></h3>
-                            <p class="testimonial-body">
-                                " Me gusta esa tienda, pero podrían tener más variedad de marcas "
-                            </p>
-                            <div class="last-icon">
-                                <i class="fas fa-quote-right"></i>
+                        <div class="single-testimonial-slider">
+                            <div class="client-avater">
+                                <img src="~/img/avaters/avatar2.png" alt="">
+                            </div>
+                            <div class="client-meta">
+                                <h3>Valeria Morales <span>Cliente</span></h3>
+                                <p class="testimonial-body">
+                                    " Me gusta esa tienda, pero podrían tener más variedad de marcas "
+                                </p>
+                                <div class="last-icon">
+                                    <i class="fas fa-quote-right"></i>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="single-testimonial-slider">
-                        <div class="client-avater">
-                            <img src="~/img/avaters/avatar3.png" alt="">
-                        </div>
-                        <div class="client-meta">
-                            <h3>Marcela Corrales <span>Cliente</span></h3>
-                            <p class="testimonial-body">
-                                " Buen lugar para encontrar lo que las mascotitas necesitan "
-                            </p>
-                            <div class="last-icon">
-                                <i class="fas fa-quote-right"></i>
+                        <div class="single-testimonial-slider">
+                            <div class="client-avater">
+                                <img src="~/img/avaters/avatar3.png" alt="">
+                            </div>
+                            <div class="client-meta">
+                                <h3>Marcela Corrales <span>Cliente</span></h3>
+                                <p class="testimonial-body">
+                                    " Buen lugar para encontrar lo que las mascotitas necesitan "
+                                </p>
+                                <div class="last-icon">
+                                    <i class="fas fa-quote-right"></i>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="single-testimonial-slider">
-                        <div class="client-avater">
-                            <img src="~/img/avaters/avatar4.png" alt="">
-                        </div>
-                        <div class="client-meta">
-                            <h3>Andrey Rojas <span>Cliente</span></h3>
-                            <p class="testimonial-body">
-                                " Encontré lo que necesitaba, buena atención y buen parqueo. "
-                            </p>
-                            <div class="last-icon">
-                                <i class="fas fa-quote-right"></i>
+                        <div class="single-testimonial-slider">
+                            <div class="client-avater">
+                                <img src="~/img/avaters/avatar4.png" alt="">
+                            </div>
+                            <div class="client-meta">
+                                <h3>Andrey Rojas <span>Cliente</span></h3>
+                                <p class="testimonial-body">
+                                    " Encontré lo que necesitaba, buena atención y buen parqueo. "
+                                </p>
+                                <div class="last-icon">
+                                    <i class="fas fa-quote-right"></i>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- fin Seccion Testimonios -->
-<!-- Video Seccion -->
-<div class="abt-section mb-150">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-12">
-                <div class="abt-bg">
-                    <a href="https://www.youtube.com/watch?v=Y_yy8ACm5VA" class="video-play-btn popup-youtube"><i class="fas fa-play"></i></a>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-12">
-                <div class="abt-text">
-                    <p class="top-sub">Desde 1999</p>
-                    <h2>Somos <span class="orange-text">Pets Store</span></h2>
-                    <p>Somos lo que necesita tu mascota al instante</p>
-                    @Html.ActionLink("Conoce más", "About", "Home", new { @class = "boxed-btn mt-4" })
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- fin Video Seccion -->
-<!-- Compra Banner -->
-<section class="shop-banner">
-    <div class="container">
-        <h3>Conozca productos <br> con grandes <span class="orange-text">Descuentos</span></h3>
-        <div class="sale-percent"><span>Rebajas <br> Desde</span>30%</div>
-        @Html.ActionLink("Compra Ahora", "Shop", "Home", new { @class = "cart-btn btn-lg" })
-    </div>
-</section>
-<!-- fin Compra Banner -->
-<!-- Carrusel de patrocinadores -->
-<div class="logo-carousel-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="logo-carousel-inner">
-                    <div class="single-logo-item">
-                        <img src="~/img/patrocinadores-logos/1.webp" alt="">
-                    </div>
-                    <div class="single-logo-item">
-                        <img src="~/img/patrocinadores-logos/2.png" alt="">
-                    </div>
-                    <div class="single-logo-item">
-                        <img src="~/img/patrocinadores-logos/3.png" alt="">
-                    </div>
-                    <div class="single-logo-item">
-                        <img src="~/img/patrocinadores-logos/4.png" alt="">
-                    </div>
-                    <div class="single-logo-item">
-                        <img src="~/img/patrocinadores-logos/5.png" alt="">
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+    <!-- fin Seccion Testimonios -->
+    <!-- Video Seccion -->
+    <div class="abt-section mb-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <div class="abt-bg">
+                        <a href="https://www.youtube.com/watch?v=Y_yy8ACm5VA" class="video-play-btn popup-youtube"><i class="fas fa-play"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="abt-text">
+                        <p class="top-sub">Desde 1999</p>
+                        <h2>Somos <span class="orange-text">Pets Store</span></h2>
+                        <p>Somos lo que necesita tu mascota al instante</p>
+                        @Html.ActionLink("Conoce más", "About", "Home", new { @class = "boxed-btn mt-4" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- fin Video Seccion -->
+    <!-- Compra Banner -->
+    <section class="shop-banner">
+        <div class="container">
+            <h3>Conozca productos <br> con grandes <span class="orange-text">Descuentos</span></h3>
+            <div class="sale-percent"><span>Rebajas <br> Desde</span>30%</div>
+            @Html.ActionLink("Compra Ahora", "Shop", "Home", new { @class = "cart-btn btn-lg" })
+        </div>
+    </section>
+    <!-- fin Compra Banner -->
+    <!-- Carrusel de patrocinadores -->
+    <div class="logo-carousel-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="logo-carousel-inner">
+                        <div class="single-logo-item">
+                            <img src="~/img/patrocinadores-logos/1.webp" alt="">
+                        </div>
+                        <div class="single-logo-item">
+                            <img src="~/img/patrocinadores-logos/2.png" alt="">
+                        </div>
+                        <div class="single-logo-item">
+                            <img src="~/img/patrocinadores-logos/3.png" alt="">
+                        </div>
+                        <div class="single-logo-item">
+                            <img src="~/img/patrocinadores-logos/4.png" alt="">
+                        </div>
+                        <div class="single-logo-item">
+                            <img src="~/img/patrocinadores-logos/5.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>

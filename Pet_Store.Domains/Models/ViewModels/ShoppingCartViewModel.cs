@@ -14,9 +14,6 @@ namespace Pet_Store.Domains.Models.ViewModels
 
         public IEnumerable<ShoppingCart> ListCart { get; set; }
 
-        [ValidateNever]
-        public IEnumerable<SelectListItem> ShoppingList { get; set; }
-
         public OrderHeader OrderHeader { get; set; }
         public ShoppingCart ShoppingCart { get; set; }
         public Products Product { get; set; }

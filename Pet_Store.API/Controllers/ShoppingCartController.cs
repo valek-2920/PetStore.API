@@ -4,6 +4,7 @@ using Pet_Store.Domains.Models.InputModels;
 using PetStore.DataAccess.Repository.UnityOfWork;
 using Project_PetStore.API.DataAccess;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Pet_Store.API.Controllers
@@ -22,12 +23,12 @@ namespace Pet_Store.API.Controllers
 
         [HttpPost]
         [Route("add-products")]
-        public IActionResult addToCart([FromBody] NewShoppingCart model)
+        public IActionResult addToCart([FromBody] ShoppingCart model)
         {
             if (ModelState.IsValid)
             {
                 var getUser = _unityOfWork.UsersRepository.GetFirstOrDefault(x => x.UserId == model.UserId);
-                var getProduct = _unityOfWork.ProductsRepository.GetFirstOrDefault(x => x.Name == model.Product);
+                var getProduct = _unityOfWork.ProductsRepository.GetFirstOrDefault(x => x.ProductId == model.ProductId);
                 ShoppingCart shoppingCart = new ShoppingCart();
 
                 if (getUser != null && getProduct != null)
@@ -36,7 +37,7 @@ namespace Pet_Store.API.Controllers
                     var CartExist = _unityOfWork.ShoppingCartRepository.GetFirstOrDefault(x => x.User.UserId == model.UserId);
                     var products = _unityOfWork.ShoppingCartRepository.getProductsName(model.UserId);
 
-                    if (CartExist != null && products.Contains(model.Product))
+                    if (CartExist != null && products.Contains(getProduct.Name))
                     {
                         //actualizar producto existente con nuevos datos
                         CartExist.Count += model.Count;
@@ -49,8 +50,10 @@ namespace Pet_Store.API.Controllers
                     //crear carrito al usuario
                     shoppingCart = new ShoppingCart
                     {
-                        Count = model.Count,
+                        Count = 1,
+                        ProductId = model.ProductId,
                         Product = getProduct,
+                        UserId = model.UserId,
                         User = getUser,
                         Subtotal = (model.Count * getProduct.Price),
                     };

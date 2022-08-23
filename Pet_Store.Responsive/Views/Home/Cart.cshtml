@@ -75,23 +75,27 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="total-data">
-                                    <td><strong>Subtotal: </strong></td>
-                                    <td>₡75.000</td>
-                                </tr>
-                                <tr class="total-data">
-                                    <td><strong>Envío: </strong></td>
-                                    <td>₡0</td>
-                                </tr>
-                                <tr class="total-data">
-                                    <td><strong>Total: </strong></td>
-                                    <td>₡75.000</td>
-                                </tr>
+                                @foreach (var item in Model)
+                                {
+                                    <tr class="total-data">
+                                        <td><strong>Subtotal: </strong></td>
+                                        <td>₡@item.Subtotal</td>
+                                    </tr>
+                                    @*                                <tr class="total-data">
+                                <td><strong>Envío: </strong></td>
+                                <td>₡0</td>
+                                </tr>*@
+                          @*          <tr class="total-data">
+                                        <td><strong>Total: </strong></td>
+                                        <td>₡</td>
+                                    </tr>*@
+                                }
+                               
                             </tbody>
                         </table>
                         <div class="cart-buttons">
-                            <a href="#" class="boxed-btn">Vaciar Carrito</a>
-                            <a href="#" class="boxed-btn black">Finalizar Compra</a>
+@*                            <a href="#" class="boxed-btn">Vaciar Carrito</a>
+*@                            <button href="#" class="boxed-btn black">Finalizar Compra</button>
                         </div>
                     </div>
                 </div>

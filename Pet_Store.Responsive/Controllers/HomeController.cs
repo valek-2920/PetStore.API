@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Pet_Store.Domains.Models.DataModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
-
+using Microsoft.AspNetCore.Razor.Language.Extensions;
 
 namespace Pet_Store.Responsive.Controllers
 {
@@ -78,17 +78,14 @@ namespace Pet_Store.Responsive.Controllers
 
        //-----------------ShoppingCart------------------------------
 
-
         //--Get ShoppingCart
         [HttpGet]
         public async Task<IActionResult> Cart(int userId)
         {
-            var ShoppingCart = await _shoppingCartService.GetShoppingCartAsync(2);
+            var ShoppingCart = await _shoppingCartService.GetShoppingCartAsync(userId);
 
             return View(ShoppingCart);
         }
-
-
 
         //--Delete porductos de shoppingCart
         [HttpPost]
@@ -98,45 +95,23 @@ namespace Pet_Store.Responsive.Controllers
             return RedirectToAction("cart");
         }
 
-
-
-
-        //--Upsert porductos de shoppingCart
-
-        public async Task<IActionResult> UpsertShopping(int? id, int UserId, string product)
-        {
-            //cambiar el parametro pot UserId
-            var Shopping = await _shoppingCartService.GetShoppingcartByUser(2);
-            ShoppingCartViewModel viewModel = new ShoppingCartViewModel();
-            if (Shopping != null && Shopping.UserId == UserId && Shopping.Product.Name == product)
-            {
-       
-                viewModel.ShoppingCart.Count = 1;
-                return View(viewModel);
-            }
-            else
-            {
-                //update existing product
-                viewModel.ShoppingCart = await _shoppingCartService.GetShoppingcartByUser(UserId);
-                return View(viewModel);
-            }
-        }
-
-
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> UpsertShopping([FromForm] ShoppingCartViewModel model, IFormFile? file)
-        {
-
+        public async Task<IActionResult> addProductsToCart(int UserId, int ProductId)
+            {
 
             if (ModelState.IsValid)
             {
-                if (model.Product.ProductId == 0)
+                ShoppingCart model = new()
                 {
-                    await _shoppingCartService.AddShoppingCartAsync(model.ShoppingCart);
-                }
+                    ProductId = ProductId,
+                    UserId = UserId
+                };
+
+                await _shoppingCartService.AddShoppingCartAsync(model);
+                return RedirectToAction("Index");
+
             }
-            return View(model);
+            return RedirectToAction("Index");
         }
 
         public ActionResult Checkout()

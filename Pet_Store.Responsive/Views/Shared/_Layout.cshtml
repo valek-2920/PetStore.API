@@ -76,9 +76,11 @@
                                 </li>
                                 <li>
                                     <div class="header-icons">
-                                        <a class="shopping-cart" href="@Url.Action("Cart", "Home")">
-                                            <i id="carrito2" class="fas fa-shopping-cart"></i><p id="cantidad" value="" style="color:#fff"></p>
-                                        </a>
+                                        <form method="post" asp-controller="Home" asp-action="Cart">
+                                            <button asp-route-userId="1" asp-controller="Home" asp-action="Cart" class="shopping-cart">
+                                                <i id="carrito2" class="fas fa-shopping-cart"></i><p id="cantidad" style="color:#fff"></p>
+                                            </button>
+                                        </form>
                                         @*<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>*@
                                     </div>
                                 </li>

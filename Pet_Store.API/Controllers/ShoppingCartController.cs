@@ -20,13 +20,6 @@ namespace Pet_Store.API.Controllers
             Context = context;
         }
 
-        //public async Task<IActionResult> Index()
-        //{
-        //    var Cart = await _services.getProductsAsync();
-
-        //    return View(Cart);
-        //}
-
         [HttpPost]
         [Route("add-products")]
         public IActionResult addToCart([FromBody] NewShoppingCart model)
@@ -72,13 +65,27 @@ namespace Pet_Store.API.Controllers
         }
 
 
+        //[HttpGet]
+        //[Route("shopping")]
+        //public IActionResult GetShopping()
+        //{
+        //    var allCart = _unityOfWork.ShoppingCartRepository.GetAll();
+        //    _unityOfWork.Save();
+
+        //    if (allCart != null)
+        //    {
+        //        return Ok(allCart);
+        //    }
+        //    return BadRequest("No hay carrito");
+        //}
+
         [HttpDelete]
-        [Route("remove-product")]
+        [Route("remove-product/{Userid}/{count}/{ProductoID}")]
         public IActionResult DeleteItem(int Userid, int count, int ProductoID)
         {
-            var CartExist = _unityOfWork.ShoppingCartRepository.GetFirstOrDefault(x => x.User.UserId == Userid);
+            var CartExist = _unityOfWork.ShoppingCartRepository.GetFirstOrDefault(x => x.UserId == Userid);
             var products = _unityOfWork.ShoppingCartRepository.getProducts(Userid);
-            var product = _unityOfWork.ShoppingCartRepository.GetFirstOrDefault(x => x.Product.ProductId == ProductoID);
+            var product = _unityOfWork.ShoppingCartRepository.GetFirstOrDefault(x => x.ProductId == ProductoID);
             var getProduct = _unityOfWork.ProductsRepository.GetFirstOrDefault(x => x.Name == product.Product.Name);
 
             if (product != null && CartExist != null)

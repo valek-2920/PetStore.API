@@ -20,5 +20,7 @@ namespace Pet_Store.Domains.Models.ViewModels
         public OrderHeader OrderHeader { get; set; }
         public ShoppingCart ShoppingCart { get; set; }
         public Products Product { get; set; }
+
+        public List<Products> products { get; set; }
     }
 }

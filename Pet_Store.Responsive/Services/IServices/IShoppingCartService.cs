@@ -14,7 +14,7 @@ namespace Pet_Store.Responsive.Services.IServices
       
         Task<IEnumerable<ShoppingCart>> GetShoppingCartAsync(int Userid);
       
-       // Task<ShoppingCart> GetShoppingcartByUser(int Userid);
+        Task<ShoppingCart> GetShoppingcartByUser(int UserId);
 
         Task<ShoppingCart> AddShoppingCartAsync(ShoppingCart shoppingcart);
 

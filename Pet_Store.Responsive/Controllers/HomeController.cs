@@ -11,6 +11,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using Pet_Store.Domains.Models.DataModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
+
 
 namespace Pet_Store.Responsive.Controllers
 {
@@ -79,7 +83,7 @@ namespace Pet_Store.Responsive.Controllers
         [HttpGet]
         public async Task<IActionResult> Cart(int userId)
         {
-            var ShoppingCart = await _shoppingCartService.GetShoppingCartAsync(7);
+            var ShoppingCart = await _shoppingCartService.GetShoppingCartAsync(2);
 
             return View(ShoppingCart);
         }
@@ -99,31 +103,21 @@ namespace Pet_Store.Responsive.Controllers
 
         //--Upsert porductos de shoppingCart
 
-        public async Task<IActionResult> UpsertShopping(int? id, int userId)
+        public async Task<IActionResult> UpsertShopping(int? id, int UserId, string product)
         {
-            var Cart = await _shoppingCartService.GetShoppingCartAsync(userId);
-
-            ShoppingCartViewModel viewModel = new()
+            //cambiar el parametro pot UserId
+            var Shopping = await _shoppingCartService.GetShoppingcartByUser(2);
+            ShoppingCartViewModel viewModel = new ShoppingCartViewModel();
+            if (Shopping != null && Shopping.UserId == UserId && Shopping.Product.Name == product)
             {
-                Product = new(),
-
-
-                //Shoppping = Cart.Select(i => new SelectListItem
-                //{
-                //    Text = i.Description,
-                //    Value = i.CategoryId.ToString()
-                //}),
-            };
-
-            if (id == null || id == 0)
-            {
-                //insert new product
+       
+                viewModel.ShoppingCart.Count = 1;
                 return View(viewModel);
             }
             else
             {
                 //update existing product
-                viewModel.Product = await _services.getProductById((int)id);
+                viewModel.ShoppingCart = await _shoppingCartService.GetShoppingcartByUser(UserId);
                 return View(viewModel);
             }
         }
@@ -137,15 +131,14 @@ namespace Pet_Store.Responsive.Controllers
 
             if (ModelState.IsValid)
             {
-                string wwwRootPath = _hostEnvironment.WebRootPath;
-                if (file != null)
+                if (model.Product.ProductId == 0)
                 {
-                    string fileName = Guid.NewGuid().ToString();
-                    var uploads = Path.Combine(wwwRootPath, @"img\productos");
-                    var extension = Path.GetExtension(file.FileName);
-
-            return View();
+                    await _shoppingCartService.AddShoppingCartAsync(model.ShoppingCart);
+                }
+            }
+            return View(model);
         }
+
         public ActionResult Checkout()
         {
 
@@ -153,38 +146,7 @@ namespace Pet_Store.Responsive.Controllers
         }
         public ActionResult Contact()
         {
-
-
-                    if (model.Product.Files != null)
-                    {
-                        var oldImagePath = Path.Combine(wwwRootPath, model.Product.Files.TrimStart('\\'));
-                        if (System.IO.File.Exists(oldImagePath))
-                        {
-                            System.IO.File.Delete(oldImagePath);
-                        }
-                    }
-
-                    using (var fileStreams = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
-                    {
-                        file.CopyTo(fileStreams);
-                    }
-                    model.Product.Files = @"\images\products\" + fileName + extension;
-
-                }
-                if (model.Product.ProductId == 0)
-                {
-                    //add
-                    await _shoppingCartService.AddShoppingCartAsync(model.ShoppingCart);
-                }
-                else
-                {
-                    //update
-                    await _shoppingCartService.AddShoppingCartAsync(model.ShoppingCart);
-
-                }
-                return RedirectToAction("Index");
-            }
-            return View(model);
+            return View();
         }
 
 

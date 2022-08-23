@@ -23,7 +23,7 @@ namespace Pet_Store.Responsive.Services
 
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync("https://localhost:44316/api/ShoppingCart/GetAll-Products?userId=" + userId))
+                using (var response = await httpClient.GetAsync("https://localhost:44316/api/ShoppingCart/GetAll-Products?userId="+userId))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
@@ -36,25 +36,25 @@ namespace Pet_Store.Responsive.Services
             return cart;
         }
 
-        //public async Task<ShoppingCart> GetShoppingcartByUser(int userId)
-        //{
+        public async Task<ShoppingCart> GetShoppingcartByUser(int UserId)
+        {
 
-        //    ShoppingCart cart = new ShoppingCart();
+            ShoppingCart cart = new ShoppingCart();
 
-        //    using (var httpClient = new HttpClient())
-        //    {
+            using (var httpClient = new HttpClient())
+            {
 
-        //        using (var response = await httpClient.GetAsync("https://localhost:44316/api/ShoppingCart/GetAll-Products?userId=" + userId))
-        //        {
-        //            if (response.StatusCode == System.Net.HttpStatusCode.OK)
-        //            {
-        //                var Response = await response.Content.ReadAsStringAsync();
-        //                cart = JsonConvert.DeserializeObject<ShoppingCart>(Response);
-        //            }
-        //        }
-        //    }
-        //    return cart;
-        //}
+                using (var response = await httpClient.GetAsync("https://localhost:44316/api/ShoppingCart/GetAll-Products?userId=" + UserId))
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        var Response = await response.Content.ReadAsStringAsync();
+                        cart = JsonConvert.DeserializeObject<ShoppingCart>(Response);
+                    }
+                }
+            }
+            return cart;
+        }
 
         public async Task<ShoppingCart> AddShoppingCartAsync(ShoppingCart cart)
         {
@@ -79,7 +79,7 @@ namespace Pet_Store.Responsive.Services
             using (var httpClient = new HttpClient())
             {
 
-                using (var response = await httpClient.DeleteAsync("https://localhost:44316/api/ShoppingCart/remove-product?Userid="+Userid +"& count="+count +"& ProductoID="+ProductoID ))
+                using (var response = await httpClient.DeleteAsync("https://localhost:44316/api/ShoppingCart/remove-product/"+Userid+"/"+count+"/"+ProductoID))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {

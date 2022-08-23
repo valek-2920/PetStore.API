@@ -1,32 +1,31 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Pet_Store.Domains.Models.DataModels;
 using Pet_Store.Domains.Models.InputModels;
-using PetStore.DataAccess.Repository.UnityOfWork;
-using System.IO.Compression;
-using System.Reflection.Emit;
-
+using Pet_Store.Infraestructure.Data;
+using PetStore.Infraestructure.Repository;
+using PetStore.Infraestructure.Repository.UnitOfWork;
 namespace Pet_Store.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class PaymentController : ControllerBase
     {
-        private readonly IUnityOfWork _unityOfWork;
-
-        public PaymentController(IUnityOfWork unityOfWork)
+        readonly IUnitOfWork<ApplicationDbContext> _unitOfWork;
+        readonly IRepository<Payments> _paymentsRepository;
+        readonly IRepository<Users> _userRepository;
+        public PaymentController(IUnitOfWork<ApplicationDbContext> unitOfWork)
         {
-            _unityOfWork = unityOfWork;
+            _unitOfWork = unitOfWork;
+            _paymentsRepository = _unitOfWork.Repository<Payments>();
+            _userRepository = _unitOfWork.Repository<Users>();
         }
-
         [HttpPost]
         [Route("payment")]
         public IActionResult CreatePayment([FromBody] newPayment model)
         {
             if (ModelState.IsValid)
             {
-
-                var getUser = _unityOfWork.UsersRepository.GetFirstOrDefault(x => x.UserId == model.userId);
-
+                var getUser = _userRepository.GetFirstOrDefault(x => x.Id == model.userId);
                 if (getUser != null)
                 {
                     Payments newPayment = new Payments
@@ -37,70 +36,58 @@ namespace Pet_Store.API.Controllers
                         cardNumber = model.zipCode,
                         CVV = model.CVV,
                         expirationDate = model.expirationDate,
-                        user = getUser
+                        User = getUser
                     };
-
-                    _unityOfWork.PaymentsRepository.Add(newPayment);
-                    _unityOfWork.Save();
+                    _paymentsRepository.Add(newPayment);
+                    _unitOfWork.Save();
                     return Ok(model);
                 }
-
                 return BadRequest("usuario no existe");
             }
             return BadRequest("Error al crear pago");
         }
-
         [HttpGet]
         [Route("payment")]
-        public IActionResult GetUserPayment(int id)
+        public IActionResult GetUserPayment(string id)
         {
-            var payment = _unityOfWork.PaymentsRepository.GetFirstOrDefault(x => x.user.UserId == id);
-            _unityOfWork.Save();
-
+            var payment = _paymentsRepository.GetFirstOrDefault(x => x.User.Id == id);
+            _unitOfWork.Save();
             if (payment != null)
             {
                 return Ok(payment);
             }
             return BadRequest("Usuario no posee metodo de pago");
         }
-
         [HttpPut]
         [Route("payment")]
         public IActionResult UpdatePaymentMethod([FromBody] Payments model)
         {
-            var oldPayment = _unityOfWork.PaymentsRepository.GetFirstOrDefault(x => x.Id == model.Id);
-
+            var oldPayment = _paymentsRepository.GetFirstOrDefault(x => x.Id == model.Id);
             if (ModelState.IsValid)
             {
-                var getUser = _unityOfWork.UsersRepository.GetFirstOrDefault(x => x.UserId == model.user.UserId);
-
+                var getUser = _userRepository.GetFirstOrDefault(x => x.Id == model.User.Id);
                 oldPayment.firstName = model.firstName;
                 oldPayment.lastName = model.lastName;
                 oldPayment.zipCode = model.zipCode;
                 oldPayment.cardNumber = model.cardNumber;
                 oldPayment.CVV = model.CVV;
                 oldPayment.expirationDate = model.expirationDate;
-                oldPayment.user = getUser;
-
-                _unityOfWork.PaymentsRepository.Update(model);
-                _unityOfWork.Save();
-
+                oldPayment.User = getUser;
+                _paymentsRepository.Update(model);
+                _unitOfWork.Save();
                 return Ok(model);
             }
             return BadRequest("Error al actualizar metodo de pago");
         }
-
         [HttpDelete]
         [Route("category")]
         public IActionResult Deletepayment(int id)
         {
-            var payment = _unityOfWork.PaymentsRepository.GetFirstOrDefault(x => x.Id == id);
-
+            var payment = _paymentsRepository.GetFirstOrDefault(x => x.Id == id);
             if (payment != null)
             {
-                _unityOfWork.PaymentsRepository.Remove(payment);
-                _unityOfWork.Save();
-
+                _paymentsRepository.Remove(payment);
+                _unitOfWork.Save();
                 return Ok(200);
             }
             return BadRequest(400);

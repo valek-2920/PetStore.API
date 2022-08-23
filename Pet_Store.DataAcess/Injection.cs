@@ -23,7 +23,8 @@ namespace PetStore.Infraestructure
                .AddRepository<OrderHeader, OrderHeaderRepository>()
                .AddRepository<Products, ProductsRepository>()
                .AddRepository<ShoppingCart, ShoppingCartRepository>()
-               .AddRepository<Users, UsersRepository>();
+               .AddRepository<Users, UsersRepository>()
+               .AddRepository<Payments, PaymentsRepository>();
 
 
             services.AddScoped<IApplicationDbContext>

@@ -1,12 +1,15 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Pet_Store.Application;
+using Pet_Store.Domains.Models.MailModels;
 using Pet_Store.Responsive.Services;
 using Pet_Store.Responsive.Services.IServices;
 using PetStore.Infraestructure;
@@ -29,23 +32,51 @@ namespace Pet_Store.Responsive
             services.RegisterApplicationServices(Configuration);
             services.RegisterInfrastructureServices(Configuration);
 
+            services.AddSingleton<ICartero, Cartero>();
+            services.Configure<ConfiguracionSmtp>(Configuration.GetSection("ConfiguracionSmtp"));
+
             services.AddAuthentication
                   (
                       options =>
                       {
                           options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                       }
-                  )
-                  .AddCookie
-                      (
-                          options =>
-                          {
-                              options.LoginPath = "/accounts/login";
-                              options.LogoutPath = "/accounts/logout";
-                              options.AccessDeniedPath = "/accounts/accessdenied";
-                              options.Cookie.SameSite = SameSiteMode.Lax;
-                          }
+                  );
+            //  .AddCookie
+            //      (
+            //          options =>
+            //          {
+            //              options.LoginPath = "/accounts/login";
+            //              options.LogoutPath = "/accounts/logout";
+            //              options.AccessDeniedPath = "/accounts/accessdenied";
+            //              options.Cookie.SameSite = SameSiteMode.Lax;
+            //          }
+            //);
+
+            services.ConfigureApplicationCookie
+                (
+                    options =>
+                    {
+                        options.AccessDeniedPath = new PathString("/User/AccessDenied");
+                        options.AccessDeniedPath = new PathString("/Inventario/AccessDenied");
+                        options.Cookie.SameSite = SameSiteMode.Lax;
+                    }
                 );
+
+            services.AddMvc
+                (
+                    options =>
+                    {
+                        var policy =
+                            new AuthorizationPolicyBuilder()
+                                    .RequireAuthenticatedUser()
+                                    .Build();
+
+                        options.Filters.Add
+                            (new AuthorizeFilter(policy));
+                    }
+                )
+                .AddXmlSerializerFormatters();
 
             services.Configure<IdentityOptions>
                 (

@@ -8,7 +8,7 @@ using Pet_Store.Application.Middlewares;
 using System;
 using System.Linq;
 
-namespace Pet_Storepplication.Attributes
+namespace Pet_Store.Application.Attributes
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class AuthorizeAttribute : Attribute, IAuthorizationFilter

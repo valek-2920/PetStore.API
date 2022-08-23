@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Pet_Store.Application.Contracts.Data;
 using Pet_Store.Domains.Models.DataModels;
-using PetStore.Infraestructure.Data;
-
 
 namespace Pet_Store.Infraestructure.Data
 {

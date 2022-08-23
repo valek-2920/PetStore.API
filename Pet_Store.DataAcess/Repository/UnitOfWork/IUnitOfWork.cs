@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace PetStore.Infraestructure.Repository.UnitOfWork
+namespace Pet_Store.Infraestructure.Repository.UnitOfWork
 {
     public interface IUnitOfWork<out TContext>
         where TContext : DbContext

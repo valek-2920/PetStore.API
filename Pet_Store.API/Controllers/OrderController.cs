@@ -189,18 +189,18 @@ namespace Pet_Store.API.Controllers
             return BadRequest("Usuario no posee orden");
         }
 
-        // [HttpGet]
-        // [Route("order-products")]
-        // public IActionResult getOrderProducts(int userId)
-        // {
-        //     var products =  _unityOfWork.ShoppingCartRepository.getProducts(userId);
+        [HttpGet]
+        [Route("order-products")]
+        public IActionResult getOrderProducts(string userId)
+        {
+            var products = (from x in _context.ShoppingCarts where x.User.Id == userId select x.Product).ToList();
 
-        //     if (products != null)
-        //     {
-        //         return Ok(products);
-        //     }
-        //     return BadRequest("Usuario no posee orden");
-        // }
+            if (products != null)
+            {
+                return Ok(products);
+            }
+            return BadRequest("Usuario no posee orden");
+        }
 
     }
 }

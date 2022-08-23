@@ -16,5 +16,7 @@ namespace Pet_Store.Domains.Models.ViewModels
         public OrderDetails order { get; set; }
 
         public List<Products> products { get; set; }
+
+        public string UserId { get; set; }
     }
 }

@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Pet_Store.Responsive.Controllers
@@ -56,14 +57,16 @@ namespace Pet_Store.Responsive.Controllers
             return View(products);
         }
 
-
         [HttpGet]
-        public async Task<IActionResult> Checkout(int id)
+        public async Task<IActionResult> Checkout()
         {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            var userId = claim.Value;
 
-            var user = await _userServices.getUserById(id);
-            var orderDetails = await _checkoutServices.getOrderByUserAsync(id);
-            var products = await _checkoutServices.getOrderProductsAsync(id);
+            var user = await _userServices.getUserById(userId);
+            var orderDetails = await _checkoutServices.getOrderByUserAsync(userId);
+            var products = await _checkoutServices.getOrderProductsAsync(userId);
 
             if (user != null)
             {
@@ -73,7 +76,8 @@ namespace Pet_Store.Responsive.Controllers
                     payments = new(),
                     orderHeader = new(),
                     order = orderDetails,
-                    products = products
+                    products = products,
+                    UserId = userId
                 };
 
                 return View(viewModel);
@@ -88,6 +92,7 @@ namespace Pet_Store.Responsive.Controllers
 
             if (ModelState.IsValid)
             {
+
                 await _checkoutServices.addProductAsync(viewModel.orderHeader);
                 await _checkoutServices.addPaymentAsync(viewModel.payments);
 

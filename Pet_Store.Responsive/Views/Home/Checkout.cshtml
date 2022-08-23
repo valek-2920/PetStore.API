@@ -1,5 +1,11 @@
 ﻿@model OrderPaymentViewModel
 
+
+@{
+    Model.payments.UserId = Model.UserId;
+    Model.orderHeader.UserId = Model.UserId;
+
+}
 <div class="breadcrumb-section breadcrumb-bg">
     <div class="container">
         <div class="row">

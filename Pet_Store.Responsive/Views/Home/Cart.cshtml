@@ -1,6 +1,10 @@
-﻿@{
+﻿@using System.Security.Claims
+
+@{
     ViewBag.Title = "Carrito";
+
 }
+
 <!-- breadcrumb-section -->
 	<div class="breadcrumb-section breadcrumb-bg">
 		<div class="container">
@@ -73,7 +77,7 @@
 						</table>
 						<div class="cart-buttons">
 							<a href="#" class="boxed-btn">Vaciar Carrito</a>
-							<a href="#" class="boxed-btn black">Finalizar Compra</a>
+						<a asp-action="Checkout" class="boxed-btn black">Finalizar Compra</a>
 						</div>
 					</div>
 				</div>

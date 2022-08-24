@@ -94,9 +94,7 @@ namespace Pet_Store.Responsive
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
             services.AddScoped<IInventarioServices, InventarioServices>();
-
             services.AddScoped<IShoppingCartService, ShoppingCartService>();
-
             services.AddScoped<IUserServices, UsersServices>();
             services.AddScoped<ICheckoutServices, CheckoutServices>();
 

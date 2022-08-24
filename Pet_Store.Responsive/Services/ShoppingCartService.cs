@@ -13,11 +13,7 @@ namespace Pet_Store.Responsive.Services
     public class ShoppingCartService : IShoppingCartService
     {
 
-
-        /************************* ShoppingCart Services ********************************/
-
-
-        public async Task<IEnumerable<ShoppingCart>> GetShoppingCartAsync(int userId)
+        public async Task<IEnumerable<ShoppingCart>> GetShoppingCartAsync(string userId)
         {
             List<ShoppingCart> cart = new List<ShoppingCart>();
 
@@ -36,7 +32,7 @@ namespace Pet_Store.Responsive.Services
             return cart;
         }
 
-        public async Task<ShoppingCart> GetShoppingcartByUser(int UserId)
+        public async Task<ShoppingCart> GetShoppingcartByUser(string UserId)
         {
 
             ShoppingCart cart = new ShoppingCart();
@@ -73,13 +69,13 @@ namespace Pet_Store.Responsive.Services
         }
 
 
-        public async Task<string> deleteShoppinCartById(int Userid, int count, int ProductoID)
+        public async Task<string> deleteShoppinCartById(string Userid, int ProductoID)
         {
             string apiResponse = "";
             using (var httpClient = new HttpClient())
             {
 
-                using (var response = await httpClient.DeleteAsync("https://localhost:44316/api/ShoppingCart/remove-product/"+Userid+"/"+count+"/"+ProductoID))
+                using (var response = await httpClient.DeleteAsync("https://localhost:44316/api/ShoppingCart/remove-product/"+Userid+"/"+"/"+ProductoID))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {

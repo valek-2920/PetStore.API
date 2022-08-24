@@ -10,18 +10,12 @@ using Pet_Store.Domains.Models.InputModels;
 using Pet_Store.Domains.Models.MailModels;
 using Pet_Store.Domains.Models.ViewModels;
 using Pet_Store.Responsive.Services.IServices;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
 using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
-using Pet_Store.Domains.Models.DataModels;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Razor.Language.Extensions;
+using Pet_Store.Responsive.Services;
+
 
 namespace Pet_Store.Responsive.Controllers
 {
@@ -33,6 +27,7 @@ namespace Pet_Store.Responsive.Controllers
         readonly IInventarioServices _inventarioServices;
         readonly IUserServices _userServices;
         readonly ICheckoutServices _checkoutServices;
+        readonly IShoppingCartService _shoppingCartServices;
         ICartero Cartero;
         readonly UserManager<IdentityUser> _userManager;
         readonly SignInManager<IdentityUser> _sessionManager;
@@ -45,7 +40,8 @@ namespace Pet_Store.Responsive.Controllers
                 UserManager<IdentityUser> userManager,
                 SignInManager<IdentityUser> sessionManager,
                 RoleManager<IdentityRole> roleManager,
-                ICartero cartero
+                ICartero cartero,
+                IShoppingCartService shoppingCartServices
             )
         {
             _logger = logger;
@@ -56,6 +52,7 @@ namespace Pet_Store.Responsive.Controllers
             _sessionManager = sessionManager;
             _roleManager = roleManager;
             Cartero = cartero;
+            _shoppingCartServices = shoppingCartServices;
         }
 
         public async Task<IActionResult> Index()
@@ -113,6 +110,7 @@ namespace Pet_Store.Responsive.Controllers
             return View(viewModel);
         }
 
+
         public async Task<IActionResult> Shop()
         {
 
@@ -121,12 +119,54 @@ namespace Pet_Store.Responsive.Controllers
             return View(products);
         }
 
-        public ActionResult About()
+        [HttpPost]
+        public async Task<IActionResult> Cart()
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            var userId = claim.Value;
+
+            var ShoppingCart = await _shoppingCartServices.GetShoppingCartAsync(userId);
+
+            return View(ShoppingCart);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EliminarProductosShopingCart(int ProductoID)
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            var userId = claim.Value;
+
+            await _shoppingCartServices.deleteShoppinCartById(userId, ProductoID);
+            return RedirectToAction("cart");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> addProductsToCart(int ProductId)
         {
 
-            return View();
+            if (ModelState.IsValid)
+            {
+                var claimsIdentity = (ClaimsIdentity)User.Identity;
+                var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+                var userId = claim.Value;
+
+
+                ShoppingCart model = new()
+                {
+                    ProductId = ProductId,
+                    UserId = userId
+                };
+
+                await _shoppingCartServices.AddShoppingCartAsync(model);
+                return RedirectToAction("Index");
+
+            }
+            return RedirectToAction("Index");
         }
-        public ActionResult Cart()
+
+        public ActionResult About()
         {
 
             return View();
@@ -373,108 +413,5 @@ namespace Pet_Store.Responsive.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Shop()
-        {
-
-            var products = await _inventarioServices.getProductsAsync();
-
-            return View(products);
-        }
-
-        public ActionResult About()
-        {
-
-            return View();
-        }
-
-
-       //-----------------ShoppingCart------------------------------
-
-        //--Get ShoppingCart
-        [HttpGet]
-        public async Task<IActionResult> Cart(int userId)
-        {
-            var ShoppingCart = await _shoppingCartService.GetShoppingCartAsync(userId);
-
-            return View(ShoppingCart);
-        }
-
-
-        //--Delete porductos de shoppingCart
-        [HttpPost]
-        public async Task<IActionResult> EliminarProductosShopingCart(int Userid, int count, int ProductoID)
-        {
-            var response = await _shoppingCartService.deleteShoppinCartById(Userid, count, ProductoID);
-            return RedirectToAction("cart");
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> addProductsToCart(int UserId, int ProductId)
-            {
-
-            if (ModelState.IsValid)
-            {
-                ShoppingCart model = new()
-                {
-                    ProductId = ProductId,
-                    UserId = UserId
-                };
-
-                await _shoppingCartService.AddShoppingCartAsync(model);
-                return RedirectToAction("Index");
-
-            }
-            return RedirectToAction("Index");
-        }
-
-        public ActionResult Checkout()
-
-        [HttpGet]
-        public async Task<IActionResult> Checkout(int id)
-        {
-
-            var user = await _userServices.getUserById(id);
-            var orderDetails = await _checkoutServices.getOrderByUserAsync(id);
-            var products = await _checkoutServices.getOrderProductsAsync(id);
-
-            if(user != null)
-            {
-
-                OrderPaymentViewModel viewModel = new()
-                {
-                    payments = new(),
-                    orderHeader = new(),
-                    order = orderDetails,
-                    products = products
-                };
-
-                return View(viewModel);
-
-            }
-            return RedirectToAction("Index");
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Checkout(OrderPaymentViewModel viewModel)
-        {
-
-            if (ModelState.IsValid)
-            {
-                await _checkoutServices.addProductAsync(viewModel.orderHeader);
-                await _checkoutServices.addPaymentAsync(viewModel.payments);
-
-                return RedirectToAction("Index");
-            }
-            //var errors = ModelState
-            //.Where(x => x.Value.Errors.Count > 0)
-            //.Select(x => new { x.Key, x.Value.Errors })
-            //.ToArray();
-            return View(viewModel);
-        }
-
-        public ActionResult Contact()
-        {
-            return View();
-        }
     }
 }

@@ -43,7 +43,7 @@ namespace Pet_Store.API.Controllers
             {
 
                 var getUser = _usersRepository.GetFirstOrDefault(x => x.Id == model.UserId);
-                var getProduct = _productsRepository.GetFirstOrDefault(x => x.Name == model.Product);
+                var getProduct = _productsRepository.GetFirstOrDefault(x => x.ProductId == model.ProductId);
 
                 ShoppingCart shoppingCart = new ShoppingCart();
 
@@ -53,7 +53,7 @@ namespace Pet_Store.API.Controllers
                     var CartExist = _shoppingCartRepository.GetFirstOrDefault(x => x.User.Id == model.UserId);
                     var products = (from x in _context.ShoppingCarts where x.User.Id == model.UserId select x.Product.Name).ToList();
 
-                    if (CartExist != null && products != null && products.Contains(model.Product))
+                    if (CartExist != null && products != null && products.Contains(model.Product.Name))
                     {
                         //actualizar producto existente con nuevos datos
                         CartExist.Count += model.Count;
@@ -99,7 +99,7 @@ namespace Pet_Store.API.Controllers
 
         [HttpDelete]
         [Route("remove-product")]
-        public IActionResult DeleteItem(string Userid, int count, int ProductoID)
+        public IActionResult DeleteItem(string Userid, int ProductoID)
         {
             var CartExist = _shoppingCartRepository.GetFirstOrDefault(x => x.User.Id == Userid);
 
@@ -118,7 +118,7 @@ namespace Pet_Store.API.Controllers
                     if (CartExist.Count >= 1)
                     {
                         //actualizar producto existente con nuevos datos
-                        CartExist.Count = product.Count - count;
+                        CartExist.Count = product.Count - product.Count;
                         CartExist.Subtotal = CartExist.Count * getProduct.Price;
 
                         if (CartExist.Count <= 0)

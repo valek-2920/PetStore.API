@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<ShoppingCart>
-﻿@using System.Security.Claims
+
 @{
     ViewBag.Title = "Carrito";
 }
@@ -29,8 +29,8 @@
                             <thead class="cart-table-head">
                                 <tr class="table-head-row">
                                     <th class="product-remove"></th>
-                                    <th class="product-Carrito">Carrito</th>
-                                    <th class="product-Cliente">Cliente</th>
+@*                                    <th class="product-Carrito">Carrito</th>
+                                    <th class="product-Cliente">Cliente</th>*@
                                     <th class="product-Producto">Producto</th>
                                     <th class="product-Descripcion">Descripcion</th>
                                     <th class="product-price">Precio</th>
@@ -43,16 +43,12 @@
                                 {
                                 <tr class="table-body-row">
                                     <td class="product-remove">
-                                        <button class="btn btn-warning"
-                                                asp-action="EliminarProductosShopingCart"
-                                                asp-route-Userid="@item.UserId"
-                                                asp-route-count="@item.Count"
+                                        <button asp-controller="Home" asp-action="EliminarProductosShopingCart"
                                                 asp-route-ProductoID="@item.ProductId">
-                                            <i class="fa-solid fa-circle-xmark"></i> Eliminar
-                                        </button>
+                                            <i class="fa-solid fa-circle-xmark"></i></button>
                                     </td>
-                                    <td class="product-Carrito">@item.Id</td>
-                                    <td class="product-Cliente">@item.User.Name</td>
+@*                                  <td class="product-Carrito">@item.Id</td>
+                                    <td class="product-Cliente">@item.User.FirstName</td>*@
                                     <td class="product-Producto">@item.Product.Name</td>
                                     <td class="product-Descripcion">@item.Product.Description</td>
                                     <td class="product-price">₡@item.Product.Price</td>
@@ -93,7 +89,8 @@
                         </table>
                         <div class="cart-buttons">
 @*                            <a href="#" class="boxed-btn">Vaciar Carrito</a>
-*@                            <button href="#" class="boxed-btn black">Finalizar Compra</button>
+*@                           <a asp-action="Checkout" class="boxed-btn black">Finalizar Compra</a>
+
                         </div>
                     </div>
                 </div>

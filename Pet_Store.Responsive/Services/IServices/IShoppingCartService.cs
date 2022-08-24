@@ -12,13 +12,13 @@ namespace Pet_Store.Responsive.Services.IServices
         //---------ShoppingCart----------
 
       
-        Task<IEnumerable<ShoppingCart>> GetShoppingCartAsync(int Userid);
+        Task<IEnumerable<ShoppingCart>> GetShoppingCartAsync(string Userid);
       
-        Task<ShoppingCart> GetShoppingcartByUser(int UserId);
+        Task<ShoppingCart> GetShoppingcartByUser(string UserId);
 
         Task<ShoppingCart> AddShoppingCartAsync(ShoppingCart shoppingcart);
 
         
-        Task<string> deleteShoppinCartById(int Userid, int count, int ProductoID);
+        Task<string> deleteShoppinCartById(string Userid, int ProductoID);
     }
 }

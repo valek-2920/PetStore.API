@@ -42,19 +42,19 @@ namespace Pet_Store.Responsive.Services
             return postOrder;
         }
 
-        public async Task<OrderDetails> getOrderByUserAsync(string userId)
+        public async Task<List<OrderDetails>> getOrderByUserAsync(string userId)
         {
-            OrderDetails orders = new OrderDetails();
+            List<OrderDetails> orders = new List<OrderDetails>();
 
             using (var httpClient = new HttpClient())
             {
 
-                using (var response = await httpClient.GetAsync("https://localhost:44316/api/Products/product?id=" + userId))
+                using (var response = await httpClient.GetAsync("https://localhost:44316/api/Order/order?userId=" + userId))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
                         var Response = await response.Content.ReadAsStringAsync();
-                        orders = JsonConvert.DeserializeObject<OrderDetails>(Response);
+                        orders = JsonConvert.DeserializeObject<List<OrderDetails>>(Response);
                     }
                 }
             }

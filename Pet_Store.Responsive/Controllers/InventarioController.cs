@@ -15,7 +15,7 @@ using Pet_Store.Application.Handlers;
 
 namespace Pet_Store.Responsive.Controllers
 {
-    public class InventarioController : Controller
+    public class InventarioController : BaseController
     {
 
         readonly IConfiguration _configuration;

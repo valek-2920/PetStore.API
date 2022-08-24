@@ -101,8 +101,10 @@
                             <h3>@item.Name</h3>
                             <p class="product-price"><span>Unidad</span> ₡@item.Price</p>
 
-                            <button asp-action="addProductsToCart" asp-route-ProductId="@item.ProductId" class="btn btn-primary">
-                                <i class="fa-solid fa-circle-xmark"></i> Agregar al Carrito
+                            <button asp-action="addProductsToCart"
+                                    asp-route-ProductId="@item.ProductId"
+                                    class="btn btn-warning">
+                                <i class="fas fa-shopping-cart"></i> Agregar al Carrito
                             </button>
                         </div>
                     </div>
@@ -125,37 +127,37 @@
     </div>
 
     @*<!-- Oferta Seccion Banner -->
-    <section class="cart-banner pt-100 pb-100">
-    <div class="container">
-    <div class="row clearfix">
-    <!--Columna con imagen-->
-    <div class="image-column col-lg-6">
-    <div class="image">
-    <div class="price-box">
-    <div class="inner-price">
-    <span class="price">
-    <strong>30%</strong> <br> menos por unidad
-    </span>
-    </div>
-    </div>
-    <img src="~/img/promo.webp" alt="">
-    </div>
-    </div>
-    <!--Contenido de la columna-->
-    <div class="content-column col-lg-6">
-    <h3><span class="orange-text">Oferta</span> del mes</h3>
-    <h4>Alimento Purina</h4>
-    <div class="text">Adquirí cualquiera de los aliementos Purina seleccionados con un 30% de descuento solo por este mes.</div>
-    <!--Cuenta regresiva-->
-    <div class="time-counter"><div class="time-countdown clearfix" data-countdown="2022/8/31"><div class="counter-column"><div class="inner"><span class="count">00</span>Días</div></div> <div class="counter-column"><div class="inner"><span class="count">00</span>Horas</div></div>  <div class="counter-column"><div class="inner"><span class="count">00</span>Min</div></div>  <div class="counter-column"><div class="inner"><span class="count">00</span>Seg</div></div></div></div>
-    <a class="cart-btn mt-3" href="@Url.Action("Cart", "Home")">
-    <i class="fas fa-shopping-cart"></i> Agregar al Carrito
-    </a>
-    </div>
-    </div>
-    </div>
-    </section>
-    <!-- fin Oferta Seccion Banner -->*@
+        <section class="cart-banner pt-100 pb-100">
+        <div class="container">
+        <div class="row clearfix">
+        <!--Columna con imagen-->
+        <div class="image-column col-lg-6">
+        <div class="image">
+        <div class="price-box">
+        <div class="inner-price">
+        <span class="price">
+        <strong>30%</strong> <br> menos por unidad
+        </span>
+        </div>
+        </div>
+        <img src="~/img/promo.webp" alt="">
+        </div>
+        </div>
+        <!--Contenido de la columna-->
+        <div class="content-column col-lg-6">
+        <h3><span class="orange-text">Oferta</span> del mes</h3>
+        <h4>Alimento Purina</h4>
+        <div class="text">Adquirí cualquiera de los aliementos Purina seleccionados con un 30% de descuento solo por este mes.</div>
+        <!--Cuenta regresiva-->
+        <div class="time-counter"><div class="time-countdown clearfix" data-countdown="2022/8/31"><div class="counter-column"><div class="inner"><span class="count">00</span>Días</div></div> <div class="counter-column"><div class="inner"><span class="count">00</span>Horas</div></div>  <div class="counter-column"><div class="inner"><span class="count">00</span>Min</div></div>  <div class="counter-column"><div class="inner"><span class="count">00</span>Seg</div></div></div></div>
+        <a class="cart-btn mt-3" href="@Url.Action("Cart", "Home")">
+        <i class="fas fa-shopping-cart"></i> Agregar al Carrito
+        </a>
+        </div>
+        </div>
+        </div>
+        </section>
+        <!-- fin Oferta Seccion Banner -->*@
     <!-- Seccion Testimonios -->
     <div class="testimonail-section mt-150 mb-150">
         <div class="container">
@@ -282,3 +284,7 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+    <div class="container body-content">
+        @Html.Partial("_NotificationPanel")
+        <hr />
+    </div>

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Pet_Store.Responsive.Controllers
 {
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         public UserController
             (

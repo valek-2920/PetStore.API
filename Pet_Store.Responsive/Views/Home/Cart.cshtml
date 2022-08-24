@@ -43,9 +43,14 @@
                                 {
                                 <tr class="table-body-row">
                                     <td class="product-remove">
-                                        <button asp-action="EliminarProductosShopingCart"
-                                                asp-route-ProductoID="@item.ProductId">
+                                        <button 
+                                               asp-route-ProductoID="@item.ProductId"
+                                               asp-action="EliminarProductosShopingCart"
+                                               
+                                                >
                                             <i class="fa-solid fa-circle-xmark"></i></button>
+                                     
+                                       
                                     </td>
 @*                                  <td class="product-Carrito">@item.Id</td>
                                     <td class="product-Cliente">@item.User.FirstName</td>*@
@@ -99,3 +104,31 @@
     </div>
     </form>
 	<!-- end cart -->
+
+<script>
+    function AlertEliminarProductosShopingCart(identificador) {
+        Swal.fire({
+            title: '¿Está seguro de que desea eliminar el artículo?',
+            text: "Esta acción no podrá revertirse",
+            icon: 'delete',
+            buttons: true,
+            showCancelButton: true,
+            dangerMode: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "/Home/Cart?ProductId=" + identificador,
+                    success: function (r) {
+                        location.EliminarProductosShopingCart();
+                    }
+                });
+            }
+            return false;
+        });
+    }
+
+</script>
+<div class="container body-content">
+    @Html.Partial("_NotificationPanel")
+    <hr />
+</div>

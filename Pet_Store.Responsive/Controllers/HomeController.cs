@@ -15,13 +15,13 @@ using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Pet_Store.Responsive.Services;
+using static Pet_Store.Domains.Models.Enum.Enum;
 
-
-namespace Pet_Store.Responsive.Controllers
+namespace Pet_Store.Responsive.Controllers 
 {
     //[Route("home")]
     [AllowAnonymous]
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly ILogger<HomeController> _logger;
         readonly IInventarioServices _inventarioServices;
@@ -139,10 +139,11 @@ namespace Pet_Store.Responsive.Controllers
         [HttpPost]
         public async Task<IActionResult> EliminarProductosShopingCart(int ProductoID)
         {
+            
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
             var userId = claim.Value;
-
+            Alert("Se ha Eliminado con exito", NotificationType.info);
             await _shoppingCartServices.deleteShoppinCartById(userId, ProductoID);
             return RedirectToAction("Index");
         }
@@ -150,9 +151,10 @@ namespace Pet_Store.Responsive.Controllers
         [HttpPost]
         public async Task<IActionResult> addProductsToCart(int ProductId)
         {
-
+           
             if (ModelState.IsValid)
             {
+               
                 var claimsIdentity = (ClaimsIdentity)User.Identity;
                 var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
                 var userId = claim.Value;
@@ -166,7 +168,8 @@ namespace Pet_Store.Responsive.Controllers
                 };
 
                 await _shoppingCartServices.AddShoppingCartAsync(model);
-                return RedirectToAction("Index");
+                Alert("Se ha agregado con exito", NotificationType.success);
+                return RedirectToAction(nameof(Index));
 
             }
             return RedirectToAction("Index");
@@ -216,9 +219,10 @@ namespace Pet_Store.Responsive.Controllers
 
                 if (result.Succeeded)
                 {
+                    Alert("Bienvenido(a) Gracias por preferirno", NotificationType.info);
                     return RedirectToAction("index", "home");
                 }
-
+                
                 ModelState.AddModelError(string.Empty, "Session could not be started!");
             }
 
@@ -260,7 +264,7 @@ namespace Pet_Store.Responsive.Controllers
 
                 if (result.Succeeded)
                 {
-
+                    Alert("Se ha registrado con exito", NotificationType.info);
                     //Codigo para agregar al user que se esta creando a un rol automaticamente
                     var DefaultRole = _roleManager.FindByNameAsync("Cliente").Result;
 

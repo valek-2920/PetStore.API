@@ -31,11 +31,12 @@
                                     <th class="product-remove"></th>
 @*                                    <th class="product-Carrito">Carrito</th>
                                     <th class="product-Cliente">Cliente</th>*@
+                                    <th class="product-Descripcion">Imagen del producto</th>
                                     <th class="product-Producto">Producto</th>
-                                    <th class="product-Descripcion">Descripcion</th>
+                                  @* <th class="product-Descripcion">Descripcion</th>*@
                                     <th class="product-price">Precio</th>
                                     <th class="product-quantity">Cantidad</th>
-                                    <th class="product-total">Total</th>
+                                   @* <th class="product-total">Total</th>*@
                                 </tr>
                             </thead>
                             <tbody>
@@ -54,11 +55,12 @@
                                     </td>
 @*                                  <td class="product-Carrito">@item.Id</td>
                                     <td class="product-Cliente">@item.User.FirstName</td>*@
+                                    <td><img src="@item.Product.Files" alt="" width="100"></td>
                                     <td class="product-Producto">@item.Product.Name</td>
-                                    <td class="product-Descripcion">@item.Product.Description</td>
-                                    <td class="product-price">₡@item.Product.Price</td>
+@*                                    <td class="product-Descripcion">@item.Product.Description</td>
+*@                                  <td class="product-price">₡@item.Product.Price</td>
                                     <td class="product-quantity">@item.Count</td>
-                                    <td class="product-total">₡@item.Subtotal</td> 
+                                    @*<td class="product-total">₡@item.Subtotal</td> *@
                                 </tr>
                                 }
                             </tbody>
@@ -66,8 +68,8 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="total-section">
-@*                        <table class="total-table">
+@*                    <div class="total-section">
+                        <table class="total-table">
                             <thead class="total-table-head">
                                 <tr class="table-total-row">
                                     <th>Total</th>
@@ -81,7 +83,7 @@
                                         <td><strong>Subtotal: </strong></td>
                                         <td>₡@item.Subtotal</td>
                                     </tr>
-                                                                    <tr class="total-data">
+                                  <tr class="total-data">
                                 <td><strong>envío: </strong></td>
                                 <td>₡0</td>
                                 </tr>*
@@ -91,10 +93,8 @@
                                     </tr>
                                 }                 
                             </tbody>
-                        </table>*@
-
-                    </div>
-
+                        </table>
+                    </div>*@
                 </div>
                 <div class="cart-buttons align-content-end">
                     @* <a href="#" class="boxed-btn">Vaciar Carrito</a>*@

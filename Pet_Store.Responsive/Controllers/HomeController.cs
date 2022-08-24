@@ -82,8 +82,15 @@ namespace Pet_Store.Responsive.Controllers
                     orderHeader = new(),
                     order = orderDetails,
                     products = products,
-                    UserId = userId
+                    UserId = userId,
+                    Total = 0.0
                 };
+
+                foreach (var item in products)
+                {
+                    viewModel.Total = (viewModel.Total*item.Price)+1800;
+
+                }
 
                 return View(viewModel);
 
@@ -103,7 +110,7 @@ namespace Pet_Store.Responsive.Controllers
                 viewModel.order = await _checkoutServices.getOrderByUserAsync(viewModel.UserId);
                 viewModel.products = await _checkoutServices.getOrderProductsAsync(viewModel.UserId);
 
-                viewModel.Response = 200;
+
                 Alert("La compra se ha hecho exitosamente!", NotificationType.success);
                 return RedirectToAction("Index");
 

@@ -20,5 +20,7 @@ namespace Pet_Store.Domains.Models.ViewModels
         public string UserId { get; set; }
 
         public int Response { get; set; }
+
+        public double Total { get; set; }
     }
 }

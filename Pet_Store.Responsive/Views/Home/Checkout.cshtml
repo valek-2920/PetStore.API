@@ -90,11 +90,11 @@
                             <tbody class="order-details-body">
                                 @foreach (var item in Model.products)
                                 {
-                                    <tr>
+           @*                         <tr>
                                         <td>Producto</td>
                                         <td>Precio</td>
 
-                                    </tr>
+                                    </tr>*@
                                     <tr>
                                         <td>@item.Name.</td>
                                         <td>₡@item.Price</td>
@@ -106,21 +106,28 @@
                                 <tbody class="checkout-details">
 
                                     @*<tr>
-                                <td>Subtotal</td>
+                                <td>subtotal</td>
                                 <td>₡1.800</td>
                                 </tr>
                                 <tr>
-                                <td>Compra</td>
+                                <td>compra</td>
                                 <td>₡1.800</td>
                                 </tr>*@
-                                    <tr>
+                                    @* <tr>
                                         <td>Total</td>
-                                        <td>@item.Total</td>
-                                    </tr>
+                                        <h2>@item.Total</h2>
+                                    </tr>*@
+
+                                    @{
+                                        var total = item.Total;
+                                    }
                                 </tbody>
+
                             }
- 
+
                         </table>
+                        <h5>Costo de envio: ₡1800</h5>
+                        <h5>Total de la orden: ₡@Model.Total</h5>
                         <button asp-action="Checkout" class="btn btn-primary btn-user">Finalizar Pedido</button>
                     </div>
                 </div>

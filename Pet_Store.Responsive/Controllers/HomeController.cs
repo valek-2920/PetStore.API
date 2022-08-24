@@ -92,16 +92,21 @@ namespace Pet_Store.Responsive.Controllers
 
             if (ModelState.IsValid)
             {
-
+              
                 await _checkoutServices.addProductAsync(viewModel.orderHeader);
                 await _checkoutServices.addPaymentAsync(viewModel.payments);
+                viewModel.order = await _checkoutServices.getOrderByUserAsync(viewModel.UserId);
+                viewModel.products = await _checkoutServices.getOrderProductsAsync(viewModel.UserId);
 
+                viewModel.Response = 200;
                 return RedirectToAction("Index");
+
             }
             //var errors = ModelState
             //.Where(x => x.Value.Errors.Count > 0)
             //.Select(x => new { x.Key, x.Value.Errors })
             //.ToArray();
+            viewModel.Response = 400;
             return View(viewModel);
         }
 

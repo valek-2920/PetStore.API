@@ -10,7 +10,7 @@ using Pet_Store.Infraestructure.Data;
 namespace Pet_Store.Infraestructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220823123519_Initialize")]
+    [Migration("20220824023258_Initialize")]
     partial class Initialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

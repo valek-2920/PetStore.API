@@ -6,12 +6,12 @@ namespace Pet_Store.Domains.Models.DataModels
 {
     public class ShoppingCart
     {
-
-
         [Key]
+        [Display(Name = "Carrito#")]
         public int Id { get; set; }
 
         [Required]
+        [Display(Name = "Cantidad")]
         public int Count { get; set; }
 
         [Required]
@@ -28,6 +28,7 @@ namespace Pet_Store.Domains.Models.DataModels
         [ValidateNever]
         public Users User { get; set; }
 
+        [Display(Name = "Subtotal")]
         public double Subtotal { get; set; }
 
     }

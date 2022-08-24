@@ -25,7 +25,7 @@ namespace Pet_Store.Responsive
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        // This method gets called by the runtime. Use this method to add services to the container.  IShoppingCartService
         public void ConfigureServices(IServiceCollection services)
         {
           
@@ -94,8 +94,10 @@ namespace Pet_Store.Responsive
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
             services.AddScoped<IInventarioServices, InventarioServices>();
+            services.AddScoped<IShoppingCartService, ShoppingCartService>();
             services.AddScoped<IUserServices, UsersServices>();
             services.AddScoped<ICheckoutServices, CheckoutServices>();
+
 
         }
 

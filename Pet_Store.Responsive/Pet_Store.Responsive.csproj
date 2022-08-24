@@ -26,4 +26,8 @@
     <Folder Include="wwwroot\img\productos\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\js\sweetalert2.js" />
+  </ItemGroup>
+
 </Project>

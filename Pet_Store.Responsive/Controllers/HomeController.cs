@@ -1,3 +1,6 @@
+
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -7,24 +10,24 @@ using Pet_Store.Domains.Models.InputModels;
 using Pet_Store.Domains.Models.MailModels;
 using Pet_Store.Domains.Models.ViewModels;
 using Pet_Store.Responsive.Services.IServices;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Pet_Store.Responsive.Services;
+using static Pet_Store.Domains.Models.Enum.Enum;
 
-namespace Pet_Store.Responsive.Controllers
+namespace Pet_Store.Responsive.Controllers 
 {
     //[Route("home")]
     [AllowAnonymous]
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly ILogger<HomeController> _logger;
         readonly IInventarioServices _inventarioServices;
         readonly IUserServices _userServices;
         readonly ICheckoutServices _checkoutServices;
+        readonly IShoppingCartService _shoppingCartServices;
         ICartero Cartero;
         readonly UserManager<IdentityUser> _userManager;
         readonly SignInManager<IdentityUser> _sessionManager;
@@ -37,7 +40,8 @@ namespace Pet_Store.Responsive.Controllers
                 UserManager<IdentityUser> userManager,
                 SignInManager<IdentityUser> sessionManager,
                 RoleManager<IdentityRole> roleManager,
-                ICartero cartero
+                ICartero cartero,
+                IShoppingCartService shoppingCartServices
             )
         {
             _logger = logger;
@@ -48,6 +52,7 @@ namespace Pet_Store.Responsive.Controllers
             _sessionManager = sessionManager;
             _roleManager = roleManager;
             Cartero = cartero;
+            _shoppingCartServices = shoppingCartServices;
         }
 
         public async Task<IActionResult> Index()
@@ -99,6 +104,7 @@ namespace Pet_Store.Responsive.Controllers
                 viewModel.products = await _checkoutServices.getOrderProductsAsync(viewModel.UserId);
 
                 viewModel.Response = 200;
+                Alert("La compra se ha hecho exitosamente!", NotificationType.success);
                 return RedirectToAction("Index");
 
             }
@@ -110,6 +116,7 @@ namespace Pet_Store.Responsive.Controllers
             return View(viewModel);
         }
 
+
         public async Task<IActionResult> Shop()
         {
 
@@ -118,12 +125,58 @@ namespace Pet_Store.Responsive.Controllers
             return View(products);
         }
 
-        public ActionResult About()
+        [HttpPost]
+        public async Task<IActionResult> Cart()
         {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            var userId = claim.Value;
 
-            return View();
+            var ShoppingCart = await _shoppingCartServices.GetShoppingCartAsync(userId);
+
+            return View(ShoppingCart);
         }
-        public ActionResult Cart()
+
+        [HttpPost]
+        public async Task<IActionResult> EliminarProductosShopingCart(int ProductoID)
+        {
+            
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            var userId = claim.Value;
+            Alert("Se ha Eliminado con exito", NotificationType.info);
+            await _shoppingCartServices.deleteShoppinCartById(userId, ProductoID);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> addProductsToCart(int ProductId)
+        {
+           
+            if (ModelState.IsValid)
+            {
+               
+                var claimsIdentity = (ClaimsIdentity)User.Identity;
+                var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+                var userId = claim.Value;
+
+
+                ShoppingCart model = new()
+                {
+                    Count = 1,
+                    ProductId = ProductId,
+                    UserId = userId
+                };
+
+                await _shoppingCartServices.AddShoppingCartAsync(model);
+                Alert("Se ha agregado con exito", NotificationType.success);
+                return RedirectToAction(nameof(Index));
+
+            }
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult About()
         {
 
             return View();
@@ -167,9 +220,10 @@ namespace Pet_Store.Responsive.Controllers
 
                 if (result.Succeeded)
                 {
+                    //Alert("Bienvenido(a) Gracias por preferirnos", NotificationType.info);
                     return RedirectToAction("index", "home");
                 }
-
+                
                 ModelState.AddModelError(string.Empty, "Session could not be started!");
             }
 
@@ -211,7 +265,7 @@ namespace Pet_Store.Responsive.Controllers
 
                 if (result.Succeeded)
                 {
-
+                    Alert("Se ha registrado con exito", NotificationType.info);
                     //Codigo para agregar al user que se esta creando a un rol automaticamente
                     var DefaultRole = _roleManager.FindByNameAsync("Cliente").Result;
 
@@ -228,7 +282,7 @@ namespace Pet_Store.Responsive.Controllers
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
-
+            Alert("Por favor revise los datos", NotificationType.error);
             return View(model);
         }
 

@@ -121,7 +121,7 @@
                             }
  
                         </table>
-                        <button onclick=payment() class="btn btn-primary btn-user">Finalizar Pedido</button>
+                        <button asp-action="Checkout" class="btn btn-primary btn-user">Finalizar Pedido</button>
                     </div>
                 </div>
             </div>
@@ -155,7 +155,7 @@
     </div>
 </div>
 
-<script>
+@*<script>
     function payment() {
         $.ajax({
             type: "POST",
@@ -184,4 +184,8 @@
             title: 'Tu orden ha sido registrada!',
         });
     }
-</script>
+</script>*@
+<div class="container body-content">
+    @Html.Partial("_NotificationPanel")
+    <hr />
+</div>

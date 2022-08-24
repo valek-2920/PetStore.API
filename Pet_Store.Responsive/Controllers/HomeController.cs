@@ -144,7 +144,7 @@ namespace Pet_Store.Responsive.Controllers
             var userId = claim.Value;
 
             await _shoppingCartServices.deleteShoppinCartById(userId, ProductoID);
-            return RedirectToAction("cart");
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
@@ -160,6 +160,7 @@ namespace Pet_Store.Responsive.Controllers
 
                 ShoppingCart model = new()
                 {
+                    Count = 1,
                     ProductId = ProductId,
                     UserId = userId
                 };

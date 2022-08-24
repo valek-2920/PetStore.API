@@ -19,7 +19,7 @@
 </div>
 <!-- end breadcrumb section -->
 <!-- cart -->
-<form method="post">
+<form asp-action="EliminarProductosShopingCart" method="post">
     <div class="cart-section mt-150 mb-150">
         <div class="container">
             <div class="row">
@@ -43,7 +43,7 @@
                                 {
                                 <tr class="table-body-row">
                                     <td class="product-remove">
-                                        <button asp-controller="Home" asp-action="EliminarProductosShopingCart"
+                                        <button asp-action="EliminarProductosShopingCart"
                                                 asp-route-ProductoID="@item.ProductId">
                                             <i class="fa-solid fa-circle-xmark"></i></button>
                                     </td>

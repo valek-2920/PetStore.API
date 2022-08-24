@@ -13,10 +13,12 @@ namespace Pet_Store.Domains.Models.ViewModels
 
         public OrderHeader orderHeader { get; set; }
 
-        public OrderDetails order { get; set; }
+        public List<OrderDetails> order { get; set; }
 
         public List<Products> products { get; set; }
 
         public string UserId { get; set; }
+
+        public int Response { get; set; }
     }
 }

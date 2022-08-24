@@ -83,7 +83,7 @@
                     <div class="order-details-wrap">
                         <table class="order-details">
                             <thead>
-                                <tr>
+                                <tr id="response_@Model.Response">
                                     <th>Detalles de tu Orden</th>
                                 </tr>
                             </thead>
@@ -101,9 +101,11 @@
                                     </tr>
                                 }
                             </tbody>
-                            <tbody class="checkout-details">
+                            @foreach (var item in Model.order)
+                            {
+                                <tbody class="checkout-details">
 
-                                @*<tr>
+                                    @*<tr>
                                 <td>Subtotal</td>
                                 <td>₡1.800</td>
                                 </tr>
@@ -111,13 +113,15 @@
                                 <td>Compra</td>
                                 <td>₡1.800</td>
                                 </tr>*@
-                                <tr>
-                                    <td>Total</td>
-                                    <td>@Model.order.Total</td>
-                                </tr>
-                            </tbody>
+                                    <tr>
+                                        <td>Total</td>
+                                        <td>@item.Total</td>
+                                    </tr>
+                                </tbody>
+                            }
+ 
                         </table>
-                        <button asp-action="Checkout" type="submit" class="btn btn-primary btn-user">Finalizar Pedido</button>
+                        <button onclick=payment() class="btn btn-primary btn-user">Finalizar Pedido</button>
                     </div>
                 </div>
             </div>
@@ -151,37 +155,33 @@
     </div>
 </div>
 
-@*<script>
-    function deleteCategories(id) {
-        Swal.fire({
-            title: 'Administración de categorías',
-            text: "¿Estás seguro que quieres borrar este categoría?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Aceptar',
-            cancelButtonText: 'Cancelar'
-        }).then((result) => {
-            if (result) {
-                $.ajax({
-                    type: "POST",
-                    url: "/Inventario/EliminarCategorias/" + id,
-                    success: function (response) {
-                        if (response.success) {
-                            toastr.success(data.message);
-                            $("#categories_" + id).remove();
-                        }
-                        else {
-                            toastr.error(data.message);
-                        }
-                    }
-                });
+<script>
+    function payment() {
+        $.ajax({
+            type: "POST",
+            url: "/Inventario/Checkout/",
+            success: function (response) {
+                if (response.success) 
+                {
+                    toastr.success(data.message);
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Tu orden ha sido registrada!',
+                    });
+                }
+                else 
+                {
+                    toastr.error(data.message);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Ha surgido un error al confirmar tu orden, por favor intentalo más tarde',
+                    });
+                }
             }
-            Swal.fire({
-                title: "Se ha eliminado la categoría exitosamente",
-                icon: "success",
-            })
+        });
+        Swal.fire({
+            icon: 'success',
+            title: 'Tu orden ha sido registrada!',
         });
     }
-</script>*@
+</script>

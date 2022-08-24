@@ -83,12 +83,12 @@ namespace Pet_Store.Responsive.Controllers
                     order = orderDetails,
                     products = products,
                     UserId = userId,
-                    Total = 0.0
+                    Total = 0
                 };
 
                 foreach (var item in products)
                 {
-                    viewModel.Total = (viewModel.Total*item.Price)+1800;
+                    viewModel.Total = (viewModel.Total+(item.Price*1000))+1800;
 
                 }
 

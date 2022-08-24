@@ -53,7 +53,7 @@ namespace Pet_Store.API.Controllers
                     var CartExist = _shoppingCartRepository.GetFirstOrDefault(x => x.User.Id == model.UserId);
                     var products = (from x in _context.ShoppingCarts where x.User.Id == model.UserId select x.Product.Name).ToList();
 
-                    if (CartExist != null && products != null && products.Contains(model.Product.Name))
+                    if (CartExist != null && products != null && products.Contains(getProduct.Name))
                     {
                         //actualizar producto existente con nuevos datos
                         CartExist.Count += model.Count;

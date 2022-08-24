@@ -75,7 +75,7 @@ namespace Pet_Store.Responsive.Services
             using (var httpClient = new HttpClient())
             {
 
-                using (var response = await httpClient.DeleteAsync("https://localhost:44316/api/ShoppingCart/remove-product/"+Userid+"/"+"/"+ProductoID))
+                using (var response = await httpClient.DeleteAsync("https://localhost:44316/api/ShoppingCart/remove-product?Userid="+Userid+"&ProductoID="+ProductoID))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {

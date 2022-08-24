@@ -67,7 +67,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="total-section">
-                        <table class="total-table">
+@*                        <table class="total-table">
                             <thead class="total-table-head">
                                 <tr class="table-total-row">
                                     <th>Total</th>
@@ -81,23 +81,24 @@
                                         <td><strong>Subtotal: </strong></td>
                                         <td>₡@item.Subtotal</td>
                                     </tr>
-                                    @*                                <tr class="total-data">
-                                <td><strong>Envío: </strong></td>
+                                                                    <tr class="total-data">
+                                <td><strong>envío: </strong></td>
                                 <td>₡0</td>
-                                </tr>*@
-                          @*          <tr class="total-data">
-                                        <td><strong>Total: </strong></td>
+                                </tr>*
+                                   <tr class="total-data">
+                                        <td><strong>total: </strong></td>
                                         <td>₡</td>
-                                    </tr>*@
+                                    </tr>
                                 }                 
                             </tbody>
-                        </table>
-                        <div class="cart-buttons">
-@*                            <a href="#" class="boxed-btn">Vaciar Carrito</a>
-*@                           <a asp-action="Checkout" class="boxed-btn black">Finalizar Compra</a>
+                        </table>*@
 
-                        </div>
                     </div>
+
+                </div>
+                <div class="cart-buttons align-content-end">
+                    @* <a href="#" class="boxed-btn">Vaciar Carrito</a>*@
+                    <a asp-action="Checkout" class="boxed-btn black">Finalizar Compra</a>
                 </div>
             </div>
         </div>
@@ -105,7 +106,7 @@
     </form>
 	<!-- end cart -->
 
-<script>
+@*<script>
     function AlertEliminarProductosShopingCart(identificador) {
         Swal.fire({
             title: '¿Está seguro de que desea eliminar el artículo?',
@@ -127,7 +128,7 @@
         });
     }
 
-</script>
+</script>*@
 <div class="container body-content">
     @Html.Partial("_NotificationPanel")
     <hr />

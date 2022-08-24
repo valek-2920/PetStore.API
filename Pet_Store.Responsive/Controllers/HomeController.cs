@@ -104,6 +104,7 @@ namespace Pet_Store.Responsive.Controllers
                 viewModel.products = await _checkoutServices.getOrderProductsAsync(viewModel.UserId);
 
                 viewModel.Response = 200;
+                Alert("La compra se ha hecho exitosamente!", NotificationType.success);
                 return RedirectToAction("Index");
 
             }
@@ -219,7 +220,7 @@ namespace Pet_Store.Responsive.Controllers
 
                 if (result.Succeeded)
                 {
-                    Alert("Bienvenido(a) Gracias por preferirno", NotificationType.info);
+                    //Alert("Bienvenido(a) Gracias por preferirnos", NotificationType.info);
                     return RedirectToAction("index", "home");
                 }
                 
@@ -281,7 +282,7 @@ namespace Pet_Store.Responsive.Controllers
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
-
+            Alert("Por favor revise los datos", NotificationType.error);
             return View(model);
         }
 

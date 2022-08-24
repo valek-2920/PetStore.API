@@ -46,8 +46,10 @@
                             <h3>@item.Name</h3>
                             <p class="product-price"><span>Unidad</span> ₡@item.Price</p>
 
-                            <button asp-action="addProductsToCart" asp-route-ProductId="@item.ProductId" class="btn btn-primary">
-                                <i class="fa-solid fa-circle-xmark"></i> Agregar al Carrito
+                            <button asp-action="addProductsToCart"
+                                asp-route-ProductId="@item.ProductId"
+                                class="btn btn-warning">
+                                <i class="fas fa-shopping-cart"></i> Agregar al Carrito
                             </button>
                         </div>
                     </div>

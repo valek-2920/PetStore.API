@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PetStore.Infraestructure.Repository.UnitOfWork
+namespace Pet_Store.Infraestructure.Repository.UnitOfWork
 {
     public class UnitOfWork<TContext> : IUnitOfWork<TContext>, IDisposable
         where TContext : DbContext

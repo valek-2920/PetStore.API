@@ -16,6 +16,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Pet_Store.Domains.Models.DataModels;
@@ -55,7 +56,6 @@ namespace Pet_Store.Responsive.Controllers
             _sessionManager = sessionManager;
             _roleManager = roleManager;
             Cartero = cartero;
->>>>>>> bd44ac13bfcf4676afab1fa061c336b73b68b541
         }
 
         public async Task<IActionResult> Index()
@@ -63,6 +63,79 @@ namespace Pet_Store.Responsive.Controllers
             var products = await _inventarioServices.getProductsAsync();
 
             return View(products);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Checkout()
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            var userId = claim.Value;
+
+            var user = await _userServices.getUserById(userId);
+            var orderDetails = await _checkoutServices.getOrderByUserAsync(userId);
+            var products = await _checkoutServices.getOrderProductsAsync(userId);
+
+            if (user != null)
+            {
+
+                OrderPaymentViewModel viewModel = new()
+                {
+                    payments = new(),
+                    orderHeader = new(),
+                    order = orderDetails,
+                    products = products,
+                    UserId = userId
+                };
+
+                return View(viewModel);
+
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Checkout(OrderPaymentViewModel viewModel)
+        {
+
+            if (ModelState.IsValid)
+            {
+
+                await _checkoutServices.addProductAsync(viewModel.orderHeader);
+                await _checkoutServices.addPaymentAsync(viewModel.payments);
+
+                return RedirectToAction("Index");
+            }
+            //var errors = ModelState
+            //.Where(x => x.Value.Errors.Count > 0)
+            //.Select(x => new { x.Key, x.Value.Errors })
+            //.ToArray();
+            return View(viewModel);
+        }
+
+        public async Task<IActionResult> Shop()
+        {
+
+            var products = await _inventarioServices.getProductsAsync();
+
+            return View(products);
+        }
+
+        public ActionResult About()
+        {
+
+            return View();
+        }
+        public ActionResult Cart()
+        {
+
+            return View();
+        }
+
+        public ActionResult Contact()
+        {
+
+            return View();
         }
 
         public IActionResult Privacy()
@@ -403,8 +476,5 @@ namespace Pet_Store.Responsive.Controllers
         {
             return View();
         }
-
-
-
     }
 }

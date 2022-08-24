@@ -2,14 +2,13 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Pet_Store.Infraestructure.Data;
 using Pet_Store.Domains.Models.DataModels;
-using PetStore.Infraestructure.Repository.UnitOfWork;
-using PetStore.Infraestructure.Repository;
-using PetStore.Infraestructure.Data;
-using PetStore.Infraestructure.Repository.Repositories;
+using Pet_Store.Infraestructure.Repository.UnitOfWork;
+using Pet_Store.Infraestructure.Repository.Repositories;
+using Pet_Store.Application.Contracts.Data;
+using Pet_Store.Infraestructure.Data;
 
-namespace PetStore.Infraestructure
+namespace Pet_Store.Infraestructure
 {
     public static class Injection
     {

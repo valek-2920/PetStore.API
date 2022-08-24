@@ -6,9 +6,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using PetStore.Infraestructure.Repository;
 using Pet_Store.Infraestructure.Data;
-using PetStore.Infraestructure.Repository.UnitOfWork;
+using Pet_Store.Infraestructure.Repository.UnitOfWork;
+using Pet_Store.Infraestructure.Repository;
 
 
 namespace Pet_Store.API.Controllers

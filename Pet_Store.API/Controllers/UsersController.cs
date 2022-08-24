@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Pet_Store.Domains.Models.DataModels;
 using Pet_Store.Domains.Models.InputModels;
 using Pet_Store.Infraestructure.Data;
-using PetStore.Infraestructure.Repository;
-using PetStore.Infraestructure.Repository.UnitOfWork;
+using Pet_Store.Infraestructure.Repository;
+using Pet_Store.Infraestructure.Repository.UnitOfWork;
 
 namespace Pet_Store.API.Controllers
 {
@@ -51,7 +51,7 @@ namespace Pet_Store.API.Controllers
 
         [HttpPut]
         [Route("user")]
-        public IActionResult UpdateUser([FromBody] UpdateUser model)
+        public IActionResult UpdateUser([FromBody] Users model)
         {
             //traemos el usuario
             var OldUser = _usersRepository.GetFirstOrDefault(x => x.Id == model.Id);
@@ -60,7 +60,7 @@ namespace Pet_Store.API.Controllers
             {
                 //cambiamos los datos viejos del usuario con los datos nuevos
                 OldUser.Id = model.Id;
-                OldUser.FirstName = model.Name;
+                OldUser.FirstName = model.FirstName;
                 OldUser.LastName = model.LastName;
                 OldUser.BirthDate = model.BirthDate;
                 OldUser.Phone = model.Phone;

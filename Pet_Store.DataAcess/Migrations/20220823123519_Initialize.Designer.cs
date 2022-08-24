@@ -3,21 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-<<<<<<< HEAD
-using Project_PetStore.API.DataAccess;
-
-namespace Pet_Store.DataAcess.Migrations
-=======
 using Pet_Store.Infraestructure.Data;
 
 namespace Pet_Store.Infraestructure.Migrations
->>>>>>> bc5bad089d870d87e958a1537e7008be0bd394df
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220823123519_Initialize")]
+    partial class Initialize
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,8 +46,6 @@ namespace Pet_Store.Infraestructure.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
-<<<<<<< HEAD
-=======
 
                     b.HasData(
                         new
@@ -68,7 +62,6 @@ namespace Pet_Store.Infraestructure.Migrations
                             Name = "Cliente",
                             NormalizedName = "CLIENTE"
                         });
->>>>>>> bc5bad089d870d87e958a1537e7008be0bd394df
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -93,8 +86,6 @@ namespace Pet_Store.Infraestructure.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetRoleClaims");
-<<<<<<< HEAD
-=======
 
                     b.HasData(
                         new
@@ -111,7 +102,6 @@ namespace Pet_Store.Infraestructure.Migrations
                             ClaimValue = "CRUD",
                             RoleId = "ca2f3294-c463-4e37-af70-a57fe2b30d36"
                         });
->>>>>>> bc5bad089d870d87e958a1537e7008be0bd394df
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
@@ -126,13 +116,10 @@ namespace Pet_Store.Infraestructure.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-<<<<<<< HEAD
-=======
                     b.Property<string>("Discriminator")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
->>>>>>> bc5bad089d870d87e958a1537e7008be0bd394df
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -184,8 +171,6 @@ namespace Pet_Store.Infraestructure.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-<<<<<<< HEAD
-=======
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
 
@@ -206,7 +191,6 @@ namespace Pet_Store.Infraestructure.Migrations
                             TwoFactorEnabled = false,
                             UserName = "superuser@gmail.com"
                         });
->>>>>>> bc5bad089d870d87e958a1537e7008be0bd394df
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -268,8 +252,6 @@ namespace Pet_Store.Infraestructure.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
-<<<<<<< HEAD
-=======
 
                     b.HasData(
                         new
@@ -277,7 +259,6 @@ namespace Pet_Store.Infraestructure.Migrations
                             UserId = "2577ec7c-cf49-4188-aa19-ead2263c33eb",
                             RoleId = "ca2f3294-c463-4e37-af70-a57fe2b30d36"
                         });
->>>>>>> bc5bad089d870d87e958a1537e7008be0bd394df
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -346,10 +327,6 @@ namespace Pet_Store.Infraestructure.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address")
-<<<<<<< HEAD
-                        .IsRequired()
-=======
->>>>>>> bc5bad089d870d87e958a1537e7008be0bd394df
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("City")
@@ -369,14 +346,9 @@ namespace Pet_Store.Infraestructure.Migrations
                     b.Property<DateTime>("ShippingDate")
                         .HasColumnType("datetime2");
 
-<<<<<<< HEAD
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
-=======
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
->>>>>>> bc5bad089d870d87e958a1537e7008be0bd394df
 
                     b.HasKey("OrderId");
 
@@ -395,14 +367,9 @@ namespace Pet_Store.Infraestructure.Migrations
                     b.Property<int>("CVV")
                         .HasColumnType("int");
 
-<<<<<<< HEAD
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
-=======
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
->>>>>>> bc5bad089d870d87e958a1537e7008be0bd394df
 
                     b.Property<long>("cardNumber")
                         .HasColumnType("bigint");
@@ -480,14 +447,9 @@ namespace Pet_Store.Infraestructure.Migrations
                     b.Property<double>("Subtotal")
                         .HasColumnType("float");
 
-<<<<<<< HEAD
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-=======
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
->>>>>>> bc5bad089d870d87e958a1537e7008be0bd394df
 
                     b.HasKey("Id");
 
@@ -498,34 +460,9 @@ namespace Pet_Store.Infraestructure.Migrations
                     b.ToTable("ShoppingCarts");
                 });
 
-<<<<<<< HEAD
-            modelBuilder.Entity("Pet_Store.Domains.Models.DataModels.UserRoles", b =>
-                {
-                    b.Property<int>("RolesId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("RolName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("RolesId");
-
-                    b.ToTable("UserRoles");
-                });
-
-            modelBuilder.Entity("Pet_Store.Domains.Models.DataModels.Users", b =>
-                {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-=======
             modelBuilder.Entity("Pet_Store.Domains.Models.DataModels.Users", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
->>>>>>> bc5bad089d870d87e958a1537e7008be0bd394df
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -534,11 +471,7 @@ namespace Pet_Store.Infraestructure.Migrations
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
 
-<<<<<<< HEAD
-                    b.Property<string>("Email")
-=======
                     b.Property<string>("FirstName")
->>>>>>> bc5bad089d870d87e958a1537e7008be0bd394df
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -546,32 +479,10 @@ namespace Pet_Store.Infraestructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-<<<<<<< HEAD
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Phone")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RolesId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserId");
-
-                    b.HasIndex("RolesId");
-
-                    b.ToTable("Users");
-=======
                     b.Property<int>("Phone")
                         .HasColumnType("int");
 
                     b.HasDiscriminator().HasValue("Users");
->>>>>>> bc5bad089d870d87e958a1537e7008be0bd394df
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -638,26 +549,15 @@ namespace Pet_Store.Infraestructure.Migrations
                 {
                     b.HasOne("Pet_Store.Domains.Models.DataModels.Users", "User")
                         .WithMany()
-<<<<<<< HEAD
-                        .HasForeignKey("UserId");
-=======
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
->>>>>>> bc5bad089d870d87e958a1537e7008be0bd394df
 
                     b.Navigation("User");
                 });
 
             modelBuilder.Entity("Pet_Store.Domains.Models.DataModels.Payments", b =>
                 {
-<<<<<<< HEAD
-                    b.HasOne("Pet_Store.Domains.Models.DataModels.Users", "user")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("user");
-=======
                     b.HasOne("Pet_Store.Domains.Models.DataModels.Users", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
@@ -665,7 +565,6 @@ namespace Pet_Store.Infraestructure.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
->>>>>>> bc5bad089d870d87e958a1537e7008be0bd394df
                 });
 
             modelBuilder.Entity("Pet_Store.Domains.Models.DataModels.Products", b =>
@@ -702,20 +601,6 @@ namespace Pet_Store.Infraestructure.Migrations
                     b.Navigation("User");
                 });
 
-<<<<<<< HEAD
-            modelBuilder.Entity("Pet_Store.Domains.Models.DataModels.Users", b =>
-                {
-                    b.HasOne("Pet_Store.Domains.Models.DataModels.UserRoles", "Role")
-                        .WithMany()
-                        .HasForeignKey("RolesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Role");
-                });
-
-=======
->>>>>>> bc5bad089d870d87e958a1537e7008be0bd394df
             modelBuilder.Entity("Pet_Store.Domains.Models.DataModels.OrderDetails", b =>
                 {
                     b.Navigation("Product");

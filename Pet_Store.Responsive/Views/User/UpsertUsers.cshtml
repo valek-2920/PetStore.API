@@ -1,0 +1,167 @@
+﻿@model UpsertUsers
+
+@{
+    ViewBag.Title = "Agregar Producto";
+}
+
+<form asp-action="UpsertUsers" method="post">
+    <input asp-for="Users.Id" hidden />
+
+    <div class="breadcrumb-section breadcrumb-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="breadcrumb-text">
+                        <p>Administración</p>
+                        <h1>@(Model.Register == null ? "Actualizar" : "Crear")  Usuarios</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--UPDATE-->
+
+    <div class="container">
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <div class="row">
+                    <div class="col-lg-12">
+                        @if (Model.Register == null)
+                        {
+                            <div class="p-5">
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <span>Nombre</span>
+                                        <input type="text" class="form-control form-control-user" asp-for="Users.FirstName"
+                                           placeholder="Nombre">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <span>Apellido</span>
+                                        <input type="text" class="form-control form-control-user" asp-for="Users.LastName"
+                                           placeholder="Apellido">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <span>Fecha de Nacimiento</span>
+                                        <input type="date" class="form-control form-control-user" asp-for="Users.BirthDate"
+                                           placeholder="Fecha de Nacimiento">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <span>Teléfono Celular</span>
+                                        <input type="tel" class="form-control form-control-user" asp-for="Users.PhoneNumber"
+                                           placeholder="Teléfono">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <span>Correo Electrónico</span>
+                                        <input type="email" class="form-control form-control-user" asp-for="Users.Email"
+                                           placeholder="Correo">
+                                    </div>
+                                    @*<div class="col-sm-6">
+                                <span>contraseña</span>
+                                <input type="password" class="form-control form-control-user"  asp-for="password"
+                                placeholder="contraseña">
+                                </div>*@
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <span>Dirección</span>
+                                        <input type="text" class="form-control form-control-user" asp-for="Users.Address"
+                                           placeholder="Dirección">
+                                    </div>
+                                    @*  <div class="col-sm-6">
+                                <span>Asigne un rol</span>
+                                <select class="form-control" aria-label="Default select example">
+                                <option selected>Seleccione el rol</option>
+                                <option value="1">Medicamentos</option>
+                                <option value="2">Higiene</option>
+                                <option value="3">Accesorios</option>
+                                </select>
+                                </div>*@
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="p-5">
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <span>Nombre</span>
+                                        <input type="text" class="form-control form-control-user" asp-for="Register.FirstName"
+                                           placeholder="Nombre">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <span>Apellido</span>
+                                        <input type="text" class="form-control form-control-user" asp-for="Register.LastName"
+                                           placeholder="Apellido">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <span>Fecha de Nacimiento</span>
+                                        <input type="date" class="form-control form-control-user" asp-for="Register.BirthDate"
+                                           placeholder="Fecha de Nacimiento">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <span>Teléfono Celular</span>
+                                        <input type="tel" class="form-control form-control-user" asp-for="Register.Phone"
+                                           placeholder="Teléfono">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <span>Correo Electrónico</span>
+                                        <input type="email" class="form-control form-control-user" asp-for="Register.Email"
+                                           placeholder="Correo">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <span>Contraseña</span>
+                                        <input type="password" class="form-control form-control-user" asp-for="Register.Password"
+                                           placeholder="Contraseña">
+                                    </div>
+
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <span>Confirmación de Contraseña</span>
+                                        <input type="password" class="form-control form-control-user" asp-for="Register.PasswordConfirmation"
+                                           placeholder="Confirmación de Contraseña">
+                                    </div>
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <span>Dirección</span>
+                                        <input type="text" class="form-control form-control-user" asp-for="Register.Address"
+                                           placeholder="Dirección">
+                                    </div>
+                                    @*  <div class="col-sm-6">
+                                <span>Asigne un rol</span>
+                                <select class="form-control" aria-label="Default select example">
+                                <option selected>Seleccione el rol</option>
+                                <option value="1">Medicamentos</option>
+                                <option value="2">Higiene</option>
+                                <option value="3">Accesorios</option>
+                                </select>
+                                </div>*@
+                                </div>
+                            </div>
+                        }
+                        @if (Model.Register == null)
+                        {
+                            <button asp-action="UpsertUsers" asp-route-id="@Model.Users.Id" class="btn btn-primary btn-user btn-block">Actualizar</button>
+                        }
+                        else
+                        {
+                            <button asp-action="UpsertUsers" class="btn btn-primary btn-user btn-block">Crear</button>
+                        }
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</form>
+
+

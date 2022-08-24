@@ -3,12 +3,12 @@ using Microsoft.EntityFrameworkCore;
 using Pet_Store.Domains.Models.DataModels;
 using Pet_Store.Domains.Models.ViewModels;
 using Pet_Store.Infraestructure.Data;
-using PetStore.Infraestructure.Repository;
-using PetStore.Infraestructure.Repository.UnitOfWork;
 using System.Collections.Generic;
 using Pet_Store.Domains.Models.InputModels;
 using System.Linq;
 using System.Threading.Tasks;
+using Pet_Store.Infraestructure.Repository.UnitOfWork;
+using Pet_Store.Infraestructure.Repository;
 
 namespace Pet_Store.API.Controllers
 {
@@ -189,18 +189,18 @@ namespace Pet_Store.API.Controllers
             return BadRequest("Usuario no posee orden");
         }
 
-        // [HttpGet]
-        // [Route("order-products")]
-        // public IActionResult getOrderProducts(int userId)
-        // {
-        //     var products =  _unityOfWork.ShoppingCartRepository.getProducts(userId);
+        [HttpGet]
+        [Route("order-products")]
+        public IActionResult getOrderProducts(string userId)
+        {
+            var products = (from x in _context.ShoppingCarts where x.User.Id == userId select x.Product).ToList();
 
-        //     if (products != null)
-        //     {
-        //         return Ok(products);
-        //     }
-        //     return BadRequest("Usuario no posee orden");
-        // }
+            if (products != null)
+            {
+                return Ok(products);
+            }
+            return BadRequest("Usuario no posee orden");
+        }
 
     }
 }

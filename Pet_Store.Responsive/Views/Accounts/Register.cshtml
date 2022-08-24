@@ -1,0 +1,157 @@
+﻿@model RegisterInputModel
+
+@{
+    ViewBag.Title = "Registro";
+}
+
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Administración</p>
+                    <h1>Registrar Usuario</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="contact-from-section mt-80 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 mb-5 mb-lg-0">
+                <div class="contact-form text-left">
+                    <form method="post">
+
+                        <div class="form-group inputs">
+                            <label asp-for="FirstName" class="form-text">Nombre</label>
+                            <input asp-for="FirstName" class="form-control" placeholder="Nombre" name="nombre" id="nombre"  onkeypress="return sololetras(event)" autofocus />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+
+                            <label asp-for="LastName" class="form-text">Apellido</label>
+                            <input asp-for="LastName" class="form-control" placeholder="Apellido" name="apellido" id="apellido"  onkeypress="return sololetras(event)" autofocus />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+
+                            <label asp-for="Phone" class="form-text">Teléfono</label>
+                            <input asp-for="Phone" class="form-control" placeholder="Teléfono" name="phone" id="phone" onkeypress="return isnumber(event)" onblur="validartelefono();" autofocus />
+                            <span asp-validation-for="Phone" class="text-danger"></span>
+
+                            <label asp-for="BirthDate" class="form-text">Fecha de Nacimiento</label>
+                            <input type="date" asp-for="BirthDate" class="form-control" placeholder="Fecha de Nacimiento" name="birthdate" id="birthdate" autofocus />
+                            <span asp-validation-for="BirthDate" class="text-danger"></span>
+
+
+                            <label asp-for="Email" class="form-text">Correo Electrónico</label>
+                            <input asp-for="Email" class="form-control" placeholder="Correo Electrónico" autofocus />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+
+                            <label asp-for="Password" class="form-text">Contraseña</label>
+                            <input asp-for="Password" class="form-control" placeholder="Contraseña" />
+                            <span asp-validation-for="Password" class="text-danger">Confirmar Contraseña</span>
+
+                            <label asp-for="PasswordConfirmation" class="form-text">Confirmar Contraseña</label>
+                            <input asp-for="PasswordConfirmation" class="form-control" placeholder="Confirmar Contraseña" />
+                            <span asp-validation-for="PasswordConfirmation" class="text-danger"></span>
+
+                            <label asp-for="Address" class="form-text">Ingrese su dirección</label>
+                            <input asp-for="Address" class="form-control" placeholder="Ingrese su dirección" />
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group inputs">
+                            <button id="submit" type="submit" class="btn btn-outline-primary">Registrarme</button>
+                        </div>
+
+                    </form>
+
+                    @*<form type="post" onsubmit="">
+                            <p>
+                                <input type="text" placeholder="nombre" name="nombre" id="nombre" onblur="limpiarcampo();" onkeypress="return sololetras(event)" required>
+                                <input type="text" placeholder="apellido" name="apellido" id="apellido" onblur="limpiarcampo();" onkeypress="return sololetras(event)" required>
+                            </p>
+                            <p>
+                                <input type="date" placeholder="fecha de nacimiento" name="birthdate" id="birthdate" required>
+                                <input type="tel" placeholder="número de teléfono" name="phone" id="phone" onkeypress = "return isnumber(event)" onblur = "validartelefono();" required>
+                                <span id="telok" style="color: red"></span>
+                            </p>
+                            <p>
+                                <input type="email" placeholder="correo electrónico" name="email" id="email" onblur = "limpiarcampo();validar();" required>
+                                <span id="emailok" style="color: red"></span>
+                                <input type="password" placeholder="contraseña" name="password" id="password" onblur = "validarcontrasena();">
+                                <span id="passok" style="color: red"></span>
+                            </p>
+                            <p><textarea name="direccion" id="direccion" cols="30" rows="10" placeholder="ingrese su dirección" onblur="limpiarcampo();"></textarea></p>
+                            <input type="hidden" name="role" value="" />
+                            <p><button type="submit" id="botonenviar">registrarse</button></p>
+                        </form>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function soloLetras(e) {
+        var key = e.keyCode || e.which,
+            tecla = String.fromCharCode(key).toLowerCase(),
+            letras = " áéíóúabcdefghijklmnñopqrstuvwxyz",
+            especiales = [8, 37, 39, 46],
+            tecla_especial = false;
+
+        for (var i in especiales) {
+            if (key == especiales[i]) {
+                tecla_especial = true;
+                break;
+            }
+        }
+
+        if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+            return false;
+        }
+    }
+    function LimpiarCampo() {
+        $("#email").val($("#email").val().trim());
+        $("#nombre").val($("#nombre").val().trim());
+        $("#direccion").val($("#direccion").val().trim());
+    }
+    function isNumber(evt) {
+        var iKeyCode = (evt.which) ? evt.which : evt.iKeyCode
+        if (iKeyCode < 48 || iKeyCode > 57)
+            return false;
+        return true;
+    }
+    function validarTelefono() {
+        var tel = document.getElementById('Phone').value;
+        valido = document.getElementById('telOK');
+
+        var min = 20000000;
+        var max = 89999999;
+
+        //Se muestra un texto a modo de ejemplo, luego va a ser un icono
+        if (tel < min || tel > max) {
+            valido.innerText = "Número de teléfono incorrecto";
+            $('#botonEnviar').attr('disabled', true);
+        } else {
+            valido.innerText = "";
+            $('#botonEnviar').attr('disabled', false);
+        }
+    }
+    function validarContrasena() {
+        document.getElementById('password').value;
+        campo = event.target;
+        valido = document.getElementById('passOK');
+
+        contraRegex = /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/;
+        //Se muestra un texto a modo de ejemplo, luego va a ser un icono
+        if (contraRegex.test(campo.value)) {
+            valido.innerText = "ak7";
+            $('#botonEnviar').attr('disabled', false);
+        } else {
+            valido.innerText = "La contraseña debe tener al entre 8 y 16 caracteres \n Al menos un dígito \n Al menos una minúscula \n Al menos una mayúscula \n Al menos un caracter no alfanumérico.";
+            $('#botonEnviar').attr('disabled', true);
+        }
+    }
+
+</script>
+
+
+

@@ -1,0 +1,53 @@
+﻿@model UserRoleViewModel
+
+@{
+    ViewBag.Title = "Roles";
+}
+
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Administración</p>
+                    <h1>Asignar Rol</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mb-5">
+    <input type="button" value="Regresar" class="btn btn-primary"
+           onclick="location.href='@Url.Action("Roles", "User")'">
+</div>
+<div class="container">
+    <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="p-5">
+                        <form method="post">
+                            @for (int i = 0; i < Model.Users.Count; i++)
+                            {
+                                <div class="input-group inputs">
+                                    <div class="col-2">
+                                        <input type="hidden" asp-for="@Model.Users[i].Email" />
+                                        <input type="checkbox" asp-for="@Model.Users[i].Selected" />
+                                    </div>
+                                    <div class="col-5">
+                                        @Model.Users[i].Email
+                                    </div>
+                                </div>
+                            }
+
+                        <partial name="_PartialViewButtons" model="Model.RoleId" />
+
+                        </form>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

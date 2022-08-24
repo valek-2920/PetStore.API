@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Pet_Store.Domains.Models.DataModels;
 using Pet_Store.Domains.Models.InputModels;
-using PetStore.DataAccess.Repository.UnityOfWork;
+using Pet_Store.Infraestructure.Data;
+using PetStore.Infraestructure.Repository;
+using PetStore.Infraestructure.Repository.UnitOfWork;
 
 namespace Pet_Store.API.Controllers
 {
@@ -9,11 +11,13 @@ namespace Pet_Store.API.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
-        private readonly IUnityOfWork _unityOfWork;
+        readonly IUnitOfWork<ApplicationDbContext> _unitOfWork;
+        readonly IRepository<Category> _categoryRepository;
 
-        public CategoryController(IUnityOfWork unityOfWork)
+        public CategoryController(IUnitOfWork<ApplicationDbContext> unitOfWork)
         {
-            _unityOfWork = unityOfWork;
+            _unitOfWork = unitOfWork;
+            _categoryRepository = _unitOfWork.Repository<Category>();
         }
 
         [HttpPost]
@@ -27,8 +31,8 @@ namespace Pet_Store.API.Controllers
                     Description = model.Description
                 };
 
-                _unityOfWork.CategoryRepository.Add(category);
-                _unityOfWork.Save();
+                _categoryRepository.Add(category);
+                _unitOfWork.Save();
                 return Ok(category);
             }
             return BadRequest("Error al crear categoria");
@@ -38,8 +42,8 @@ namespace Pet_Store.API.Controllers
         [Route("categories")]
         public IActionResult GetCategories()
         {
-            var allCategories = _unityOfWork.CategoryRepository.GetAll();
-            _unityOfWork.Save();
+            var allCategories = _categoryRepository.GetAll();
+            _unitOfWork.Save();
 
             if (allCategories != null)
             {
@@ -52,8 +56,8 @@ namespace Pet_Store.API.Controllers
         [Route("category")]
         public IActionResult GetCategory(int id)
         {
-            var category = _unityOfWork.CategoryRepository.GetFirstOrDefault(x => x.CategoryId == id);
-            _unityOfWork.Save();
+            var category = _categoryRepository.GetFirstOrDefault(x => x.CategoryId == id);
+            _unitOfWork.Save();
 
             if (category != null)
             {
@@ -69,8 +73,8 @@ namespace Pet_Store.API.Controllers
 
             if (ModelState.IsValid)
             {
-                _unityOfWork.CategoryRepository.Update(model);
-                _unityOfWork.Save();
+                _categoryRepository.Update(model);
+                _unitOfWork.Save();
 
                 return Ok(model);
             }
@@ -81,12 +85,12 @@ namespace Pet_Store.API.Controllers
         [Route("category")]
         public IActionResult DeleteCategory(int id)
         {
-            var category = _unityOfWork.CategoryRepository.GetFirstOrDefault(x => x.CategoryId == id);
+            var category = _categoryRepository.GetFirstOrDefault(x => x.CategoryId == id);
 
             if (category != null)
             {
-                _unityOfWork.CategoryRepository.Remove(category);
-                _unityOfWork.Save();
+                _categoryRepository.Remove(category);
+                _unitOfWork.Save();
 
                 return Ok(200);
             }

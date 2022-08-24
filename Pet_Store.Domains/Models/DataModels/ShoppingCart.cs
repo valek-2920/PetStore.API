@@ -6,8 +6,6 @@ namespace Pet_Store.Domains.Models.DataModels
 {
     public class ShoppingCart
     {
-
-
         [Key]
         [Display(Name = "Carrito#")]
         public int Id { get; set; }
@@ -21,16 +19,13 @@ namespace Pet_Store.Domains.Models.DataModels
 
         [ForeignKey("ProductId")]
         [ValidateNever]
-        [Display(Name = "Producto")]
         public Products Product { get; set; }
 
         [Required]
-        [Display(Name = "Identificador del cliente")]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
         [ForeignKey("UserId")]
         [ValidateNever]
-        [Display(Name = "Cliente")]
         public Users User { get; set; }
 
         [Display(Name = "Subtotal")]

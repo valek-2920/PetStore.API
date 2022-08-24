@@ -1,0 +1,20 @@
+﻿
+@model string
+
+<div class="form-group inputs">
+    <a id="cancel" class="btn btn-outline-secondary" asp-action="Roles">
+         Cancelar
+    </a>
+    <button id="partialRol" type="submit" class="btn btn-outline-primary" >
+       
+        @if (!string.IsNullOrEmpty(Model))
+        {
+            <span>Actualizar</span>
+        }
+        else
+        {
+            <span>Crear</span>
+        }
+    </button>
+</div>
+

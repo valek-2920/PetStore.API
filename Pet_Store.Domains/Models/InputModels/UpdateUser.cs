@@ -10,7 +10,7 @@ namespace Pet_Store.Domains.Models.InputModels
     public class UpdateUser
     {
         [Required]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [Required]
         public string Name { get; set; }

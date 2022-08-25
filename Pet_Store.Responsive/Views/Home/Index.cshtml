@@ -88,28 +88,31 @@
             </div>
         </div>
 
-        <div class="row product-lists">
-            @foreach (var item in Model)
-            {
-                <form asp-action="addProductsToCart" method="post">
+        <div class="product-lists">
+           <form asp-action="addProductsToCart" method="post">
+               <div class="row">
+                    @foreach (var item in Model)
+                    {
 
-                    <div class="col-lg-4 col-md-6 text-center @item.Category.Description">
-                        <div class="single-product-item">
-                            <div class="product-image">
-                                <a @*href="single-product.html"*@><img src="@item.Files" width="100" alt=""></a>
-                            </div>
-                            <h3>@item.Name</h3>
-                            <p class="product-price"><span>Unidad</span> ₡@item.Price.000</p>
 
-                            <button asp-action="addProductsToCart"
+                        <div class="col-4 text-center">
+                            <div class="single-product-item">
+                                <div class="product-image">
+                                    <a @*href="single-product.html"*@><img src="@item.Files" style="width:100px" alt=""></a>
+                                </div>
+                                <h3>@item.Name</h3>
+                                <p class="product-price"><span>Unidad</span> ₡@item.Price.000</p>
+
+                                <button asp-action="addProductsToCart"
                                     asp-route-ProductId="@item.ProductId"
                                     class="btn btn-warning">
-                                <i class="fas fa-shopping-cart"></i> Agregar al Carrito
-                            </button>
+                                    <i class="fas fa-shopping-cart"></i> Agregar al Carrito
+                                </button>
+                            </div>
                         </div>
-                    </div>
+                    }
+               </div>
                 </form>
-            }
         </div>
         <div class="row">
             <div class="col-lg-12 text-center">
